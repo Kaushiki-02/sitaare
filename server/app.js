@@ -20,9 +20,15 @@ const donationRoutes = require('./routes/donationRoutes');
 const authRoutes = require('./routes/authRoutes');
 
 // Use routes
-app.use('/api/beneficiaries', beneficiaryRoutes);
-app.use('/api/donate', donationRoutes);
-app.use('/api/auth', authRoutes);
+console.log("Loading beneficiaryRoutes...");
+app.use('/api/beneficiaries', require('./routes/beneficiaryRoutes'));
+
+console.log("Loading donationRoutes...");
+app.use('/api/donate', require('./routes/donationRoutes'));
+
+console.log("Loading authRoutes...");
+app.use('/api/auth', require('./routes/authRoutes'));
+
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
