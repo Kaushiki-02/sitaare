@@ -4,9 +4,17 @@ const Home = () => {
   const [message, setMessage] = useState('');
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_API_BASE_URL}/api/beneficiaries/ping`)
+    const baseUrl = process.env.REACT_APP_API_BASE_URL;
+
+    if (!baseUrl) {
+      console.error("Missing REACT_APP_API_BASE_URL");
+      return;
+    }
+
+    fetch(`${baseUrl}/api/beneficiaries/ping`)
       .then(res => res.text())
-      .then(data => setMessage(data));
+      .then(data => setMessage(data))
+      .catch(err => console.error("API call failed:", err));
   }, []);
 
   return (
