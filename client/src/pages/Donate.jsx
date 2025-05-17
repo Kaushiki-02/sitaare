@@ -1,6 +1,41 @@
 import React from 'react';
 
 const Donate = () => {
+  const handleDonate = async (amount) => {
+  const res = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/donate/create-order`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ amount }),
+  });
+
+  const data = await res.json();
+  if (!data.success) return alert("Failed to create order");
+
+  const options = {
+    key: process.env.REACT_APP_RAZORPAY_KEY_ID,
+    amount: data.order.amount,
+    currency: "INR",
+    name: "Project Sitaare",
+    description: "Donation",
+    order_id: data.order.id,
+    handler: function (response) {
+      alert(`Payment Successful! Razorpay Payment ID: ${response.razorpay_payment_id}`);
+    },
+    prefill: {
+      name: "",
+      email: "",
+    },
+    theme: {
+      color: "#F59E0B",
+    },
+  };
+
+  const rzp = new window.Razorpay(options);
+  rzp.open();
+};
+
   return (
     <div className="min-h-screen bg-white text-gray-800 px-6 py-16">
       <h1 className="text-4xl font-bold text-center text-yellow-800 mb-10">
@@ -28,8 +63,9 @@ const Donate = () => {
           <p className="mb-4 text-gray-600">
             Support a child’s need like school supplies or healthcare.
           </p>
-          <button className="bg-yellow-600 text-white px-4 py-2 rounded hover:bg-yellow-700 transition">
-            Donate Once
+          <button onClick={() => handleDonate(2000)}
+          className="bg-yellow-600 text-white px-4 py-2 rounded hover:bg-yellow-700 transition">
+          Donate Once
           </button>
         </div>
 
@@ -39,8 +75,8 @@ const Donate = () => {
           <p className="mb-4 text-gray-600">
             Virtually adopt a girl for ₹11,551/month and support her fully.
           </p>
-          <button className="bg-yellow-600 text-white px-4 py-2 rounded hover:bg-yellow-700 transition">
-            Sponsor Monthly
+          <button onClick={() => handleDonate(11551)}className="bg-yellow-600text-white px-4 py-2 rounded hover:bg-yellow-700 transition">
+          Sponsor Monthly
           </button>
         </div>
 
