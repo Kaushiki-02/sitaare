@@ -1,19 +1,19 @@
-// ProfileCard.jsx
 import React from 'react';
-import { motion } from 'framer-motion';
 
-const ProfileCard = ({ profile }) => (
-  <motion.div 
-    className="bg-white shadow-lg rounded-lg p-4 m-2"
-    whileHover={{ scale: 1.05 }}
-    initial={{ opacity: 0, y: 50 }}
-    animate={{ opacity: 1, y: 0 }}
-  >
-    <img src={profile.photo} alt={profile.name} className="rounded-md mb-3 w-full h-48 object-cover" />
-    <h3 className="text-xl font-semibold">{profile.name}</h3>
-    <p className="text-gray-600">{profile.bio}</p>
-    <p className={`mt-2 text-sm ${profile.status === 'Adopted' ? 'text-green-600' : 'text-yellow-600'}`}>{profile.status}</p>
-  </motion.div>
-);
+const ProfileCard = ({ name, age, goal, image }) => {
+  return (
+    <div className="bg-white shadow rounded-lg overflow-hidden transform hover:scale-105 transition">
+      <img src={image} alt={name} className="w-full h-56 object-cover" />
+      <div className="p-4">
+        <h3 className="text-xl font-semibold text-yellow-800">{name}</h3>
+        <p className="text-sm text-gray-600 mb-2">Age: {age}</p>
+        <p className="text-sm text-gray-700 italic mb-4">Dream: {goal}</p>
+        <button className="bg-yellow-600 text-white px-4 py-2 rounded hover:bg-yellow-700">
+          Virtually Adopt ₹11,551/mo
+        </button>
+      </div>
+    </div>
+  );
+};
 
 export default ProfileCard;
