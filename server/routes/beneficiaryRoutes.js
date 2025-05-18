@@ -1,5 +1,7 @@
-// server/routes/beneficiaryRoutes.js
+const express = require('express');
+const router = express.Router(); // THIS initializes the router!
 
+// Route to get beneficiary list
 router.get('/', (req, res) => {
   res.json([
     {
@@ -22,3 +24,5 @@ router.get('/', (req, res) => {
     }
   ]);
 });
+
+module.exports = router; // Needed to use this route in app.js
