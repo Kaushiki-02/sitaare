@@ -14,49 +14,54 @@ const Volunteer = () => {
   };
 
   return (
-    <div className="min-h-screen py-16 px-6 bg-white text-gray-800">
-      <h1 className="text-4xl font-bold text-center text-yellow-800 mb-10">Become a Volunteer</h1>
+    <div className="min-h-screen py-16 px-6 bg-bgLight text-bodyText font-sans">
+      <h1 className="text-4xl font-bold text-center text-heading mb-10">
+        Become a Volunteer
+      </h1>
 
       <form
         onSubmit={handleSubmit}
-        className="max-w-xl mx-auto bg-yellow-50 p-8 rounded-lg shadow space-y-6"
+        className="max-w-xl mx-auto bg-bgCard p-8 rounded-lg shadow space-y-6"
       >
         <div>
-          <label className="block font-medium">Name</label>
+          <label className="block font-semibold text-heading mb-1">Name</label>
           <input
             type="text"
             name="name"
             value={form.name}
             onChange={handleChange}
-            className="w-full mt-1 p-2 border rounded"
             required
+            className="w-full mt-1 p-2 border border-borderCard rounded text-bodyText"
           />
         </div>
+
         <div>
-          <label className="block font-medium">Email</label>
+          <label className="block font-semibold text-heading mb-1">Email</label>
           <input
             type="email"
             name="email"
             value={form.email}
             onChange={handleChange}
-            className="w-full mt-1 p-2 border rounded"
             required
+            className="w-full mt-1 p-2 border border-borderCard rounded text-bodyText"
           />
         </div>
+
         <div>
-          <label className="block font-medium">Interest Area</label>
+          <label className="block font-semibold text-heading mb-1">Interest Area</label>
           <textarea
             name="interest"
             value={form.interest}
             onChange={handleChange}
-            className="w-full mt-1 p-2 border rounded"
-            rows="4"
             required
+            rows="4"
+            className="w-full mt-1 p-2 border border-borderCard rounded text-bodyText resize-y"
           ></textarea>
         </div>
+
         <button
           type="submit"
-          className="bg-primary hover:bg-primaryLight text-white font-semibold px-6 py-2 rounded-md shadow-md transition"
+          className="bg-primary hover:bg-primaryLight text-white font-semibold px-6 py-2 rounded-md shadow-md transition-colors"
         >
           Submit
         </button>

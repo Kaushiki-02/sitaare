@@ -9,7 +9,6 @@ import Volunteer from './pages/Volunteer';
 import Provide from './pages/Provide';
 import WhyJoin from './pages/WhyJoin';
 import Contact from './pages/Contact';
-import ChatbotWidget from './components/ChatbotWidget';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 
@@ -36,7 +35,6 @@ function App() {
 
         <Footer />
       </Router>
-      <ChatbotWidget />
     </div>
   );
 }
