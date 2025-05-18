@@ -15,7 +15,7 @@ const Volunteer = () => {
 
   return (
     <div className="min-h-screen py-16 px-6 bg-white text-gray-800">
-      <h1 className="text-4xl font-bold text-center text-yellow-800 mb-10">Become a Volunteer 💛</h1>
+      <h1 className="text-4xl font-bold text-center text-yellow-800 mb-10">Become a Volunteer</h1>
 
       <form
         onSubmit={handleSubmit}

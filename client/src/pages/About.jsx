@@ -16,14 +16,22 @@ const About = () => {
 
       {/* Vision & Mission */}
       <section className="max-w-4xl mx-auto mb-16">
-        <h2 className="text-2xl font-semibold text-yellow-700 mb-4">🌟 Vision</h2>
+        <h2 className="text-2xl font-semibold text-yellow-700 mb-4">Vision</h2>
         <p className="text-lg mb-6 leading-relaxed">
-          To nurture, protect, and empower vulnerable girls in India — giving them not just shelter, but a home of hope, care, and opportunity. Project Sitaare envisions a future where every girl can thrive and shine as a confident, educated, and self-reliant woman.
+         To create a world where every girl has the opportunity to dream,learn, and succeed—regardless of her past.
         </p>
 
-        <h2 className="text-2xl font-semibold text-yellow-700 mb-4">🎯 Mission</h2>
+        <h2 className="text-2xl font-semibold text-yellow-700 mb-4">Mission</h2>
         <p className="text-lg leading-relaxed">
-          We are committed to providing long-term residential care, education, healthcare, emotional support, and life skills to underprivileged girls. Through structured programs, loving care, and community engagement, we aim to raise strong, capable, and independent women who break the cycle of poverty.
+          To empower orphaned girls with the tools they need to become strong, independent women who contribute positively to society.<br/>
+          The Impact We Aim to Create
+          <br/>
+          <ul className="list-disc pl-6 text-lg text-gray-700 leading-loose">
+          <li>Provide a safe, loving home for 30+ girls</li>
+          <li>Ensure 100% education and career readiness</li>
+          <li>Equip girls with lifelong skills for financial independence</li>
+          <li>Build a support system that fosters self-belief and success</li>
+        </ul>
         </p>
       </section>
 
@@ -32,13 +40,27 @@ const About = () => {
         <h2 className="text-2xl font-semibold text-yellow-700 mb-6 text-center">
           Why Project Sitaare?
         </h2>
-        <ul className="list-disc pl-6 text-lg text-gray-700 leading-loose">
-          <li>Girls-first approach focused on holistic development</li>
-          <li>Safe, nurturing residential environment</li>
-          <li>Access to quality education and life skills</li>
-          <li>Healthcare, mental wellness, and emotional support</li>
-          <li>Mentorship, career guidance, and future planning</li>
-        </ul>
+        <dl className="space-y-4">
+  <div>
+    <dt className="text-lg font-semibold text-[#E94BA2]">1. Education first</dt>
+    <dd className="text-gray-700">Full school support, digital literacy, and career guidance</dd>
+  </div>
+  <div>
+    <dt className="text-lg font-semibold text-[#E94BA2]">2. More than a shelter</dt>
+    <dd className="text-gray-700">A nurturing home where girls thrive, not just survive</dd>
+  </div>
+  <div>
+    <dt className="text-lg font-semibold text-[#E94BA2]">3. Health & well-being</dt>
+    <dd className="text-gray-700">Nutritious meals, medical care, and emotional wellness programs</dd>
+  </div>
+  <div>
+    <dt className="text-lg font-semibold text-[#E94BA2]">4. Life skills & self-confidence</dt>
+    <dd className="text-gray-700">Leadership training, vocational skills, sports, and self-defense</dd>
+  </div>
+</dl>
+
+
+
       </section>
 
       {/* Signature Quote */}

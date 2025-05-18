@@ -4,7 +4,7 @@ const Partners = () => {
   return (
     <div className="min-h-screen bg-yellow-50 py-16 px-6 text-gray-800">
       <h1 className="text-4xl font-bold text-center text-yellow-800 mb-10">
-        Partner with Us 🤝
+        Partner with Us
       </h1>
 
       <p className="text-lg max-w-3xl mx-auto text-center mb-8">
@@ -13,15 +13,15 @@ const Partners = () => {
 
       <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-12">
         <div className="bg-white p-6 rounded-lg shadow">
-          <h2 className="text-xl font-bold mb-2">🏗 Sponsor Infrastructure</h2>
+          <h2 className="text-xl font-bold mb-2">Sponsor Infrastructure</h2>
           <p>Help us build dorms, classrooms, and libraries.</p>
         </div>
         <div className="bg-white p-6 rounded-lg shadow">
-          <h2 className="text-xl font-bold mb-2">🎓 Fund Skill Programs</h2>
+          <h2 className="text-xl font-bold mb-2">Fund Skill Programs</h2>
           <p>Support education, coding, arts, and life skill workshops.</p>
         </div>
         <div className="bg-white p-6 rounded-lg shadow">
-          <h2 className="text-xl font-bold mb-2">🧑‍🏫 Offer Mentorships</h2>
+          <h2 className="text-xl font-bold mb-2">Offer Mentorships</h2>
           <p>Volunteer or host mentorship sessions to guide our girls.</p>
         </div>
       </div>

@@ -39,7 +39,7 @@ const Donate = () => {
   return (
     <div className="min-h-screen bg-white text-gray-800 px-6 py-16">
       <h1 className="text-4xl font-bold text-center text-yellow-800 mb-10">
-        Support a Sitaare 🌠
+        Support a Sitaare
       </h1>
 
       {/* Info Block */}
@@ -59,7 +59,7 @@ const Donate = () => {
       <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto text-center">
         {/* One-time */}
         <div className="bg-yellow-100 p-6 rounded-lg shadow">
-          <h2 className="text-xl font-bold mb-2">💸 One-Time Donation</h2>
+          <h2 className="text-xl font-bold mb-2">One-Time Donation</h2>
           <p className="mb-4 text-gray-600">
             Support a child’s need like school supplies or healthcare.
           </p>
@@ -71,7 +71,7 @@ const Donate = () => {
 
         {/* Monthly */}
         <div className="bg-yellow-100 p-6 rounded-lg shadow border-2 border-yellow-600">
-          <h2 className="text-xl font-bold mb-2">📅 Monthly Sponsorship</h2>
+          <h2 className="text-xl font-bold mb-2">Monthly Sponsorship</h2>
           <p className="mb-4 text-gray-600">
             Virtually adopt a girl for ₹11,551/month and support her fully.
           </p>
@@ -82,7 +82,7 @@ const Donate = () => {
 
         {/* In-kind */}
         <div className="bg-yellow-100 p-6 rounded-lg shadow">
-          <h2 className="text-xl font-bold mb-2">🎁 In-Kind Support</h2>
+          <h2 className="text-xl font-bold mb-2">In-Kind Support</h2>
           <p className="mb-4 text-gray-600">
             Contribute books, clothes, meals, or digital classes.
           </p>
