@@ -6,7 +6,10 @@ import Beneficiaries from './pages/Beneficiaries';
 import Donate from './pages/Donate';
 import Partners from './pages/Partners';
 import Volunteer from './pages/Volunteer';
+import Provide from './pages/Provide';
+import WhyJoin from './pages/WhyJoin';
 import Contact from './pages/Contact';
+import ChatbotWidget from './components/ChatbotWidget';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 
@@ -26,11 +29,14 @@ function App() {
             <Route path="/partners" element={<Partners />} />
             <Route path="/volunteer" element={<Volunteer />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/Provide" element={<Provide />} />
+            <Route path="/WhyJoin" element={<WhyJoin />} />
           </Routes>
         </main>
 
         <Footer />
       </Router>
+      <ChatbotWidget />
     </div>
   );
 }

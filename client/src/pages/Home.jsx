@@ -37,12 +37,12 @@ const Home = () => {
 
         <div className="mt-10 flex flex-col sm:flex-row justify-center gap-4">
           <Link to="/donate">
-            <button className="bg-yellow-600 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-yellow-700 transition duration-200">
+            <button className="bg-primary hover:bg-primaryLight text-white font-semibold px-6 py-2 rounded-md shadow-md transition">
               Sponsor a Child
             </button>
           </Link>
           <Link to="/donate">
-            <button className="border border-yellow-600 text-yellow-800 px-6 py-3 rounded-lg hover:bg-yellow-200 transition duration-200">
+            <button className="bg-primary hover:bg-primaryLight text-white font-semibold px-6 py-2 rounded-md shadow-md transition">
               Donate Now
             </button>
           </Link>

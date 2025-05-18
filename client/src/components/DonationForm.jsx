@@ -28,7 +28,7 @@ const DonationForm = () => {
         className="border p-2 rounded w-full mb-3"
         placeholder="Enter Amount (INR)"
       />
-      <button onClick={handleDonate} className="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700">
+      <button onClick={handleDonate} className="bg-primary hover:bg-primaryLight text-white font-semibold px-6 py-2 rounded-md shadow-md transition">
         Donate Now
       </button>
     </div>

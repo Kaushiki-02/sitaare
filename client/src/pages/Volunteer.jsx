@@ -56,7 +56,7 @@ const Volunteer = () => {
         </div>
         <button
           type="submit"
-          className="bg-yellow-600 text-white px-4 py-2 rounded hover:bg-yellow-700 transition"
+          className="bg-primary hover:bg-primaryLight text-white font-semibold px-6 py-2 rounded-md shadow-md transition"
         >
           Submit
         </button>

@@ -64,7 +64,7 @@ const Donate = () => {
             Support a child’s need like school supplies or healthcare.
           </p>
           <button onClick={() => handleDonate(2000)}
-          className="bg-yellow-600 text-white px-4 py-2 rounded hover:bg-yellow-700 transition">
+          className="bg-primary hover:bg-primaryLight text-white font-semibold px-6 py-2 rounded-md shadow-md transition">
           Donate Once
           </button>
         </div>
@@ -75,7 +75,7 @@ const Donate = () => {
           <p className="mb-4 text-gray-600">
             Virtually adopt a girl for ₹11,551/month and support her fully.
           </p>
-          <button onClick={() => handleDonate(11551)}className="bg-yellow-600text-white px-4 py-2 rounded hover:bg-yellow-700 transition">
+          <button onClick={() => handleDonate(11551)}className="bg-primary hover:bg-primaryLight text-white font-semibold px-6 py-2 rounded-md shadow-md transition">
           Sponsor Monthly
           </button>
         </div>
@@ -86,7 +86,7 @@ const Donate = () => {
           <p className="mb-4 text-gray-600">
             Contribute books, clothes, meals, or digital classes.
           </p>
-          <button className="bg-yellow-600 text-white px-4 py-2 rounded hover:bg-yellow-700 transition">
+          <button className="bg-primary hover:bg-primaryLight text-white font-semibold px-6 py-2 rounded-md shadow-md transition">
             Offer In-Kind
           </button>
         </div>
