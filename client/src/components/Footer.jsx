@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Footer = () => {
@@ -13,13 +12,13 @@ const Footer = () => {
 
         {/* Right: Footer Nav */}
         <div className="flex space-x-4 text-sm font-semibold">
-          <Link to="/about" className="hover:text-[#D61A91] transition-colors duration-200">
+          <Link to="/who-we-are" className="hover:text-[#D61A91] transition-colors duration-200">
             About
           </Link>
           <Link to="/donate" className="hover:text-[#D61A91] transition-colors duration-200">
             Donate
           </Link>
-          <Link to="/contact" className="hover:text-[#D61A91] transition-colors duration-200">
+          <Link to="/contact-us" className="hover:text-[#D61A91] transition-colors duration-200">
             Contact
           </Link>
         </div>

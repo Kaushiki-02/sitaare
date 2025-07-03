@@ -1,5 +1,3 @@
-import React from 'react';
-
 const ProfileCard = ({ name, age, goal, image }) => {
   return (
     <div className="bg-white shadow rounded-lg overflow-hidden transform hover:scale-105 transition">

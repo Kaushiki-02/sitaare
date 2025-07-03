@@ -1,38 +1,14 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from './pages/Home';
-import About from './pages/About';
-import Beneficiaries from './pages/Beneficiaries';
-import Donate from './pages/Donate';
-import Partners from './pages/Partners';
-import Volunteer from './pages/Volunteer';
-import Provide from './pages/Provide';
-import WhyJoin from './pages/WhyJoin';
-import Contact from './pages/Contact';
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { Navbar, Footer, Scroller } from './components';
+import Navs from "./navs"; // Use consistent casing (Navs not navs)
 
 function App() {
   return (
     <div className="min-h-screen flex flex-col font-sans text-gray-800 bg-pink-50">
       <Router>
+        <Scroller />
         <Navbar />
-        
-        {/* Main Content Wrapper */}
-        <main className="flex-grow px-4 sm:px-8 md:px-16 py-8">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/beneficiaries" element={<Beneficiaries />} />
-            <Route path="/donate" element={<Donate />} />
-            <Route path="/partners" element={<Partners />} />
-            <Route path="/volunteer" element={<Volunteer />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/Provide" element={<Provide />} />
-            <Route path="/WhyJoin" element={<WhyJoin />} />
-          </Routes>
-        </main>
-
+        <Navs />
         <Footer />
       </Router>
     </div>

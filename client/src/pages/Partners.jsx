@@ -1,34 +1,91 @@
-import React from 'react';
+import { motion } from 'framer-motion';
+
+const partnerData = [
+  {
+    title: "Corporates (CSR)",
+    color: "text-[#BC1782]",
+    points: [
+      "Fund infrastructure, digital classrooms, or transport",
+      "Support school fees, vocational training, and career mentorship"
+    ]
+  },
+  {
+    title: "NGOs & Foundations",
+    color: "text-primaryDark",
+    points: [
+      "Collaborate on mental health, child rights, and education",
+      "Co-design programs to deepen impact in underserved communities"
+    ]
+  },
+  {
+    title: "Colleges & Universities",
+    color: "text-[#E94BA2]",
+    points: [
+      "Internship programs for students",
+      "Peer mentorship and cultural exchange initiatives"
+    ]
+  },
+  {
+    title: "Government Bodies",
+    color: "text-[#BC1782]",
+    points: [
+      "Work with CWC, DCPU, and Women & Child Welfare Department",
+      "Strengthen integrated care through policy alignment"
+    ]
+  }
+];
 
 const Partners = () => {
   return (
-    <div className="min-h-screen bg-[#F1E6EE] py-16 px-6 text-[#4B4B4B]">
-      <h1 className="text-4xl font-bold text-center text-[#7C0C55] mb-10">
-        Partner with Us
-      </h1>
+    <div className="bg-[#F1E6EE] py-16 px-6 text-[#4B4B4B]">
+      {/* Page Title */}
+      <motion.h1
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="text-4xl sm:text-5xl font-bold  text-center text-primaryDark mb-6"
+      >
+        Partner With Us
+      </motion.h1>
 
-      <p className="text-lg max-w-3xl mx-auto text-center mb-8">
-        We invite corporations and philanthropists to support Project Sitaare through initiatives that empower underprivileged girls with a brighter future.
-      </p>
+      <motion.p
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.2, duration: 0.8 }}
+        className="text-lg max-w-3xl mx-auto text-center mb-12 text-[#4B4B4B]"
+      >
+        We welcome partnerships across sectors to co-create a nurturing ecosystem for orphaned girls—where safety, learning, and empowerment thrive.
+      </motion.p>
 
-      <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-12">
-        <div className="bg-white p-6 rounded-lg shadow hover:shadow-lg transition">
-          <h2 className="text-xl font-bold mb-2 text-[#BC1782]">Sponsor Infrastructure</h2>
-          <p>Help us build dorms, classrooms, and libraries.</p>
-        </div>
-        <div className="bg-white p-6 rounded-lg shadow hover:shadow-lg transition">
-          <h2 className="text-xl font-bold mb-2 text-[#BC1782]">Fund Skill Programs</h2>
-          <p>Support education, coding, arts, and life skill workshops.</p>
-        </div>
-        <div className="bg-white p-6 rounded-lg shadow hover:shadow-lg transition">
-          <h2 className="text-xl font-bold mb-2 text-[#BC1782]">Offer Mentorships</h2>
-          <p>Volunteer or host mentorship sessions to guide our girls.</p>
-        </div>
+      {/* Partner Types */}
+      <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto mb-12">
+        {partnerData.map((group, idx) => (
+          <motion.div
+            key={idx}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: idx * 0.2 }}
+            className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition"
+          >
+            <h2 className={`text-xl font-bold mb-3 ${group.color}`}>{group.title}</h2>
+            <ul className="list-disc list-inside space-y-2 text-base">
+              {group.points.map((point, i) => (
+                <li key={i}>{point}</li>
+              ))}
+            </ul>
+          </motion.div>
+        ))}
       </div>
 
-      <blockquote className="italic text-xl text-[#7C0C55] text-center font-medium border-l-4 border-[#E94BA2] pl-4 mx-auto max-w-2xl">
+      {/* Quote */}
+      <motion.blockquote
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.5, duration: 1 }}
+        className="italic text-xl text-primaryDark text-center font-medium border-l-4 border-[#E94BA2] pl-4 mx-auto max-w-2xl"
+      >
         “The stars are waiting to shine — will you help them find their sky?”
-      </blockquote>
+      </motion.blockquote>
     </div>
   );
 };

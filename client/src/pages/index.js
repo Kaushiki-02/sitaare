@@ -1,0 +1,8 @@
+export { default as About } from "./About"
+export { default as Contact } from "./Contact"
+export { default as Donate } from "./Donate"
+export { default as Home } from "./Home"
+export { default as Partners } from "./Partners"
+export { default as Provide } from "./Provide"
+export { default as Volunteer } from "./Volunteer"
+export { default as WhyJoin } from "./WhyJoin"
