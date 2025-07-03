@@ -1,8 +1,15 @@
 import { motion } from 'framer-motion';
+import { pageVariants } from '../navs';
 const HohLogo = require("../assets/hoh_logo.png")
 const About = () => {
   return (
-    <div className="min-h-screen bg-[#F9F9F9] text-[#4B4B4B] px-6 py-16">
+    <motion.div
+      variants={pageVariants}
+      initial="initial"
+      animate="animate"
+      exit="exit"
+      className="min-h-screen bg-[#F9F9F9] text-[#4B4B4B] px-6 py-16"
+    >
       {/* Page Title */}
       <motion.h1
         initial={{ opacity: 0, y: -30 }}
@@ -20,32 +27,49 @@ const About = () => {
         </h2>
         <div className="flex flex-col lg:flex-row items-center lg:items-start gap-8">
           {/* Logo */}
-          <div className="w-full lg:w-1/3 -mt-8">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8, rotate: -10 }}
+            animate={{ opacity: 1, scale: 1, rotate: 0 }}
+            transition={{ duration: 0.7, type: 'spring', stiffness: 80 }}
+            className="w-full lg:w-1/3 -mt-8"
+          >
             <img
               src={HohLogo}
               alt="HoH Logo"
               className="w-full max-w-xs mx-auto lg:mx-0"
             />
-          </div>
+          </motion.div>
           {/* Text Content */}
-          <div className="flex-1 space-y-4">
-
-            <p className="text-lg leading-relaxed">
-              House of Humanity Charitable Trust is a youth-led, grassroots non-profit organization founded with an
-              unwavering belief in equity, dignity, and collective upliftment. We drive holistic, inclusive, and sustainable
-              development across India by addressing critical social challenges through deeply human-centered solutions.
-            </p>
-            <p className="text-lg leading-relaxed">
-              From humble beginnings as a volunteer group, we've grown into a multi-project movement impacting thousands of
-              lives. Our work spans health, education, nutrition, hygiene, and child protection—fueled by empathy and
-              sustained by a community of changemakers.
-            </p>
-          </div>
-
-
+          <motion.div
+            className="flex-1 space-y-4"
+            initial="initial"
+            animate="animate"
+            variants={{
+              initial: {},
+              animate: {
+                transition: {
+                  staggerChildren: 0.15,
+                },
+              },
+            }}
+          >
+            {["House of Humanity Charitable Trust is a youth-led, grassroots non-profit organization founded with an unwavering belief in equity, dignity, and collective upliftment. We drive holistic, inclusive, and sustainable development across India by addressing critical social challenges through deeply human-centered solutions.",
+              "From humble beginnings as a volunteer group, we've grown into a multi-project movement impacting thousands of lives. Our work spans health, education, nutrition, hygiene, and child protection—fueled by empathy and sustained by a community of changemakers."]
+              .map((text, idx) => (
+                <motion.p
+                  key={idx}
+                  variants={{
+                    initial: { opacity: 0, y: 20 },
+                    animate: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 80 } },
+                  }}
+                  className="text-lg leading-relaxed"
+                >
+                  {text}
+                </motion.p>
+              ))}
+          </motion.div>
         </div>
       </section>
-
 
       {/* Section: Values */}
       <section className="max-w-5xl mx-auto mb-16">
@@ -98,10 +122,10 @@ const About = () => {
           transition={{ delay: 0.3, duration: 1 }}
           className="italic text-xl text-primaryDark font-medium border-l-4 border-[#E94BA2] pl-4 mx-auto max-w-2xl"
         >
-          “Sitaare is not just about shelter—it’s about possibility, potential, and purpose.”
+          “Sitaare is not just about shelter—it's about possibility, potential, and purpose.”
         </motion.blockquote>
       </section>
-    </div>
+    </motion.div>
   );
 };
 
