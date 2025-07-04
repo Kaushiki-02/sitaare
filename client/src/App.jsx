@@ -1,14 +1,16 @@
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Navbar, Footer, Scroller } from './components';
-import Navs from "./navs"; // Use consistent casing (Navs not navs)
+import AnimatedRoutes from "./navs"; // Use consistent casing (AnimatedRoutes not navs)
+import CursorTrail from './components/CursorTrail';
 
 function App() {
   return (
     <div className="min-h-screen flex flex-col font-sans text-gray-800 bg-pink-50">
+      <CursorTrail />
       <Router>
         <Scroller />
         <Navbar />
-        <Navs />
+        <AnimatedRoutes />
         <Footer />
       </Router>
     </div>

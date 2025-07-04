@@ -1,11 +1,17 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { pageVariants } from '../navs';
 import Lottie from "lottie-react";
 import starsAnimation from "../assets/stars.json";
 const Home = () => {
   return (
-    <div className="min-h-screen bg-[#F9F9F9] text-[#4B4B4B]">
-
+    <motion.div
+      variants={pageVariants}
+      initial="initial"
+      animate="animate"
+      exit="exit"
+      className="min-h-screen bg-[#F9F9F9] text-[#4B4B4B]"
+    >
       {/* Hero Section */}
       <motion.section
         initial={{ opacity: 0, y: -40 }}
@@ -14,45 +20,88 @@ const Home = () => {
         className="relative text-center py-24 px-6 sm:px-12 bg-gradient-to-br from-[#FFCAF0] via-[#F1E6EE] to-[#E94BA2] overflow-hidden"
       >
         {/* Background Lottie Animation with Blur & Scale */}
-        <div className="absolute inset-0 z-10 pointer-events-none">
+        <motion.div
+          initial={{ scale: 0.95, opacity: 0 }}
+          animate={{ scale: 1.05, opacity: 0.7 }}
+          transition={{ duration: 1.2, delay: 0.2 }}
+          className="absolute inset-0 z-10 pointer-events-none"
+        >
           <Lottie
             animationData={starsAnimation}
             loop
             autoplay
             className="w-full h-full filter blur-sm scale-[1.05] opacity-70"
           />
-        </div>
-
+        </motion.div>
         {/* Content Container */}
-        <div className="relative z-20 max-w-4xl mx-auto">
-          <h1 className="text-4xl sm:text-6xl font-extrabold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-[#7C0C55] via-[#BC1782] to-[#E94BA2] drop-shadow-lg">
+        <motion.div
+          className="relative z-20 max-w-4xl mx-auto"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3, duration: 0.8, type: 'spring', stiffness: 60 }}
+        >
+          <motion.h1
+            className="text-4xl sm:text-6xl font-extrabold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-[#7C0C55] via-[#BC1782] to-[#E94BA2] drop-shadow-lg"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4, duration: 0.7, type: 'spring', stiffness: 60 }}
+          >
             Project Sitaare – Where Every Star Finds Its Sky
-          </h1>
-
-          <p className="text-lg sm:text-xl text-[#4B4B4B] leading-relaxed max-w-3xl mx-auto mb-12 px-2 sm:px-0">
+          </motion.h1>
+          <motion.p
+            className="text-lg sm:text-xl text-[#4B4B4B] leading-relaxed max-w-3xl mx-auto mb-12 px-2 sm:px-0"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5, duration: 0.7, type: 'spring', stiffness: 60 }}
+          >
             A transformative home for girls aged 6–18, creating safe spaces where dreams take flight.
-          </p>
-
+          </motion.p>
           {/* Buttons */}
-          <div className="flex flex-col sm:flex-row justify-center gap-6">
-            <Link to="/donate" className="group">
-              <button
-                className="bg-[#BC1782] hover:bg-[#E94BA2] text-white font-semibold px-8 py-3 rounded-lg shadow-lg transition-transform duration-300 ease-in-out transform group-hover:scale-105"
-                aria-label="Sponsor a Child"
-              >
-                Sponsor a Child
-              </button>
-            </Link>
-            <Link to="/donate" className="group">
-              <button
-                className="bg-[#1782BC] hover:bg-[#4AD8C7] text-white font-semibold px-8 py-3 rounded-lg shadow-lg transition-transform duration-300 ease-in-out transform group-hover:scale-105"
-                aria-label="Donate Now"
-              >
-                Donate Now
-              </button>
-            </Link>
-          </div>
-        </div>
+          <motion.div
+            className="flex flex-col sm:flex-row justify-center gap-6"
+            initial="initial"
+            animate="animate"
+            variants={{
+              initial: {},
+              animate: {
+                transition: {
+                  staggerChildren: 0.15,
+                },
+              },
+            }}
+          >
+            <motion.div
+              variants={{
+                initial: { opacity: 0, scale: 0.8 },
+                animate: { opacity: 1, scale: 1, transition: { type: 'spring', stiffness: 120 } },
+              }}
+            >
+              <Link to="/donate" className="group">
+                <button
+                  className="bg-[#BC1782] hover:bg-[#E94BA2] text-white font-semibold px-8 py-3 rounded-lg shadow-lg transition-transform duration-300 ease-in-out transform group-hover:scale-105"
+                  aria-label="Sponsor a Child"
+                >
+                  Sponsor a Child
+                </button>
+              </Link>
+            </motion.div>
+            <motion.div
+              variants={{
+                initial: { opacity: 0, scale: 0.8 },
+                animate: { opacity: 1, scale: 1, transition: { type: 'spring', stiffness: 120 } },
+              }}
+            >
+              <Link to="/donate" className="group">
+                <button
+                  className="bg-[#1782BC] hover:bg-[#4AD8C7] text-white font-semibold px-8 py-3 rounded-lg shadow-lg transition-transform duration-300 ease-in-out transform group-hover:scale-105"
+                  aria-label="Donate Now"
+                >
+                  Donate Now
+                </button>
+              </Link>
+            </motion.div>
+          </motion.div>
+        </motion.div>
       </motion.section>
 
       {/* 1.1 A Home Beyond Shelter */}
@@ -96,11 +145,11 @@ const Home = () => {
         </p>
       </section>
 
-      {/* 1.3 From the Founder’s Desk */}
+      {/* 1.3 From the Founder's Desk */}
       <section className="py-16 px-4 sm:px-8 max-w-3xl mx-auto text-center">
         <blockquote className="italic text-xl text-[#BC1782] leading-relaxed">
-          “Sitaare is more than a home; it is a movement to raise strong, independent girls with dreams that soar.
-          My journey with adversity inspired this vision—to create a space where every child feels valued, supported, and celebrated.”
+          "Sitaare is more than a home; it is a movement to raise strong, independent girls with dreams that soar.
+          My journey with adversity inspired this vision—to create a space where every child feels valued, supported, and celebrated."
         </blockquote>
         <p className="mt-4 font-semibold text-lg">– Harsh Rao, Founder, House of Humanity</p>
       </section>
@@ -131,7 +180,7 @@ const Home = () => {
         </div>
       </section>
 
-    </div>
+    </motion.div>
   );
 };
 

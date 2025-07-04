@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { pageVariants } from '../navs';
 import Foto from "../components/foto"
 
 const donateOptions = [
@@ -43,11 +44,16 @@ const donateOptions = [
 const Donate = () => {
   const handleDonate = async (amount) => {
     if (!amount || amount < 1) return alert("Please enter a valid donation amount");
-
   };
 
   return (
-    <div className="bg-[#F9F9F9] text-[#4B4B4B] px-6 py-16">
+    <motion.div
+      variants={pageVariants}
+      initial="initial"
+      animate="animate"
+      exit="exit"
+      className="bg-[#F9F9F9] text-[#4B4B4B] px-6 py-16"
+    >
       <motion.h1
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -56,7 +62,6 @@ const Donate = () => {
       >
         Donate for a Cause
       </motion.h1>
-
       <motion.p
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -65,15 +70,26 @@ const Donate = () => {
       >
         Your generosity helps us provide care, education, nutrition, and emotional support to every Sitaare girl. Choose your impact below.
       </motion.p>
-
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-
+      <motion.div
+        className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto"
+        initial="initial"
+        animate="animate"
+        variants={{
+          initial: {},
+          animate: {
+            transition: {
+              staggerChildren: 0.12,
+            },
+          },
+        }}
+      >
         {donateOptions.map((item, idx) => (
           <motion.div
             key={idx}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: idx * 0.1 }}
+            variants={{
+              initial: { opacity: 0, y: 20, scale: 0.95 },
+              animate: { opacity: 1, y: 0, scale: 1, transition: { type: 'spring', stiffness: 100 } },
+            }}
             className="bg-white p-6 rounded-lg shadow hover:shadow-lg transition text-center"
           >
             <h3 className="text-xl font-bold text-[#BC1782] mb-2">{item.title}</h3>
@@ -111,12 +127,16 @@ const Donate = () => {
             )}
           </motion.div>
         ))}
-      </div>
-
-      <p className="text-sm text-[#A1A1A1] text-center mt-12">
+      </motion.div>
+      <motion.p
+        className="text-sm text-[#A1A1A1] text-center mt-12"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.7 }}
+      >
         All donations are eligible for 80G tax exemption.
-      </p>
-    </div>
+      </motion.p>
+    </motion.div>
   );
 };
 

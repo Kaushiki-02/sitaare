@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { pageVariants } from '../navs';
 
 const partnerData = [
   {
@@ -37,7 +38,13 @@ const partnerData = [
 
 const Partners = () => {
   return (
-    <div className="bg-[#F1E6EE] py-16 px-6 text-[#4B4B4B]">
+    <motion.div
+      variants={pageVariants}
+      initial="initial"
+      animate="animate"
+      exit="exit"
+      className="bg-[#F1E6EE] py-16 px-6 text-[#4B4B4B]"
+    >
       {/* Page Title */}
       <motion.h1
         initial={{ opacity: 0, y: -20 }}
@@ -58,13 +65,26 @@ const Partners = () => {
       </motion.p>
 
       {/* Partner Types */}
-      <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto mb-12">
+      <motion.div
+        className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto mb-12"
+        initial="initial"
+        animate="animate"
+        variants={{
+          initial: {},
+          animate: {
+            transition: {
+              staggerChildren: 0.2,
+            },
+          },
+        }}
+      >
         {partnerData.map((group, idx) => (
           <motion.div
             key={idx}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: idx * 0.2 }}
+            variants={{
+              initial: { opacity: 0, y: 30, scale: 0.95 },
+              animate: { opacity: 1, y: 0, scale: 1, transition: { type: 'spring', stiffness: 100 } },
+            }}
             className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition"
           >
             <h2 className={`text-xl font-bold mb-3 ${group.color}`}>{group.title}</h2>
@@ -75,7 +95,7 @@ const Partners = () => {
             </ul>
           </motion.div>
         ))}
-      </div>
+      </motion.div>
 
       {/* Quote */}
       <motion.blockquote
@@ -86,7 +106,7 @@ const Partners = () => {
       >
         “The stars are waiting to shine — will you help them find their sky?”
       </motion.blockquote>
-    </div>
+    </motion.div>
   );
 };
 
