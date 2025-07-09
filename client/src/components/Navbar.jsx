@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { HiMenu, HiX } from 'react-icons/hi';
 import logo from '../assets/logo.png';
+import hohLogo from '../assets/hoh_logo.png';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -23,10 +24,14 @@ const Navbar = () => {
     <nav className="sticky top-0 z-50 bg-white/60 backdrop-blur-lg shadow-md transition-all">
       <div className="max-w-7xl mx-auto flex justify-between items-center px-4 py-3 sm:px-6 lg:px-8">
         {/* Logo */}
-        <Link to="/" className="flex items-center space-x-3">
-          <img src={logo} alt="Project Sitaare" className="h-10 sm:h-12" />
-
-        </Link>
+        <div className="flex items-center space-x-3">
+          <Link to="/">
+            <img src={logo} alt="Project Sitaare" className="h-10 sm:h-12 transition duration-200 hover:drop-shadow-[0_0_12px_#BC1782]" />
+          </Link>
+          <a href="https://houseofhumanity.in/" target="_blank" rel="noopener noreferrer">
+            <img src={hohLogo} alt="House of Humanity" className="h-16 sm:h-20 ml-3 transition duration-200 hover:drop-shadow-[0_0_12px_#FFD700]" />
+          </a>
+        </div>
 
         {/* Desktop Nav */}
         <div className="hidden md:flex space-x-6 text-sm font-medium">
