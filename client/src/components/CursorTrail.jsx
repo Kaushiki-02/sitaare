@@ -218,7 +218,7 @@ function CursorTrail({ enabled = true }) {
         style={{
           position: 'fixed',
           bottom: 24,
-          right: 80,
+          right: 120,
           zIndex: 11000,
           background: '#fff',
           color: '#222',
@@ -230,6 +230,7 @@ function CursorTrail({ enabled = true }) {
           fontSize: 14,
         }}
         aria-pressed={show}
+        className="hidden sm:block"
       >
         {show ? 'Disable' : 'Enable'} Star Cursor
       </button>
