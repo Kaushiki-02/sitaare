@@ -12,6 +12,10 @@ const TRAIL_DENSITY = 1; // stars per mousemove
 
 function CursorTrail({ enabled = true }) {
   const [show, setShow] = useState(enabled);
+  // Sync show state with enabled prop
+  React.useEffect(() => {
+    setShow(enabled);
+  }, [enabled]);
   const [isHovering, setIsHovering] = useState(false);
   const cursorRef = useRef(null);
   const canvasRef = useRef(null);
@@ -212,28 +216,6 @@ function CursorTrail({ enabled = true }) {
           </div>
         </>
       )}
-      {/* Toggle button for accessibility */}
-      <button
-        onClick={toggleCursor}
-        style={{
-          position: 'fixed',
-          bottom: 24,
-          right: 120,
-          zIndex: 11000,
-          background: '#fff',
-          color: '#222',
-          border: '1px solid #ffe066',
-          borderRadius: 8,
-          padding: '8px 16px',
-          boxShadow: '0 2px 8px rgba(0,0,0,0.08)',
-          cursor: 'pointer',
-          fontSize: 14,
-        }}
-        aria-pressed={show}
-        className="hidden sm:block"
-      >
-        {show ? 'Disable' : 'Enable'} Star Cursor
-      </button>
     </>
   );
 }

@@ -12,7 +12,6 @@ const Navbar = () => {
     'Home',
     'Who We Are',
     'Our Aspirations',
-    // 'Meet Our Sitaare',
     'Milestones',
     'Partner With Us',
     'Donate',

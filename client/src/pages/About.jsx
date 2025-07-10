@@ -1,10 +1,21 @@
 import { motion } from 'framer-motion';
 import { pageVariants } from '../navs';
-import { FaHandsHelping, FaBalanceScale, FaUsers, FaLeaf, FaUniversalAccess, FaTint, FaFemale, FaAppleAlt, FaChild, FaRoad, FaSmile, FaHeartbeat } from 'react-icons/fa';
+import {
+  FaHandsHelping, FaBalanceScale, FaUsers, FaLeaf, FaUniversalAccess, FaTint, FaFemale,
+  FaAppleAlt, FaChild, FaRoad, FaSmile, FaHeartbeat, FaHeart, FaStar, FaQuoteLeft
+} from 'react-icons/fa';
 import { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-const HohLogo = require("../assets/hoh_logo.png")
+
+const HohLogo = require('../assets/hoh_logo.png');
+
+// Placeholder image component
+const ImagePlaceholder = ({ alt = 'Image Placeholder', className = '' }) => (
+  <div className={`bg-gradient-to-br from-purple-100 to-pink-100 flex items-center justify-center text-gray-500 text-xs rounded-xl ${className}`} style={{ minHeight: 180 }}>
+    {alt}
+  </div>
+);
 
 const values = [
   { icon: <FaHandsHelping className="text-pink-500 text-2xl" />, title: 'Empathy First', desc: 'Designing solutions rooted in real-life needs and experiences.' },
@@ -26,157 +37,321 @@ const initiatives = [
 
 const About = () => {
   useEffect(() => { AOS.init({ once: true, duration: 800 }); }, []);
+
+  // Additional animation variants
+  const fadeInUp = {
+    initial: { opacity: 0, y: 60 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.6 }
+  };
+
+  const staggerContainer = {
+    animate: {
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  };
+
+  const cardHover = {
+    hover: {
+      y: -8,
+      scale: 1.03,
+      transition: {
+        type: "spring",
+        stiffness: 300,
+        damping: 20
+      }
+    }
+  };
+
   return (
     <motion.div
       variants={pageVariants}
       initial="initial"
       animate="animate"
       exit="exit"
-      className="min-h-screen bg-[#F9F9F9] text-[#4B4B4B] px-6 py-16"
+      className="min-h-screen bg-gradient-to-br from-slate-50 to-purple-50 text-gray-700"
     >
-      {/* Page Title */}
-      <motion.h1
-        initial={{ opacity: 0, y: -30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="text-4xl sm:text-5xl font-bold text-center text-primaryDark mb-12"
-      >
-        Who We Are
-      </motion.h1>
-
-      {/* Section: About Trust */}
-      <section className="max-w-5xl mx-auto mb-16" data-aos="fade-up">
-        <h2 className="text-2xl font-semibold text-[#BC1782] mb-10">
-          About House of Humanity Charitable Trust
-        </h2>
-        <div className="flex flex-col lg:flex-row items-center lg:items-start gap-8">
-          {/* Logo */}
-          <div className="w-full lg:w-1/3 -mt-8 flex justify-center lg:justify-start">
-            <a href="https://houseofhumanity.in/" target="_blank" rel="noopener noreferrer">
-              <img
-                src={HohLogo}
-                alt="HoH Logo"
-                className="w-full max-w-xs mx-auto lg:mx-0 drop-shadow-[0_0_24px_#1782bc] hover:drop-shadow-[0_0_36px_#17e3bc] transition duration-300"
-              />
-            </a>
-          </div>
-          {/* Text Content */}
+      {/* Hero Section */}
+      <div className="relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-purple-600/20 to-pink-600/20"></div>
+        <div className="relative px-6 py-20">
           <motion.div
-            className="flex-1 space-y-4"
-            initial="initial"
-            animate="animate"
-            variants={{
-              initial: {},
-              animate: {
-                transition: {
-                  staggerChildren: 0.15,
-                },
-              },
-            }}
+            variants={fadeInUp}
+            className="max-w-4xl mx-auto text-center"
           >
-            {["House of Humanity Charitable Trust is a youth-led, grassroots non-profit organization founded with an unwavering belief in equity, dignity, and collective upliftment. We drive holistic, inclusive, and sustainable development across India by addressing critical social challenges through deeply human-centered solutions.",
-              "From humble beginnings as a volunteer group, we've grown into a multi-project movement impacting thousands of lives. Our work spans health, education, nutrition, hygiene, and child protection—fueled by empathy and sustained by a community of changemakers."]
-              .map((text, idx) => (
-                <motion.p
-                  key={idx}
-                  variants={{
-                    initial: { opacity: 0, y: 20 },
-                    animate: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 80 } },
-                  }}
-                  className="text-lg leading-relaxed"
-                >
-                  {text}
-                </motion.p>
-              ))}
+            <motion.div
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ duration: 0.8, type: "spring" }}
+              className="mb-8"
+            >
+              <FaHeart className="text-6xl text-pink-500 mx-auto mb-4" />
+            </motion.div>
+            
+            <h1 className="text-5xl sm:text-6xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-6">
+              Who We Are
+            </h1>
+            
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+              A youth-led movement transforming lives through compassion, innovation, and unwavering commitment to human dignity.
+            </p>
           </motion.div>
         </div>
-      </section>
-
-      {/* Divider */}
-      <div className="flex justify-center my-10">
-        <span className="text-2xl text-[#E94BA2] opacity-60 select-none">★ ★ ★</span>
       </div>
 
-      {/* Section: Values */}
-      <section className="max-w-5xl mx-auto mb-16" data-aos="fade-up">
-        <h2 className="text-2xl font-semibold text-[#BC1782] mb-8">Our Values</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-          {values.map((v, idx) => (
-            <div
-              key={v.title}
-              className="bg-white rounded-xl shadow-md p-6 flex flex-col items-center text-center hover:shadow-xl transition-all duration-300 border-t-4"
-              style={{ borderColor: ['#F472B6', '#60A5FA', '#34D399', '#FBBF24', '#A78BFA'][idx] }}
-              data-aos="fade-in"
-              data-aos-delay={idx * 120}
-            >
-              {v.icon}
-              <h3 className="text-lg font-bold mt-3 mb-1 text-[#BC1782]">{v.title}</h3>
-              <p className="text-gray-600 text-md">{v.desc}</p>
+      <div className="px-6 py-16">
+        <div className="max-w-6xl mx-auto">
+          
+          {/* About Section */}
+          <motion.section 
+            variants={staggerContainer}
+            initial="initial"
+            animate="animate"
+            className="mb-20"
+            data-aos="fade-up"
+          >
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              <motion.div 
+                variants={fadeInUp}
+                className="relative"
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-purple-200 to-pink-200 rounded-2xl transform rotate-3"></div>
+                <div className="relative bg-white rounded-2xl overflow-hidden shadow-2xl">
+                  <img 
+                    src={HohLogo} 
+                    alt="House of Humanity Logo" 
+                    className="w-full h-auto object-cover"
+                  />
+                </div>
+              </motion.div>
+              
+              <motion.div 
+                variants={fadeInUp}
+                className="space-y-6"
+              >
+                <div className="inline-block">
+                  <h2 className="text-3xl lg:text-4xl font-bold text-gray-800 mb-2">
+                    About House of Humanity
+                  </h2>
+                  <div className="h-1 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full w-24"></div>
+                </div>
+                
+                <p className="text-lg leading-relaxed text-gray-600">
+                  House of Humanity Charitable Trust is a youth-led, grassroots non-profit organization founded with an unwavering belief in equity, dignity, and collective upliftment.
+                  We drive holistic, inclusive, and sustainable development across India by addressing critical social challenges through deeply human-centered solutions.
+                </p>
+                
+                <p className="text-lg leading-relaxed text-gray-600">
+                  From humble beginnings as a volunteer group, we've grown into a multi-project movement impacting thousands of lives.
+                  Our work spans health, education, nutrition, hygiene, and child protection—fueled by empathy and sustained by a community of changemakers.
+                </p>
+                
+                <div className="flex items-center gap-4 pt-4">
+                  <div className="flex items-center gap-2 text-purple-600">
+                    <FaUsers className="text-xl" />
+                    <span className="font-semibold">Youth-Led</span>
+                  </div>
+                  <div className="w-px h-6 bg-gray-300"></div>
+                  <div className="flex items-center gap-2 text-pink-600">
+                    <FaHeart className="text-xl" />
+                    <span className="font-semibold">Grassroots Impact</span>
+                  </div>
+                </div>
+              </motion.div>
             </div>
-          ))}
-        </div>
-      </section>
+          </motion.section>
 
-      {/* Divider */}
-      <div className="flex justify-center my-10">
-        <span className="text-2xl text-[#E94BA2] opacity-60 select-none">★ ★ ★</span>
-      </div>
-
-      {/* Section: Core Initiatives */}
-      <section className="max-w-5xl mx-auto mb-16" data-aos="fade-up">
-        <h2 className="text-2xl font-semibold text-[#BC1782] mb-8">Our Core Initiatives</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-          {initiatives.map((i, idx) => (
-            <div
-              key={i.title}
-              className="bg-white rounded-xl shadow-md p-6 flex flex-col items-center text-center hover:shadow-xl transition-all duration-300 border-t-4"
-              style={{ borderColor: ['#F87171', '#F472B6', '#34D399', '#FBBF24', '#60A5FA', '#F9A8D4', '#F87171'][idx] }}
-              data-aos="fade-in"
-              data-aos-delay={idx * 120}
-            >
-              {i.icon}
-              <h3 className="text-lg font-bold mt-3 mb-1 text-[#BC1782]">{i.title}</h3>
-              <p className="text-gray-600 text-md">{i.desc}</p>
+          {/* Elegant Divider */}
+          <motion.div 
+            variants={fadeInUp}
+            className="flex justify-center my-16"
+          >
+            <div className="flex items-center gap-4">
+              <div className="w-16 h-px bg-gradient-to-r from-transparent to-pink-300"></div>
+              <div className="flex gap-2">
+                <FaStar className="text-pink-400 text-lg" />
+                <FaStar className="text-purple-400 text-lg" />
+                <FaStar className="text-pink-400 text-lg" />
+              </div>
+              <div className="w-16 h-px bg-gradient-to-l from-transparent to-pink-300"></div>
             </div>
-          ))}
+          </motion.div>
+
+          {/* Values Section */}
+          <motion.section 
+            variants={staggerContainer}
+            initial="initial"
+            animate="animate"
+            className="mb-20" 
+            data-aos="fade-up"
+          >
+            <motion.div variants={fadeInUp} className="text-center mb-12">
+              <h2 className="text-3xl lg:text-4xl font-bold text-gray-800 mb-4">Our Core Values</h2>
+              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                The principles that guide every action, decision, and initiative we undertake.
+              </p>
+            </motion.div>
+            
+            <div className="mb-12">
+              <ImagePlaceholder alt="Values Banner" className="w-full max-w-4xl h-64 mx-auto" />
+            </div>
+            
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+              {values.map((value, idx) => (
+                <motion.div
+                  key={value.title}
+                  variants={fadeInUp}
+                  whileHover="hover"
+                  className="bg-white rounded-2xl shadow-lg p-8 text-center hover:shadow-xl transition-all duration-300 border-t-4"
+                  style={{ borderColor: ['#F472B6', '#60A5FA', '#34D399', '#FBBF24', '#A78BFA'][idx] }}
+                  data-aos="fade-in"
+                  data-aos-delay={idx * 120}
+                >
+                  <motion.div variants={cardHover}>
+                    <div className="mb-6">
+                      {value.icon}
+                    </div>
+                    <h3 className="text-xl font-bold mb-3 text-gray-800">{value.title}</h3>
+                    <p className="text-gray-600 leading-relaxed">{value.desc}</p>
+                  </motion.div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.section>
+
+          {/* Elegant Divider */}
+          <motion.div 
+            variants={fadeInUp}
+            className="flex justify-center my-16"
+          >
+            <div className="flex items-center gap-4">
+              <div className="w-16 h-px bg-gradient-to-r from-transparent to-purple-300"></div>
+              <div className="flex gap-2">
+                <FaStar className="text-purple-400 text-lg" />
+                <FaStar className="text-pink-400 text-lg" />
+                <FaStar className="text-purple-400 text-lg" />
+              </div>
+              <div className="w-16 h-px bg-gradient-to-l from-transparent to-purple-300"></div>
+            </div>
+          </motion.div>
+
+          {/* Initiatives Section */}
+          <motion.section 
+            variants={staggerContainer}
+            initial="initial"
+            animate="animate"
+            className="mb-20" 
+            data-aos="fade-up"
+          >
+            <motion.div variants={fadeInUp} className="text-center mb-12">
+              <h2 className="text-3xl lg:text-4xl font-bold text-gray-800 mb-4">Our Core Initiatives</h2>
+              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                Transforming communities through targeted programs that address real needs with sustainable solutions.
+              </p>
+            </motion.div>
+            
+            <div className="mb-12">
+              <ImagePlaceholder alt="Initiatives Banner" className="w-full max-w-4xl h-64 mx-auto" />
+            </div>
+            
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+              {initiatives.map((initiative, idx) => (
+                <motion.div
+                  key={initiative.title}
+                  variants={fadeInUp}
+                  whileHover="hover"
+                  className="bg-white rounded-2xl shadow-lg p-8 text-center hover:shadow-xl transition-all duration-300 border-t-4"
+                  style={{ borderColor: ['#F87171', '#F472B6', '#34D399', '#FBBF24', '#60A5FA', '#F9A8D4', '#F87171'][idx] }}
+                  data-aos="fade-in"
+                  data-aos-delay={idx * 120}
+                >
+                  <motion.div variants={cardHover}>
+                    <div className="mb-6">
+                      {initiative.icon}
+                    </div>
+                    <h3 className="text-xl font-bold mb-3 text-gray-800">{initiative.title}</h3>
+                    <p className="text-gray-600 leading-relaxed">{initiative.desc}</p>
+                  </motion.div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.section>
+
+          {/* Elegant Divider */}
+          <motion.div 
+            variants={fadeInUp}
+            className="flex justify-center my-16"
+          >
+            <div className="flex items-center gap-4">
+              <div className="w-16 h-px bg-gradient-to-r from-transparent to-pink-300"></div>
+              <div className="flex gap-2">
+                <FaStar className="text-pink-400 text-lg" />
+                <FaStar className="text-purple-400 text-lg" />
+                <FaStar className="text-pink-400 text-lg" />
+              </div>
+              <div className="w-16 h-px bg-gradient-to-l from-transparent to-pink-300"></div>
+            </div>
+          </motion.div>
+
+          {/* Project Sitaare Spotlight */}
+          <motion.section 
+            variants={fadeInUp}
+            className="mb-20" 
+            data-aos="fade-up"
+          >
+            <div className="bg-gradient-to-r from-purple-600 to-pink-600 rounded-3xl p-8 lg:p-12 text-white relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16"></div>
+              <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/10 rounded-full -ml-12 -mb-12"></div>
+              
+              <div className="relative z-10">
+                <div className="text-center mb-8">
+                  <FaStar className="text-4xl text-yellow-300 mx-auto mb-4" />
+                  <h2 className="text-3xl lg:text-4xl font-bold mb-4">
+                    Project <span className="text-yellow-300">Sitaare</span>
+                  </h2>
+                  <p className="text-xl text-purple-100 mb-6">Our Flagship Shelter Home Initiative</p>
+                </div>
+                
+                <div className="max-w-4xl mx-auto space-y-6 text-lg leading-relaxed">
+                  <p>
+                    Among all our programs, <strong>Project Sitaare</strong> stands as a beacon of our core belief: <span className="text-yellow-300 font-semibold">empowerment through care</span>.
+                    It is more than shelter—it's a safe haven where vulnerable girls (ages 6–18) rebuild, learn, and thrive.
+                  </p>
+                  
+                  <p>
+                    Sitaare is designed under the <em>Juvenile Justice (Care and Protection of Children) Act, 2015</em> and follows the
+                    <em> Integrated Child Protection Scheme (ICPS)</em>, working directly with the <strong>DCPU</strong> and <strong>CWC</strong>.
+                  </p>
+                  
+                  <p>
+                    With holistic programs—emotional healing, digital literacy, healthcare, art, sports, and leadership training—Sitaare is where every girl finds the sky to shine.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </motion.section>
+
+          {/* Inspirational Quote */}
+          <motion.section 
+            variants={fadeInUp}
+            className="text-center" 
+            data-aos="fade-up"
+          >
+            <div className="bg-gradient-to-r from-purple-100 to-pink-100 rounded-3xl p-8 lg:p-12 relative">
+              <FaQuoteLeft className="text-4xl text-purple-300 absolute top-6 left-6" />
+              
+              <blockquote className="text-2xl lg:text-3xl font-bold text-gray-800 mb-4 italic max-w-3xl mx-auto">
+                Sitaare is not just about shelter—it's about possibility, potential, and purpose.
+              </blockquote>
+              
+              <div className="w-24 h-1 bg-gradient-to-r from-purple-500 to-pink-500 mx-auto rounded-full"></div>
+            </div>
+          </motion.section>
+
         </div>
-      </section>
-
-      {/* Divider */}
-      <div className="flex justify-center my-10">
-        <span className="text-2xl text-[#E94BA2] opacity-60 select-none">★ ★ ★</span>
       </div>
-
-      {/* Section: Project Sitaare */}
-      <section className="max-w-5xl mx-auto mb-20" data-aos="fade-up">
-        <h2 className="text-2xl font-semibold text-[#BC1782] mb-4">Project <span className="text-[#E94BA2] font-bold">Sitaare</span> – Our Flagship Shelter Home Initiative</h2>
-        <p className="text-lg leading-relaxed mb-4">
-          Among all our programs, <strong className="text-[#BC1782]">Project Sitaare</strong> stands as a beacon of our core belief: <span className="text-[#E94BA2] font-semibold">empowerment through care</span>.
-          It is more than shelter—it's a safe haven where vulnerable girls (ages 6–18) rebuild, learn, and thrive.
-        </p>
-        <p className="text-lg leading-relaxed mb-4">
-          Sitaare is designed under the <em>Juvenile Justice (Care and Protection of Children) Act, 2015</em> and follows the
-          <em> Integrated Child Protection Scheme (ICPS)</em>, working directly with the <strong className="text-[#BC1782]">DCPU</strong> and <strong className="text-[#BC1782]">CWC</strong>.
-        </p>
-        <p className="text-lg leading-relaxed">
-          With holistic programs—emotional healing, digital literacy, healthcare, art, sports, and leadership training—Sitaare
-          is where every girl finds the sky to shine.
-        </p>
-      </section>
-
-      {/* Signature Quote */}
-      <section className="text-center mt-16" data-aos="fade-up">
-        <motion.blockquote
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 1 }}
-          className="italic text-xl text-primaryDark font-medium border-l-4 border-[#E94BA2] pl-4 mx-auto max-w-2xl relative"
-        >
-          <span className="absolute -left-8 top-0 text-4xl text-[#E94BA2] opacity-30 select-none">“</span>
-          Sitaare is not just about shelter—it's about possibility, potential, and purpose.
-          <span className="absolute -right-8 bottom-0 text-4xl text-[#E94BA2] opacity-30 select-none">”</span>
-        </motion.blockquote>
-      </section>
     </motion.div>
   );
 };
