@@ -7,10 +7,6 @@
   cursor: none !important;
 }
 
-a, button, [role="button"], .cursor-pointer {
-  cursor: none !important;
-}
-
 .typewriter {
   display: inline-block;
   overflow: hidden;
