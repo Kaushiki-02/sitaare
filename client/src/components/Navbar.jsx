@@ -18,8 +18,8 @@ const Navbar = () => {
      
     },
     {
-      label: 'Meet Out Sitaare',
-      path: '/meet-out-sitaare',
+      label: 'Meet Our Sitaare',
+      path: '/meet-our-sitaare',
     },
     {
       label: 'Our Aspiration',
