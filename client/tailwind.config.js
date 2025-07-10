@@ -5,35 +5,22 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: '#e91e63', // Main pink
-        primaryLight: '#fce4ec', // Light pink background
-        primaryDark: '#ad1457', // Darker pink for hover/active
-        secondary: '#BC1782', // Optional: keep for legacy
-        rose: {
-          50: '#fff1f5',
-          100: '#ffe4ec',
-          200: '#ffb8d2',
-          300: '#ff8ab8',
-          400: '#ff5c9e',
-          500: '#ff2e84',
-          600: '#e91e63', // matches primary
-          700: '#ad1457', // matches primaryDark
-          800: '#880e4f',
-          900: '#560027',
-        },
+        primary: '#BD1682', // Main pink
+        primaryLight: '#F8AAD5', // Lightest pink
+        primaryDark: '#A6205F', // Darker pink for hover/active
         pink: {
-          50: '#fce4ec',
-          100: '#f8bbd0',
-          200: '#f48fb1',
-          300: '#f06292',
-          400: '#ec407a',
-          500: '#e91e63',
-          600: '#d81b60',
-          700: '#ad1457',
-          800: '#880e4f',
-          900: '#560027',
+          50: '#F8AAD5',
+          100: '#F8AAD5',
+          200: '#C9186C',
+          300: '#BD1682',
+          400: '#A6205F',
+          500: '#BD1682',
+          600: '#A6205F',
+          700: '#C9186C',
+          800: '#BD1682',
+          900: '#A6205F',
         },
-        softBg: '#fce4ec', // Use for hero/feature backgrounds
+        softBg: '#FDF7FA', // Use for hero/feature backgrounds (very light pink/white)
         light: '#fff',
         darkText: '#4B4B4B',
         grayText: '#A1A1A1',

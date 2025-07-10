@@ -10,6 +10,10 @@ const Navbar = () => {
 
   const navItems = [
     {
+      label: 'Home',
+      path: '/',
+    },
+    {
       label: 'Who we Are',
       sub: [
         { label: 'Purpose and Passion', path: '/who-we-are/purpose-and-passion' },
@@ -62,7 +66,7 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="sticky top-0 z-50 bg-primaryLight/90 backdrop-blur-lg shadow-md transition-all">
+    <nav className="sticky top-0 z-50 bg-softBg/90 backdrop-blur-lg shadow-md transition-all">
       <div className="w-full">
         <div className="max-w-[1440px] mx-auto flex justify-between items-center px-6 py-3">
           {/* Logo */}
@@ -77,7 +81,7 @@ const Navbar = () => {
           </div>
 
           {/* Desktop Nav */}
-          <div className="hidden md:flex space-x-5 text-sm font-medium">
+          <div className="hidden md:flex space-x-3 text-xs font-medium ml-10">
             {navItems.map((item) => {
               const isActive = location.pathname === item.path || (item.sub && item.sub.some(sub => location.pathname === sub.path));
               return (
@@ -123,7 +127,7 @@ const Navbar = () => {
 
       {/* Mobile Nav Drawer */}
       {isOpen && (
-        <div className="md:hidden bg-primaryLight/95 backdrop-blur-md px-4 py-4 space-y-2 shadow-md">
+        <div className="md:hidden bg-softBg/95 backdrop-blur-md px-4 py-4 space-y-2 shadow-md">
           {navItems.map((item) => {
             const isActive = location.pathname === item.path || (item.sub && item.sub.some(sub => location.pathname === sub.path));
             return (
