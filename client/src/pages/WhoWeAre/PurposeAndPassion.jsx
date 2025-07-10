@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { pageVariants } from '../navs';
+import { pageVariants } from '../../navs';
 import {
   FaHandsHelping, FaBalanceScale, FaUsers, FaLeaf, FaUniversalAccess, FaTint, FaFemale,
   FaAppleAlt, FaChild, FaRoad, FaSmile, FaHeartbeat, FaHeart, FaStar, FaQuoteLeft
@@ -7,8 +7,7 @@ import {
 import { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-
-const HohLogo = require('../assets/hoh_logo.png');
+import HohLogo from '../../assets/hoh_logo.png';
 
 // Placeholder image component
 const ImagePlaceholder = ({ alt = 'Image Placeholder', className = '' }) => (
@@ -35,7 +34,7 @@ const initiatives = [
   { icon: <FaHeartbeat className="text-red-400 text-xl" />, title: 'Saharaa', desc: 'Emergency medical aid for life-saving surgeries and treatments.' },
 ];
 
-const About = () => {
+const PurposeAndPassion = () => {
   useEffect(() => { AOS.init({ once: true, duration: 800 }); }, []);
 
   // Additional animation variants
@@ -356,4 +355,4 @@ const About = () => {
   );
 };
 
-export default About;
+export default PurposeAndPassion;

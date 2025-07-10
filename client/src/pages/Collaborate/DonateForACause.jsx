@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
-import { pageVariants } from '../navs';
-import Foto from "../components/foto"
+import { pageVariants } from '../../navs';
+import Foto from "../../components/foto"
 
 const donateOptions = [
   {
@@ -41,7 +41,7 @@ const donateOptions = [
   }
 ];
 
-const Donate = () => {
+const DonateForACause = () => {
   const handleDonate = async (amount) => {
     if (!amount || amount < 1) return alert("Please enter a valid donation amount");
   };
@@ -140,4 +140,4 @@ const Donate = () => {
   );
 };
 
-export default Donate;
+export default DonateForACause;

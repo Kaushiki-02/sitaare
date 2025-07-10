@@ -13,7 +13,7 @@ import {
   FaHandHoldingHeart
 } from 'react-icons/fa';
 
-const WhyJoin = () => {
+const OurAspiration = () => {
   // Animation variants
   const pageVariants = {
     initial: { opacity: 0 },
@@ -359,4 +359,4 @@ const WhyJoin = () => {
   );
 };
 
-export default WhyJoin;
+export default OurAspiration;

@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --primary-pink: #e91e63;
+  --primary-pink-light: #fce4ec;
+  --primary-pink-dark: #ad1457;
+  --rose-600: #e91e63;
+  --rose-700: #ad1457;
+  --soft-bg: #fce4ec;
+}
+
 /* Utility class for hiding cursor if needed */
 .hide-cursor {
   cursor: none !important;

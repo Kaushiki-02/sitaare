@@ -19,7 +19,7 @@ const supportItems = [
   "Career & Vocational Training: Internship opportunities and skill enhancement programs."
 ];
 
-const Provide = () => {
+const Milestones = () => {
   return (
     <div className="min-h-screen bg-softBg text-darkText px-6 py-16">
       <div className="max-w-6xl mx-auto">
@@ -110,4 +110,4 @@ const Provide = () => {
   );
 };
 
-export default Provide;
+export default Milestones;

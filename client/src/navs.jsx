@@ -1,13 +1,20 @@
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import Home from './pages/Home';
-import About from './pages/About'; // For "Who We Are"
-import WhyJoin from './pages/WhyJoin'; // For "Our Aspirations"
-import Provide from './pages/Provide'; // For "Milestones"
-import Partners from './pages/Partners'; // For "Partner With Us"
-import Donate from './pages/Donate';
-import Volunteer from './pages/Volunteer'; // For "Volunteer & Collaborate"
 import Contact from './pages/Contact';
+import PurposeAndPassion from './pages/WhoWeAre/PurposeAndPassion';
+import FoundersDesk from './pages/WhoWeAre/FoundersDesk';
+import MeetOutSitaare from './pages/MeetOutSitaare';
+import OurAspiration from './pages/OurAspiration';
+import Media from './pages/News&Events/Media';
+import Events from './pages/News&Events/Events';
+import Milestones from './pages/Impact/Milestones';
+import SuccessStories from './pages/Impact/SuccessStories';
+import PartnerWithUs from './pages/Collaborate/PartnerWithUs';
+import ContributeMaterial from './pages/Collaborate/ContributeMaterial';
+import DonateForACause from './pages/Collaborate/DonateForACause';
+import GetInvolved from './pages/Collaborate/GetInvolved';
+import Partners from './pages/Partners';
 
 // Consistent page animation variant
 export const pageVariants = {
@@ -21,38 +28,21 @@ function AnimatedRoutes() {
   return (
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
-        <Route path="/" element={
-          <motion.div
-            variants={pageVariants}
-            initial="initial"
-            animate="animate"
-            exit="exit"
-            style={{ minHeight: '100vh' }}
-          >
-            <Home />
-          </motion.div>
-        } />
-        <Route path="/who-we-are" element={
-          <motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit" style={{ minHeight: '100vh' }}><About /></motion.div>
-        } />
-        <Route path="/our-aspirations" element={
-          <motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit" style={{ minHeight: '100vh' }}><WhyJoin /></motion.div>
-        } />
-        <Route path="/milestones" element={
-          <motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit" style={{ minHeight: '100vh' }}><Provide /></motion.div>
-        } />
-        <Route path="/partner-with-us" element={
-          <motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit" style={{ minHeight: '100vh' }}><Partners /></motion.div>
-        } />
-        <Route path="/donate" element={
-          <motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit" style={{ minHeight: '100vh' }}><Donate /></motion.div>
-        } />
-        <Route path="/volunteer-&-collaborate" element={
-          <motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit" style={{ minHeight: '100vh' }}><Volunteer /></motion.div>
-        } />
-        <Route path="/contact-us" element={
-          <motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit" style={{ minHeight: '100vh' }}><Contact /></motion.div>
-        } />
+        <Route path="/" element={<motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit" style={{ minHeight: '100vh' }}><Home /></motion.div>} />
+        <Route path="/who-we-are/purpose-and-passion" element={<motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit" style={{ minHeight: '100vh' }}><PurposeAndPassion /></motion.div>} />
+        <Route path="/who-we-are/founders-desk" element={<motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit" style={{ minHeight: '100vh' }}><FoundersDesk /></motion.div>} />
+        <Route path="/meet-out-sitaare" element={<motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit" style={{ minHeight: '100vh' }}><MeetOutSitaare /></motion.div>} />
+        <Route path="/our-aspiration" element={<motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit" style={{ minHeight: '100vh' }}><OurAspiration /></motion.div>} />
+        <Route path="/news-and-events/media" element={<motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit" style={{ minHeight: '100vh' }}><Media /></motion.div>} />
+        <Route path="/news-and-events/events" element={<motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit" style={{ minHeight: '100vh' }}><Events /></motion.div>} />
+        <Route path="/contact-us" element={<motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit" style={{ minHeight: '100vh' }}><Contact /></motion.div>} />
+        <Route path="/impact/milestones" element={<motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit" style={{ minHeight: '100vh' }}><Milestones /></motion.div>} />
+        <Route path="/impact/success-stories" element={<motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit" style={{ minHeight: '100vh' }}><SuccessStories /></motion.div>} />
+        <Route path="/collaborate/donate-for-a-cause" element={<motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit" style={{ minHeight: '100vh' }}><DonateForACause /></motion.div>} />
+        <Route path="/collaborate/get-involved" element={<motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit" style={{ minHeight: '100vh' }}><GetInvolved /></motion.div>} />
+        <Route path="/collaborate/partner-with-us" element={<motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit" style={{ minHeight: '100vh' }}><PartnerWithUs /></motion.div>} />
+        <Route path="/collaborate/contribute-material" element={<motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit" style={{ minHeight: '100vh' }}><ContributeMaterial /></motion.div>} />
+        <Route path="/partners" element={<motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit" style={{ minHeight: '100vh' }}><Partners /></motion.div>} />
       </Routes>
     </AnimatePresence>
   );

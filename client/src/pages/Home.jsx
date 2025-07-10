@@ -55,7 +55,7 @@ const Home = () => {
       initial="hidden"
       animate="visible"
       exit="exit"
-      className="min-h-screen bg-gradient-to-br from-slate-50 via-pink-50 to-rose-50 text-gray-800"
+      className="min-h-screen bg-gradient-to-br from-slate-50 via-pink-50 to-rose-50 text-gray-800 px-2 sm:px-0"
     >
       {/* Hero Section */}
       <motion.section
@@ -63,7 +63,7 @@ const Home = () => {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
-        className="relative text-center py-24 px-6 sm:px-12 bg-gradient-to-br from-white via-pink-50 to-rose-100 overflow-hidden"
+        className="relative text-center py-16 sm:py-24 px-2 sm:px-6 md:px-12 bg-primaryLight overflow-hidden"
       >
         {/* Background Lottie Animation with Blur & Scale */}
         <motion.div
@@ -96,21 +96,21 @@ const Home = () => {
         
         {/* Content Container */}
         <div className="relative z-20 max-w-7xl mx-auto">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2 }} className="inline-flex items-center bg-white/80 backdrop-blur-md rounded-full px-8 py-3 mb-8 shadow-lg border border-pink-100">
-            <div className="w-2 h-2 bg-pink-500 rounded-full mr-3 animate-pulse"></div>
-            <span className="text-pink-700 font-semibold text-sm tracking-wide">EMPOWERING YOUNG DREAMS</span>
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2 }} className="inline-flex items-center bg-white/80 backdrop-blur-md rounded-full px-8 py-3 mb-8 shadow-lg border border-primaryLight">
+            <div className="w-2 h-2 bg-primary rounded-full mr-3 animate-pulse"></div>
+            <span className="text-primaryDark font-semibold text-sm tracking-wide">EMPOWERING YOUNG DREAMS</span>
           </motion.div>
           
-          <motion.h1 initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.3 }} className="text-5xl sm:text-7xl lg:text-8xl font-black mb-6 bg-clip-text text-transparent bg-gradient-to-r from-pink-600 via-rose-600 to-pink-700 leading-tight tracking-tight flex items-center justify-center gap-4">
-            <Star size={48} className="inline-block text-pink-500 drop-shadow" />
+          <motion.h1 initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.3 }} className="text-3xl xs:text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary via-rose-600 to-primaryDark leading-tight tracking-tight flex flex-wrap items-center justify-center gap-2 sm:gap-4">
+            <Star size={48} className="inline-block text-primary drop-shadow" />
             Project Sitaare
           </motion.h1>
           
-          <motion.p initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.4 }} className="text-2xl sm:text-3xl font-light text-gray-600 mb-8 max-w-4xl mx-auto leading-relaxed">
+          <motion.p initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.4 }} className="text-lg xs:text-xl sm:text-2xl md:text-3xl font-light text-gray-600 mb-8 max-w-4xl mx-auto leading-relaxed px-2">
             Where Every Star Finds Its Sky
           </motion.p>
           
-          <motion.p initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.5 }} className="text-lg sm:text-xl text-gray-500 leading-relaxed max-w-3xl mx-auto mb-16 px-2 sm:px-0">
+          <motion.p initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.5 }} className="text-base xs:text-lg sm:text-xl text-gray-500 leading-relaxed max-w-3xl mx-auto mb-10 sm:mb-16 px-2 sm:px-0">
             A transformative residential facility for girls aged 6–18, creating safe sanctuaries where dreams flourish and futures are built with purpose, care, and boundless possibilities.
           </motion.p>
 
@@ -118,27 +118,27 @@ const Home = () => {
           <ImpactCounter />
 
           {/* Professional CTA Buttons */}
-          <div className="flex flex-col sm:flex-row justify-center gap-6 mt-8">
-            <Link to="/donate" className="group">
+          <div className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6 mt-6 sm:mt-8 w-full">
+            <Link to="/collaborate/get-involved" className="group">
               <motion.button
                 variants={buttonVariants}
                 whileHover="hover"
                 whileTap="tap"
-                className="group relative bg-gradient-to-r from-pink-600 to-rose-600 hover:from-pink-700 hover:to-rose-700 text-white font-semibold px-12 py-4 rounded-full shadow-xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl overflow-hidden"
+                className="group relative bg-primary hover:bg-primaryDark text-white font-semibold px-12 py-4 rounded-full shadow-xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl overflow-hidden"
               >
                 <span className="relative z-10">Sponsor a Child</span>
                 <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
               </motion.button>
             </Link>
-            <Link to="/donate" className="group">
+            <Link to="/collaborate/donate-for-a-cause" className="group">
               <motion.button
                 variants={buttonVariants}
                 whileHover="hover"
                 whileTap="tap"
-                className="group relative bg-transparent border-2 border-pink-600 text-pink-600 hover:bg-pink-600 hover:text-white font-semibold px-12 py-4 rounded-full transition-all duration-300 transform hover:scale-105 overflow-hidden"
+                className="group relative bg-transparent border-2 border-primary text-primary hover:bg-primary hover:text-white font-semibold px-12 py-4 rounded-full transition-all duration-300 transform hover:scale-105 overflow-hidden"
               >
                 <span className="relative z-10">Donate Now</span>
-                <div className="absolute inset-0 bg-pink-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+                <div className="absolute inset-0 bg-primary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
               </motion.button>
             </Link>
           </div>
@@ -151,37 +151,37 @@ const Home = () => {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
-        className="py-24 px-6 sm:px-12 max-w-7xl mx-auto"
+        className="py-16 sm:py-24 px-2 sm:px-6 md:px-12 max-w-7xl mx-auto"
         data-aos="fade-up"
       >
         {/* Heading and Paragraph Full Width with Image Placeholder */}
-        <div className="mb-12 grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+        <div className="mb-8 sm:mb-12 grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-center">
           <div>
-            <motion.div initial={{ opacity: 0, x: -40 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }} className="inline-flex items-center bg-pink-100 rounded-full px-6 py-3 mb-8">
-              <User size={20} className="mr-2 text-pink-700" />
-              <div className="w-2 h-2 bg-pink-500 rounded-full mr-3"></div>
-              <span className="text-pink-700 font-semibold text-sm tracking-wide uppercase">Our Foundation</span>
+            <motion.div initial={{ opacity: 0, x: -40 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }} className="inline-flex items-center bg-primaryLight rounded-full px-6 py-3 mb-8">
+              <User size={20} className="mr-2 text-primaryDark" />
+              <div className="w-2 h-2 bg-primary rounded-full mr-3"></div>
+              <span className="text-primaryDark font-semibold text-sm tracking-wide uppercase">Our Foundation</span>
             </motion.div>
-            <motion.h2 initial={{ opacity: 0, x: -40 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.1 }} className="text-4xl lg:text-5xl font-bold text-gray-800 mb-8 leading-tight">
-              A Home Beyond <span className="text-pink-600">Shelter</span>
+            <motion.h2 initial={{ opacity: 0, x: -40 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.1 }} className="text-4xl lg:text-5xl font-bold text-primaryDark mb-8 leading-tight">
+              A Home Beyond <span className="text-primary">Shelter</span>
             </motion.h2>
             <motion.p initial={{ opacity: 0, x: -40 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.2 }} className="text-lg leading-relaxed mb-8 text-gray-600 max-w-4xl">
               Project Sitaare, a flagship initiative by the House of Humanity Charitable Trust, is a transformative residential facility for girls aged 6 to 18 who come from vulnerable backgrounds and require comprehensive care, protection, and empowerment.
               <br /><br />
-              More than a shelter, <span className="font-bold text-pink-600">Sitaare</span> is a <span className="font-bold text-rose-600">safe space</span> that nurtures healing, growth, and ambition. Our holistic approach encompasses education, emotional well-being, vocational skills, and cultural enrichment, designed to help each girl realize her full potential.
+              More than a shelter, <span className="font-bold text-primary">Sitaare</span> is a <span className="font-bold text-primaryDark">safe space</span> that nurtures healing, growth, and ambition. Our holistic approach encompasses education, emotional well-being, vocational skills, and cultural enrichment, designed to help each girl realize her full potential.
             </motion.p>
           </div>
           {/* About Section Image - Wider on Large Screens */}
           <img
             src="/sitaare about.webp"
             alt="About Project Sitaare"
-            className="w-full h-64 lg:h-96 lg:min-w-[400px] rounded-2xl object-cover shadow-lg"
+            className="w-full h-48 xs:h-56 sm:h-64 md:h-80 lg:h-96 lg:min-w-[300px] rounded-2xl object-cover shadow-lg"
           />
         </div>
         {/* Two-column grid for the boxes */}
-        <div className="flex flex-col gap-8">
+        <div className="flex flex-col gap-6 sm:gap-8">
           {/* What Makes Sitaare Special - First */}
-          <motion.div initial={{ opacity: 0, x: 40 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.4 }} className="bg-white rounded-2xl p-12 min-h-[350px] shadow-xl flex flex-col">
+          <motion.div initial={{ opacity: 0, x: 40 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.4 }} className="bg-white rounded-2xl p-6 sm:p-10 md:p-12 min-h-[250px] sm:min-h-[350px] shadow-xl flex flex-col">
             <h3 className="text-2xl font-bold text-gray-800 mb-6 flex items-center">
               <div className="w-4 h-4 bg-pink-500 rounded-full mr-3"></div>
               What Makes Sitaare Special
@@ -206,7 +206,7 @@ const Home = () => {
             </div>
           </motion.div>
           {/* Located in Vadodara, Gujarat - Second */}
-          <motion.div initial={{ opacity: 0, x: -40 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.3 }} className="bg-gradient-to-r from-pink-50 to-rose-50 rounded-2xl p-12 min-h-[350px] shadow-lg border border-pink-100 flex flex-col">
+          <motion.div initial={{ opacity: 0, x: -40 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.3 }} className="bg-white rounded-2xl p-6 sm:p-10 md:p-12 min-h-[250px] sm:min-h-[350px] shadow-lg border border-pink-100 flex flex-col">
             <h3 className="text-xl font-bold text-pink-700 mb-4 flex items-center">
               <div className="w-3 h-3 bg-pink-500 rounded-full mr-3"></div>
               Located in Vadodara, Gujarat
@@ -242,40 +242,40 @@ const Home = () => {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
-        className="py-24 px-6 sm:px-12 bg-gradient-to-br from-white via-pink-50 to-rose-50"
+        className="py-16 sm:py-24 px-2 sm:px-6 md:px-12 bg-primaryLight"
         data-aos="fade-up"
       >
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <motion.div initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.7 }} className="inline-flex items-center bg-pink-100 rounded-full px-6 py-3 mb-8">
-              <div className="w-2 h-2 bg-pink-500 rounded-full mr-3"></div>
-              <span className="text-pink-700 font-semibold text-sm tracking-wide uppercase">Our Story</span>
+            <motion.div initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.7 }} className="inline-flex items-center bg-primaryLight rounded-full px-4 sm:px-6 py-2 sm:py-3 mb-6 sm:mb-8">
+              <div className="w-2 h-2 bg-primary rounded-full mr-3"></div>
+              <span className="text-primaryDark font-semibold text-sm tracking-wide uppercase">Our Story</span>
             </motion.div>
-            <motion.h2 initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.1 }} className="text-4xl lg:text-5xl font-bold text-gray-800 mb-8">
-              Purpose & Passion Behind <span className="text-pink-600">Sitaare</span>
+            <motion.h2 initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.1 }} className="text-4xl lg:text-5xl font-bold text-primaryDark mb-8">
+              Purpose & Passion Behind <span className="text-primary">Sitaare</span>
             </motion.h2>
           </div>
-          <motion.div initial={{ opacity: 0, scale: 0.97 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.2, type: 'spring', stiffness: 80 }} className="bg-white rounded-3xl shadow-2xl p-8 md:p-12 border border-pink-100">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          <motion.div initial={{ opacity: 0, scale: 0.97 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.2, type: 'spring', stiffness: 80 }} className="bg-white rounded-3xl shadow-2xl p-4 sm:p-8 md:p-12 border border-pink-100">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-10 md:gap-12 items-center">
               <motion.div initial={{ opacity: 0, x: -40 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }}>
                 <p className="text-lg leading-relaxed mb-8 text-gray-600">
-                  The seeds of Project Sitaare were sown through the lived experiences of our founder, <span className="font-bold text-pink-600">Harsh Rao</span>. During his formative years, Harsh battled a life-threatening illness—an experience that sparked his empathy for vulnerable children and deepened his resolve to create a space of security and opportunity for those in need.
+                  The seeds of Project Sitaare were sown through the lived experiences of our founder, <span className="font-bold text-primary">Harsh Rao</span>. During his formative years, Harsh battled a life-threatening illness—an experience that sparked his empathy for vulnerable children and deepened his resolve to create a space of security and opportunity for those in need.
                 </p>
                 <p className="text-lg leading-relaxed text-gray-600">
                   <span className="font-bold text-rose-600">From this personal journey emerged a passionate vision:</span> to build a nurturing, empowering space where young girls can dream freely, grow holistically, and rebuild their lives with dignity and purpose.
                 </p>
               </motion.div>
-              <motion.div initial={{ opacity: 0, x: 40 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }} className="bg-gradient-to-br from-pink-50 to-rose-50 rounded-2xl p-8 shadow-lg border border-pink-100">
+              <motion.div initial={{ opacity: 0, x: 40 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }} className="bg-gradient-to-br from-pink-50 to-rose-50 rounded-2xl p-4 sm:p-8 shadow-lg border border-pink-100">
                 <div className="text-center">
-                  <div className="w-24 h-24 bg-gradient-to-br from-pink-500 to-rose-500 rounded-full mx-auto mb-6 flex items-center justify-center shadow-lg">
+                  <div className="w-20 h-20 xs:w-24 xs:h-24 bg-gradient-to-br from-pink-500 to-rose-500 rounded-full mx-auto mb-4 xs:mb-6 flex items-center justify-center shadow-lg">
                     <img
                       src="/founder.jpg"
                       alt="Harsh Rao, Founder"
-                      className="w-24 h-24 rounded-full object-cover shadow-lg border-4 border-white"
+                      className="w-20 h-20 xs:w-24 xs:h-24 rounded-full object-cover shadow-lg border-4 border-white"
                     />
                   </div>
                   <h3 className="text-xl font-bold text-gray-800 mb-2">Harsh Rao</h3>
-                  <p className="text-pink-600 font-medium">Founder, House of Humanity</p>
+                  <p className="text-primary font-medium">Founder, House of Humanity</p>
                 </div>
               </motion.div>
             </div>
@@ -289,7 +289,7 @@ const Home = () => {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
-        className="py-12 px-4 sm:px-8 bg-gradient-to-br from-pink-600 via-rose-600 to-pink-700 text-white relative overflow-hidden"
+        className="py-8 sm:py-12 px-2 sm:px-4 md:px-8 bg-primary text-white relative overflow-hidden"
         data-aos="fade-up"
       >
         <div className="absolute inset-0 bg-black/10"></div>
@@ -305,9 +305,9 @@ const Home = () => {
             </div>
             <div className="text-5xl text-white/20 absolute -bottom-4 -right-4 font-serif">"</div>
           </motion.blockquote>
-          <motion.div initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.3 }} className="bg-white/20 backdrop-blur-md rounded-2xl p-4 inline-block border border-white/30">
+          <motion.div initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.3 }} className="bg-primaryLight/20 backdrop-blur-md rounded-2xl p-4 inline-block border border-white/30">
             <p className="font-bold text-base mb-1">– Harsh Rao</p>
-            <p className="text-pink-200 text-sm">Founder, House of Humanity</p>
+            <p className="text-primaryLight text-sm">Founder, House of Humanity</p>
           </motion.div>
         </div>
       </motion.section>
@@ -318,20 +318,20 @@ const Home = () => {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
-        className="py-24 px-6 sm:px-12 bg-gradient-to-br from-gray-50 via-pink-50 to-rose-50"
+        className="py-16 sm:py-24 px-2 sm:px-6 md:px-12 bg-primaryLight"
         data-aos="fade-up"
       >
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <motion.div initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.7 }} className="inline-flex items-center bg-pink-100 rounded-full px-6 py-3 mb-8">
-              <div className="w-2 h-2 bg-pink-500 rounded-full mr-3"></div>
-              <span className="text-pink-700 font-semibold text-sm tracking-wide uppercase">Our Direction</span>
+            <motion.div initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.7 }} className="inline-flex items-center bg-primaryLight rounded-full px-6 py-3 mb-8">
+              <div className="w-2 h-2 bg-primary rounded-full mr-3"></div>
+              <span className="text-primaryDark font-semibold text-sm tracking-wide uppercase">Our Direction</span>
             </motion.div>
-            <motion.h2 initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.1 }} className="text-4xl lg:text-5xl font-bold text-gray-800 mb-8">
-              Our Vision & <span className="text-pink-600">Mission</span>
+            <motion.h2 initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.1 }} className="text-4xl lg:text-5xl font-bold text-primaryDark mb-8">
+              Our Vision & <span className="text-primary">Mission</span>
             </motion.h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-10 md:gap-12">
             {/* Vision */}
             <motion.div
               initial={{ opacity: 0, x: -40, scale: 0.95 }}
@@ -381,7 +381,7 @@ const Home = () => {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.2 }}
-      className="py-24 px-6 sm:px-12 bg-white"
+      className="py-16 sm:py-24 px-2 sm:px-6 md:px-12 bg-primaryLight"
       data-aos="fade-up"
     >
       <div className="max-w-6xl mx-auto">
@@ -391,23 +391,23 @@ const Home = () => {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
-            className="inline-flex items-center bg-pink-100 rounded-full px-6 py-3 mb-8"
+            className="inline-flex items-center bg-primaryLight rounded-full px-6 py-3 mb-8"
           >
-            <div className="w-2 h-2 bg-pink-500 rounded-full mr-3"></div>
-            <span className="text-pink-700 font-semibold text-sm tracking-wide uppercase">Our Journey</span>
+            <div className="w-2 h-2 bg-primary rounded-full mr-3"></div>
+            <span className="text-primaryDark font-semibold text-sm tracking-wide uppercase">Our Journey</span>
           </motion.div>
           <motion.h2
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="text-4xl lg:text-5xl font-bold text-gray-800"
+            className="text-4xl lg:text-5xl font-bold text-primaryDark"
           >
-            Milestones & <span className="text-pink-600">Progress</span>
+            Milestones & <span className="text-primary">Progress</span>
           </motion.h2>
         </div>
         {/* Responsive grid: Timeline left, Video section right */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-10 md:gap-12 items-start">
           {/* Timeline */}
           <div>
             <Timeline />
@@ -424,7 +424,7 @@ const Home = () => {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.2 }}
-      className="py-24 px-6 sm:px-12 bg-gradient-to-br from-rose-50 via-pink-50 to-white"
+      className="py-16 sm:py-24 px-2 sm:px-6 md:px-12 bg-primaryLight"
       data-aos="fade-up"
     >
       <div className="max-w-6xl mx-auto">
@@ -434,19 +434,19 @@ const Home = () => {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
-            className="inline-flex items-center bg-pink-100 rounded-full px-6 py-3 mb-8"
+            className="inline-flex items-center bg-primaryLight rounded-full px-6 py-3 mb-8"
           >
-            <div className="w-2 h-2 bg-pink-500 rounded-full mr-3"></div>
-            <span className="text-pink-700 font-semibold text-sm tracking-wide uppercase">Voices of Change</span>
+            <div className="w-2 h-2 bg-primary rounded-full mr-3"></div>
+            <span className="text-primaryDark font-semibold text-sm tracking-wide uppercase">Voices of Change</span>
           </motion.div>
           <motion.h2
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="text-4xl lg:text-5xl font-bold text-gray-800"
+            className="text-4xl lg:text-5xl font-bold text-primaryDark"
           >
-            Stories of <span className="text-pink-600">Transformation</span>
+            Stories of <span className="text-primary">Transformation</span>
           </motion.h2>
         </div>
         <TestimonialsCarousel />
@@ -478,14 +478,14 @@ function VideoStoriesSection() {
   return (
     <div className="space-y-8">
       {stories.map((story, index) => (
-        <div key={index} className="bg-white rounded-xl shadow-lg p-4">
+        <div key={index} className="bg-white rounded-xl shadow-lg p-2 xs:p-4">
           {/* Video Container */}
-          <div className="relative mb-4 mx-auto">
+          <div className="relative mb-2 xs:mb-4 mx-auto">
             {story.videoUrl ? (
-              <div className="relative w-full max-w-[420px] mx-auto">
+              <div className="relative w-full max-w-[320px] xs:max-w-[420px] mx-auto">
                 <video
                   ref={el => { videoRefs.current[index] = el; }}
-                  className="w-full h-[520px] object-cover rounded-xl border-2 border-pink-400 shadow-md"
+                  className="w-full h-[320px] xs:h-[420px] object-cover rounded-xl border-2 border-primary shadow-md"
                   controls
                   preload="metadata"
                   style={{ aspectRatio: '9/16' }}
@@ -514,14 +514,14 @@ function VideoStoriesSection() {
                 )}
               </div>
             ) : (
-              <div className="w-full max-w-[420px] mx-auto">
+              <div className="w-full max-w-[320px] xs:max-w-[420px] mx-auto">
                 {/* <ImagePlaceholder 
                   text={story.title} 
                   width="100%" 
                   height="520px" 
                   className="rounded-xl border-2 border-pink-400" 
                 /> */}
-                <div className="w-full h-[520px] bg-gray-200 flex items-center justify-center rounded-xl border-2 border-pink-400">
+                <div className="w-full h-[320px] xs:h-[420px] bg-gray-200 flex items-center justify-center rounded-xl border-2 border-pink-400">
                   <span className="text-gray-400">No Video</span>
                 </div>
               </div>
@@ -529,7 +529,7 @@ function VideoStoriesSection() {
           </div>
           {/* Content */}
           <div className="flex-1 text-center px-2">
-            <h3 className="text-lg font-bold text-pink-600 mb-2 leading-tight">
+            <h3 className="text-lg font-bold text-primary mb-2 leading-tight">
               {story.title}
             </h3>
             <p className="text-gray-700 text-sm leading-relaxed">

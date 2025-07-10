@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { User, Mail, HeartHandshake } from 'lucide-react';
 
-const Volunteer = () => {
+const GetInvolved = () => {
   const [form, setForm] = useState({ name: '', email: '', interest: '' });
 
   const handleChange = (e) => {
@@ -108,4 +108,4 @@ const Volunteer = () => {
   );
 };
 
-export default Volunteer;
+export default GetInvolved;
