@@ -6,3 +6,34 @@
 .hide-cursor {
   cursor: none !important;
 }
+
+a, button, [role="button"], .cursor-pointer {
+  cursor: none !important;
+}
+
+.typewriter {
+  display: inline-block;
+  overflow: hidden;
+  border-right: 2px solid #E94BA2;
+  white-space: nowrap;
+  animation: typing 2.5s steps(30, end), blink-caret 0.7s step-end infinite;
+  max-width: 100vw;
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: #E94BA2; }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in {
+  animation: fade-in 0.4s ease;
+}
