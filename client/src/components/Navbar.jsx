@@ -66,7 +66,7 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="sticky top-0 z-50 bg-softBg/90 backdrop-blur-lg shadow-md transition-all">
+    <nav className="relative z-50 bg-softBg/90 backdrop-blur-lg shadow-md transition-all">
       <div className="w-full">
         <div className="max-w-[1440px] mx-auto flex justify-between items-center px-6 py-3">
           {/* Logo */}

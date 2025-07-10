@@ -25,6 +25,9 @@ module.exports = {
         darkText: '#4B4B4B',
         grayText: '#A1A1A1',
       },
+      animation: {
+        'shimmer': 'shimmer 2s infinite',
+      },
     },
   },
   plugins: [],
