@@ -22,9 +22,9 @@ const supportItems = [
 ];
 
 const counters = [
-  { label: 'Girls Supported', value: 30, icon: FaSmile, color: '#E94BA2' },
-  { label: 'Milestones Achieved', value: 7, icon: FaStar, color: '#BC1782' },
-  { label: 'Years of Impact', value: 3, icon: FaHeart, color: '#FF8EB5' },
+  { label: 'Girls Supported', value: 30, icon: FaSmile, color: '#E94BA2', style: { filter: 'drop-shadow(0 0 6px #E94BA2)' } },
+  { label: 'Milestones Achieved', value: 7, icon: FaStar, color: '#FFD700', style: { filter: 'drop-shadow(0 0 6px #FFD700)' } },
+  { label: 'Years of Impact', value: 3, icon: FaHeart, color: '#A78BFA', style: { filter: 'drop-shadow(0 0 6px #A78BFA)' } },
 ];
 
 const fadeIn = {
@@ -80,7 +80,7 @@ export default function Milestones() {
         <div className="flex flex-wrap justify-center gap-8 mt-8">
           {counters.map((c, i) => (
             <div key={c.label} className="flex flex-col items-center">
-              <c.icon className="text-3xl mb-2" style={{ color: c.color }} />
+              <c.icon className="text-4xl mb-2" style={{ color: c.color, ...(c.style || {}) }} />
               <span className="text-3xl font-bold">
                 <AnimatedCounter value={c.value} />
               </span>
