@@ -4,7 +4,7 @@ import Home from './pages/Home';
 import Contact from './pages/Contact';
 import PurposeAndPassion from './pages/WhoWeAre/PurposeAndPassion';
 import FoundersDesk from './pages/WhoWeAre/FoundersDesk';
-import MeetOutSitaare from './pages/MeetOutSitaare';
+import MeetOurSitaare from './pages/MeetOurSitaare';
 import OurAspiration from './pages/OurAspiration';
 import Media from './pages/News&Events/Media';
 import Events from './pages/News&Events/Events';
@@ -31,7 +31,7 @@ function AnimatedRoutes() {
         <Route path="/" element={<motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit" style={{ minHeight: '100vh' }}><Home /></motion.div>} />
         <Route path="/who-we-are/purpose-and-passion" element={<motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit" style={{ minHeight: '100vh' }}><PurposeAndPassion /></motion.div>} />
         <Route path="/who-we-are/founders-desk" element={<motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit" style={{ minHeight: '100vh' }}><FoundersDesk /></motion.div>} />
-        <Route path="/meet-out-sitaare" element={<motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit" style={{ minHeight: '100vh' }}><MeetOutSitaare /></motion.div>} />
+        <Route path="/meet-our-sitaare" element={<motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit" style={{ minHeight: '100vh' }}><MeetOurSitaare /></motion.div>} />
         <Route path="/our-aspiration" element={<motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit" style={{ minHeight: '100vh' }}><OurAspiration /></motion.div>} />
         <Route path="/news-and-events/media" element={<motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit" style={{ minHeight: '100vh' }}><Media /></motion.div>} />
         <Route path="/news-and-events/events" element={<motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit" style={{ minHeight: '100vh' }}><Events /></motion.div>} />
