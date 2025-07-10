@@ -29,7 +29,7 @@ const Navbar = () => {
             <img src={logo} alt="Project Sitaare" className="h-10 sm:h-12 transition duration-200 hover:drop-shadow-[0_0_12px_#BC1782]" />
           </Link>
           <a href="https://houseofhumanity.in/" target="_blank" rel="noopener noreferrer">
-            <img src={hohLogo} alt="House of Humanity" className="h-24 sm:h-28 ml-3 transition duration-200 hover:drop-shadow-[0_0_12px_#FFD700]" />
+            <img src={hohLogo} alt="House of Humanity" className="h-10 sm:h-12 ml-3 transition duration-200 hover:drop-shadow-[0_0_12px_#FFD700]" />
           </a>
         </div>
 
