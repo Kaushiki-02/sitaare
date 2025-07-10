@@ -63,7 +63,7 @@ const Home = () => {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
-        className="relative text-center py-16 sm:py-24 px-2 sm:px-6 md:px-12 bg-primaryLight overflow-hidden"
+        className="relative text-center py-10 sm:py-14 px-2 sm:px-6 md:px-12 bg-primaryLight overflow-hidden"
       >
         {/* Background Lottie Animation with Blur & Scale */}
         <motion.div
@@ -83,15 +83,15 @@ const Home = () => {
         {/* Sophisticated Background Elements */}
         <div className="absolute inset-0 overflow-hidden z-5">
           {/* Geometric shapes */}
-          <motion.div initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 0.3 }} transition={{ duration: 1, delay: 0.2, type: 'spring' }} className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-br from-pink-200 to-rose-200 rounded-full opacity-30 animate-pulse"></motion.div>
-          <motion.div initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 0.2 }} transition={{ duration: 1, delay: 0.4, type: 'spring' }} className="absolute top-40 right-20 w-24 h-24 bg-gradient-to-br from-rose-200 to-pink-200 rounded-full opacity-20 animate-pulse delay-1000"></motion.div>
-          <motion.div initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 0.25 }} transition={{ duration: 1, delay: 0.6, type: 'spring' }} className="absolute bottom-32 left-32 w-40 h-40 bg-gradient-to-br from-pink-100 to-rose-100 rounded-full opacity-25 animate-pulse delay-2000"></motion.div>
-          <motion.div initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 0.3 }} transition={{ duration: 1, delay: 0.8, type: 'spring' }} className="absolute bottom-20 right-16 w-20 h-20 bg-gradient-to-br from-rose-100 to-pink-100 rounded-full opacity-30 animate-pulse delay-500"></motion.div>
+          <motion.div initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 0.3 }} transition={{ duration: 1, delay: 0.2, type: 'spring' }} className="absolute top-20 left-10 w-32 h-32 rounded-full opacity-30 animate-pulse filter blur-md" style={{ background: 'linear-gradient(135deg, #F8AAD5, #C9186C)' }}></motion.div>
+          <motion.div initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 0.2 }} transition={{ duration: 1, delay: 0.4, type: 'spring' }} className="absolute top-40 right-20 w-24 h-24 rounded-full opacity-20 animate-pulse delay-1000 filter blur-md" style={{ background: 'linear-gradient(135deg, #A6205F, #F8AAD5)' }}></motion.div>
+          <motion.div initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 0.25 }} transition={{ duration: 1, delay: 0.6, type: 'spring' }} className="absolute bottom-32 left-32 w-40 h-40 rounded-full opacity-25 animate-pulse delay-2000 filter blur-md" style={{ background: 'linear-gradient(135deg, #BD1682, #F8AAD5)' }}></motion.div>
+          <motion.div initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 0.3 }} transition={{ duration: 1, delay: 0.8, type: 'spring' }} className="absolute bottom-20 right-16 w-20 h-20 rounded-full opacity-30 animate-pulse delay-500 filter blur-md" style={{ background: 'linear-gradient(135deg, #C9186C, #A6205F)' }}></motion.div>
           
           {/* Subtle floating elements */}
-          <motion.div initial={{ y: -10, opacity: 0 }} animate={{ y: 0, opacity: 0.6 }} transition={{ duration: 1, delay: 1.0, type: 'spring' }} className="absolute top-32 left-1/4 w-2 h-2 bg-pink-400 rounded-full opacity-60 animate-bounce delay-300"></motion.div>
-          <motion.div initial={{ y: 10, opacity: 0 }} animate={{ y: 0, opacity: 0.5 }} transition={{ duration: 1, delay: 1.2, type: 'spring' }} className="absolute bottom-48 right-1/4 w-3 h-3 bg-rose-400 rounded-full opacity-50 animate-bounce delay-700"></motion.div>
-          <motion.div initial={{ y: -10, opacity: 0 }} animate={{ y: 0, opacity: 0.4 }} transition={{ duration: 1, delay: 1.4, type: 'spring' }} className="absolute top-48 right-1/3 w-2 h-2 bg-pink-300 rounded-full opacity-40 animate-bounce delay-1000"></motion.div>
+          <motion.div initial={{ y: -10, opacity: 0 }} animate={{ y: 0, opacity: 0.6 }} transition={{ duration: 1, delay: 1.0, type: 'spring' }} className="absolute top-32 left-1/4 w-2 h-2 rounded-full opacity-60 animate-bounce delay-300 filter blur-sm" style={{ background: '#BD1682' }}></motion.div>
+          <motion.div initial={{ y: 10, opacity: 0 }} animate={{ y: 0, opacity: 0.5 }} transition={{ duration: 1, delay: 1.2, type: 'spring' }} className="absolute bottom-48 right-1/4 w-3 h-3 rounded-full opacity-50 animate-bounce delay-700 filter blur-sm" style={{ background: '#C9186C' }}></motion.div>
+          <motion.div initial={{ y: -10, opacity: 0 }} animate={{ y: 0, opacity: 0.4 }} transition={{ duration: 1, delay: 1.4, type: 'spring' }} className="absolute top-48 right-1/3 w-2 h-2 rounded-full opacity-40 animate-bounce delay-1000 filter blur-sm" style={{ background: '#A6205F' }}></motion.div>
         </div>
         
         {/* Content Container */}
@@ -101,8 +101,12 @@ const Home = () => {
             <span className="text-primaryDark font-semibold text-sm tracking-wide">EMPOWERING YOUNG DREAMS</span>
           </motion.div>
           
-          <motion.h1 initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.3 }} className="text-3xl xs:text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary via-rose-600 to-primaryDark leading-tight tracking-tight flex flex-wrap items-center justify-center gap-2 sm:gap-4">
-            <Star size={48} className="inline-block text-primary drop-shadow" />
+          <motion.h1 
+            initial={{ opacity: 0, y: 40 }} 
+            animate={{ opacity: 1, y: 0 }} 
+            transition={{ duration: 0.8, delay: 0.3 }} 
+            className="text-3xl xs:text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary via-pink-400 to-primaryDark leading-tight tracking-tight flex flex-wrap items-center justify-center gap-2 sm:gap-4 py-2 pb-4">
+            <Star size={48} className="inline-block text-primary drop-shadow align-middle" />
             Project Sitaare
           </motion.h1>
           
@@ -110,7 +114,7 @@ const Home = () => {
             Where Every Star Finds Its Sky
           </motion.p>
           
-          <motion.p initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.5 }} className="text-base xs:text-lg sm:text-xl text-gray-500 leading-relaxed max-w-3xl mx-auto mb-10 sm:mb-16 px-2 sm:px-0">
+          <motion.p initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.5 }} className="text-base xs:text-lg sm:text-xl text-gray-500 leading-relaxed max-w-3xl mx-auto mb-4 sm:mb-6 px-2 sm:px-0">
             A transformative residential facility for girls aged 6–18, creating safe sanctuaries where dreams flourish and futures are built with purpose, care, and boundless possibilities.
           </motion.p>
 
@@ -488,6 +492,9 @@ function VideoStoriesSection() {
                   className="w-full h-[320px] xs:h-[420px] object-cover rounded-xl border-2 border-primary shadow-md"
                   controls
                   preload="metadata"
+                  autoPlay
+                  muted
+                  loop
                   style={{ aspectRatio: '9/16' }}
                   onPlay={() => setPlayingIndex(index)}
                   onPause={() => setPlayingIndex(null)}
@@ -495,23 +502,6 @@ function VideoStoriesSection() {
                   <source src={story.videoUrl} type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
-                {/* Custom Play Overlay */}
-                {playingIndex !== index && (
-                  <button
-                    className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30 rounded-xl transition-opacity duration-200 z-10"
-                    onClick={() => {
-                      const vid = videoRefs.current[index];
-                      if (vid) {
-                        vid.play();
-                      }
-                    }}
-                    tabIndex={-1}
-                    type="button"
-                  >
-                    {/* <Play className="text-white" size={64} /> */}
-                    <span className="text-white text-4xl">▶</span>
-                  </button>
-                )}
               </div>
             ) : (
               <div className="w-full max-w-[320px] xs:max-w-[420px] mx-auto">
