@@ -194,10 +194,10 @@ const MeetOurSitaare = () => {
             Sitaare is not just about shelter—it's about possibility, potential, and purpose.
           </blockquote>
           <div className="w-24 h-1 bg-gradient-to-r from-purple-500 to-pink-500 mx-auto rounded-full"></div>
-        </div>
+  </div>
       </motion.section>
     </motion.div>
-  );
+);
 };
 
 export default MeetOurSitaare; 
