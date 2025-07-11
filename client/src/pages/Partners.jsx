@@ -115,7 +115,7 @@ export default function Partners() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-pink-50 to-purple-50 text-gray-800">
       {/* Hero Section */}
-      <motion.div
+    <motion.div
         initial={{ opacity: 0, y: -40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
@@ -142,14 +142,14 @@ export default function Partners() {
 
       {/* Partner Cards */}
       <section className="max-w-5xl mx-auto py-16 px-4">
-        <motion.div
+      <motion.div
           variants={stagger}
-          initial="initial"
-          animate="animate"
+        initial="initial"
+        animate="animate"
           className="grid grid-cols-1 sm:grid-cols-2 gap-8"
-        >
-          {partnerData.map((group, idx) => (
-            <motion.div
+      >
+        {partnerData.map((group, idx) => (
+          <motion.div
               key={group.title}
               variants={fadeIn}
               whileHover={{ scale: 1.07, rotate: -2, boxShadow: '0 12px 32px rgba(233,30,99,0.18)' }}
@@ -162,13 +162,13 @@ export default function Partners() {
               <group.icon className="text-3xl mb-4" style={{ color: group.color }} />
               <h2 className="text-xl font-bold mb-3" style={{ color: group.color }}>{group.title}</h2>
               <ul className="list-disc list-inside space-y-2 text-base text-gray-700 text-left w-full max-w-xs mx-auto">
-                {group.points.map((point, i) => (
-                  <li key={i}>{point}</li>
-                ))}
-              </ul>
-            </motion.div>
-          ))}
-        </motion.div>
+              {group.points.map((point, i) => (
+                <li key={i}>{point}</li>
+              ))}
+            </ul>
+          </motion.div>
+        ))}
+      </motion.div>
       </section>
 
       {/* Testimonials Carousel */}
@@ -188,7 +188,7 @@ export default function Partners() {
           />
           <p className="text-lg italic text-gray-700 mb-4">"{testimonials[testimonialIdx].text}"</p>
           <span className="block text-pink-600 font-bold">{testimonials[testimonialIdx].name}</span>
-        </motion.div>
+    </motion.div>
       </section>
 
       {/* CTA Section */}
