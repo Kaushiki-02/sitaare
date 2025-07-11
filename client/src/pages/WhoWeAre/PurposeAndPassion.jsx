@@ -70,7 +70,7 @@ const PurposeAndPassion = () => {
       initial="initial"
       animate="animate"
       exit="exit"
-      className="min-h-screen bg-gradient-to-br from-slate-50 to-purple-50 text-gray-700"
+      className="min-h-screen bg-gradient-to-br from-slate-50 to-pink-50 text-gray-700 px-4 py-12"
     >
       {/* Hero Section */}
       <div className="relative overflow-hidden">

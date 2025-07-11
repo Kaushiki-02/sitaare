@@ -10,11 +10,29 @@ const STAR_LIFETIME = 800; // ms
 const STAR_SIZE = [3, 6]; // px
 const TRAIL_DENSITY = 1; // stars per mousemove
 
+function isTouchDevice() {
+  return (
+    'ontouchstart' in window ||
+    navigator.maxTouchPoints > 0 ||
+    navigator.msMaxTouchPoints > 0
+  );
+}
+
 function CursorTrail({ enabled = true }) {
-  const [show, setShow] = useState(enabled);
-  // Sync show state with enabled prop
+  // Only enable on non-touch devices
+  const getShouldShow = () => enabled && !isTouchDevice();
+  const [show, setShow] = useState(getShouldShow());
+
+  // Dynamically update show state on resize/orientationchange
   React.useEffect(() => {
-    setShow(enabled);
+    const updateShow = () => setShow(getShouldShow());
+    updateShow();
+    window.addEventListener('resize', updateShow);
+    window.addEventListener('orientationchange', updateShow);
+    return () => {
+      window.removeEventListener('resize', updateShow);
+      window.removeEventListener('orientationchange', updateShow);
+    };
   }, [enabled]);
   const [isHovering, setIsHovering] = useState(false);
   const cursorRef = useRef(null);

@@ -6,7 +6,7 @@ const FloatingActionButton = ({ starCursorEnabled, setStarCursorEnabled }) => {
   const navigate = useNavigate();
 
   const handleContact = () => {
-    navigate('/contact');
+    navigate('/contact-us');
   };
 
   return (
@@ -41,7 +41,7 @@ const FloatingActionButton = ({ starCursorEnabled, setStarCursorEnabled }) => {
       <div className="relative group flex items-center">
         <button
           aria-label="Donate"
-          onClick={() => navigate('/donate')}
+          onClick={() => navigate('/collaborate/donate-for-a-cause')}
           className="bg-[#BC1782] hover:bg-[#E94BA2] text-white p-3 rounded-full shadow-lg focus:outline-none flex items-center justify-center"
         >
           <FaRupeeSign size={22} />
