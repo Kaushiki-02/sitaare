@@ -76,22 +76,22 @@ const Home = () => {
             animationData={starsAnimation}
             loop
             autoplay
-            className="w-full h-full filter blur-sm scale-[1.05] opacity-30"
+            className="w-full h-full scale-[1.05] opacity-30"
           />
         </motion.div>
 
         {/* Sophisticated Background Elements */}
         <div className="absolute inset-0 overflow-hidden z-5">
           {/* Geometric shapes */}
-          <motion.div initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 0.3 }} transition={{ duration: 1, delay: 0.2, type: 'spring' }} className="absolute top-20 left-10 w-32 h-32 rounded-full opacity-30 animate-pulse filter blur-md" style={{ background: 'linear-gradient(135deg, #F8AAD5, #C9186C)' }}></motion.div>
-          <motion.div initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 0.2 }} transition={{ duration: 1, delay: 0.4, type: 'spring' }} className="absolute top-40 right-20 w-24 h-24 rounded-full opacity-20 animate-pulse delay-1000 filter blur-md" style={{ background: 'linear-gradient(135deg, #A6205F, #F8AAD5)' }}></motion.div>
-          <motion.div initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 0.25 }} transition={{ duration: 1, delay: 0.6, type: 'spring' }} className="absolute bottom-32 left-32 w-40 h-40 rounded-full opacity-25 animate-pulse delay-2000 filter blur-md" style={{ background: 'linear-gradient(135deg, #BD1682, #F8AAD5)' }}></motion.div>
-          <motion.div initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 0.3 }} transition={{ duration: 1, delay: 0.8, type: 'spring' }} className="absolute bottom-20 right-16 w-20 h-20 rounded-full opacity-30 animate-pulse delay-500 filter blur-md" style={{ background: 'linear-gradient(135deg, #C9186C, #A6205F)' }}></motion.div>
+          <motion.div initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 0.3 }} transition={{ duration: 1, delay: 0.2, type: 'spring' }} className="absolute top-20 left-10 w-32 h-32 rounded-full opacity-30 animate-pulse" style={{ background: 'linear-gradient(135deg, #F8AAD5, #C9186C)' }}></motion.div>
+          <motion.div initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 0.2 }} transition={{ duration: 1, delay: 0.4, type: 'spring' }} className="absolute top-40 right-20 w-24 h-24 rounded-full opacity-20 animate-pulse delay-1000" style={{ background: 'linear-gradient(135deg, #A6205F, #F8AAD5)' }}></motion.div>
+          <motion.div initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 0.25 }} transition={{ duration: 1, delay: 0.6, type: 'spring' }} className="absolute bottom-32 left-32 w-40 h-40 rounded-full opacity-25 animate-pulse delay-2000" style={{ background: 'linear-gradient(135deg, #BD1682, #F8AAD5)' }}></motion.div>
+          <motion.div initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 0.3 }} transition={{ duration: 1, delay: 0.8, type: 'spring' }} className="absolute bottom-20 right-16 w-20 h-20 rounded-full opacity-30 animate-pulse delay-500" style={{ background: 'linear-gradient(135deg, #C9186C, #A6205F)' }}></motion.div>
           
           {/* Subtle floating elements */}
-          <motion.div initial={{ y: -10, opacity: 0 }} animate={{ y: 0, opacity: 0.6 }} transition={{ duration: 1, delay: 1.0, type: 'spring' }} className="absolute top-32 left-1/4 w-2 h-2 rounded-full opacity-60 animate-bounce delay-300 filter blur-sm" style={{ background: '#BD1682' }}></motion.div>
-          <motion.div initial={{ y: 10, opacity: 0 }} animate={{ y: 0, opacity: 0.5 }} transition={{ duration: 1, delay: 1.2, type: 'spring' }} className="absolute bottom-48 right-1/4 w-3 h-3 rounded-full opacity-50 animate-bounce delay-700 filter blur-sm" style={{ background: '#C9186C' }}></motion.div>
-          <motion.div initial={{ y: -10, opacity: 0 }} animate={{ y: 0, opacity: 0.4 }} transition={{ duration: 1, delay: 1.4, type: 'spring' }} className="absolute top-48 right-1/3 w-2 h-2 rounded-full opacity-40 animate-bounce delay-1000 filter blur-sm" style={{ background: '#A6205F' }}></motion.div>
+          <motion.div initial={{ y: -10, opacity: 0 }} animate={{ y: 0, opacity: 0.6 }} transition={{ duration: 1, delay: 1.0, type: 'spring' }} className="absolute top-32 left-1/4 w-2 h-2 rounded-full opacity-60 animate-bounce delay-300" style={{ background: '#BD1682' }}></motion.div>
+          <motion.div initial={{ y: 10, opacity: 0 }} animate={{ y: 0, opacity: 0.5 }} transition={{ duration: 1, delay: 1.2, type: 'spring' }} className="absolute bottom-48 right-1/4 w-3 h-3 rounded-full opacity-50 animate-bounce delay-700" style={{ background: '#C9186C' }}></motion.div>
+          <motion.div initial={{ y: -10, opacity: 0 }} animate={{ y: 0, opacity: 0.4 }} transition={{ duration: 1, delay: 1.4, type: 'spring' }} className="absolute top-48 right-1/3 w-2 h-2 rounded-full opacity-40 animate-bounce delay-1000" style={{ background: '#A6205F' }}></motion.div>
         </div>
         
         {/* Content Container */}
@@ -271,11 +271,11 @@ const Home = () => {
               </motion.div>
               <motion.div initial={{ opacity: 0, x: 40 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }} className="bg-gradient-to-br from-pink-50 to-rose-50 rounded-2xl p-4 sm:p-8 shadow-lg border border-pink-100">
                 <div className="text-center">
-                  <div className="w-20 h-20 xs:w-24 xs:h-24 bg-gradient-to-br from-pink-500 to-rose-500 rounded-full mx-auto mb-4 xs:mb-6 flex items-center justify-center shadow-lg">
+                  <div className="w-28 h-28 xs:w-32 xs:h-32 sm:w-36 sm:h-36 bg-gradient-to-br from-pink-500 to-rose-500 rounded-full mx-auto mb-4 xs:mb-6 flex items-center justify-center shadow-lg">
                     <img
                       src="/founder.jpg"
                       alt="Harsh Rao, Founder"
-                      className="w-20 h-20 xs:w-24 xs:h-24 rounded-full object-cover shadow-lg border-4 border-white"
+                      className="w-28 h-28 xs:w-32 xs:h-32 sm:w-36 sm:h-36 rounded-full object-cover shadow-lg border-4 border-white"
                     />
                   </div>
                   <h3 className="text-xl font-bold text-gray-800 mb-2">Harsh Rao</h3>
@@ -486,10 +486,10 @@ function VideoStoriesSection() {
           {/* Video Container */}
           <div className="relative mb-2 xs:mb-4 mx-auto">
             {story.videoUrl ? (
-              <div className="relative w-full max-w-[320px] xs:max-w-[420px] mx-auto">
+              <div className="relative w-full max-w-[320px] xs:max-w-[420px] sm:max-w-[480px] mx-auto">
                 <video
                   ref={el => { videoRefs.current[index] = el; }}
-                  className="w-full h-[320px] xs:h-[420px] object-cover rounded-xl border-2 border-primary shadow-md"
+                  className="w-full h-[400px] xs:h-[500px] sm:h-[600px] object-cover rounded-xl border-2 border-primary shadow-md"
                   controls
                   preload="metadata"
                   autoPlay
@@ -504,14 +504,14 @@ function VideoStoriesSection() {
                 </video>
               </div>
             ) : (
-              <div className="w-full max-w-[320px] xs:max-w-[420px] mx-auto">
+              <div className="w-full max-w-[320px] xs:max-w-[420px] sm:max-w-[480px] mx-auto">
                 {/* <ImagePlaceholder 
                   text={story.title} 
                   width="100%" 
                   height="520px" 
                   className="rounded-xl border-2 border-pink-400" 
                 /> */}
-                <div className="w-full h-[320px] xs:h-[420px] bg-gray-200 flex items-center justify-center rounded-xl border-2 border-pink-400">
+                <div className="w-full h-[400px] xs:h-[500px] sm:h-[600px] bg-gray-200 flex items-center justify-center rounded-xl border-2 border-pink-400">
                   <span className="text-gray-400">No Video</span>
                 </div>
               </div>
