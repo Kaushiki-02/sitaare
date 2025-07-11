@@ -55,7 +55,7 @@ const Home = () => {
       initial="hidden"
       animate="visible"
       exit="exit"
-      className="min-h-screen bg-gradient-to-br from-slate-50 via-pink-50 to-rose-50 text-gray-800 px-2 sm:px-0"
+      className="min-h-screen bg-gradient-to-br from-slate-50 via-pink-50 to-rose-50 text-gray-800 px-0 sm:px-2 md:px-0"
     >
       {/* Hero Section */}
       <motion.section
@@ -63,7 +63,7 @@ const Home = () => {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
-        className="relative text-center py-10 sm:py-14 px-2 sm:px-6 md:px-12 bg-primaryLight overflow-hidden"
+        className="relative text-center py-10 sm:py-14 px-0 sm:px-4 md:px-12 bg-primaryLight overflow-hidden"
       >
         {/* Background Lottie Animation with Blur & Scale */}
         <motion.div

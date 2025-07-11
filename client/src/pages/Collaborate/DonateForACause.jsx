@@ -152,10 +152,10 @@ const DonateForACause = () => {
       initial="initial"
       animate="animate"
       exit="exit"
-      className="relative min-h-screen bg-gradient-to-br from-[#FBE6F3] to-[#FFF7FA] text-[#4B4B4B] px-0 sm:px-6 pb-24 overflow-x-hidden"
+      className="relative min-h-screen bg-gradient-to-br from-[#FBE6F3] to-[#FFF7FA] text-[#4B4B4B] px-2 sm:px-4 md:px-8 pb-24 overflow-x-hidden"
     >
       {/* Hero Section */}
-      <div className="relative w-full flex flex-col items-center justify-center py-16 sm:py-24 overflow-hidden">
+      <div className="relative w-full flex flex-col items-center justify-center py-10 sm:py-16 md:py-24 overflow-hidden">
         <div className="absolute inset-0 z-0 pointer-events-none">
           <Lottie animationData={starsAnimation} loop autoplay className="w-full h-full opacity-60 blur-sm scale-110" />
         </div>
@@ -163,7 +163,7 @@ const DonateForACause = () => {
           initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
-          className="relative z-10 text-4xl sm:text-5xl font-black text-center text-[#BC1782] drop-shadow mb-4"
+          className="relative z-10 text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-black text-center text-[#BC1782] drop-shadow mb-4 px-2"
         >
           Every Gift is a New Beginning
         </motion.h1>
@@ -171,7 +171,7 @@ const DonateForACause = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.2 }}
-          className="relative z-10 text-lg sm:text-xl text-center max-w-2xl mx-auto mb-6 text-[#7C0C55] font-medium"
+          className="relative z-10 text-base xs:text-lg sm:text-xl text-center max-w-2xl mx-auto mb-6 text-[#7C0C55] font-medium px-2"
         >
           Your donation transforms lives—providing safety, education, nutrition, and hope for every Sitaare girl. Choose your impact below and help a star shine bright.
         </motion.p>
@@ -180,7 +180,7 @@ const DonateForACause = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5, duration: 1 }}
-          className="relative z-10 italic text-xl text-[#BC1782] text-center mt-4 font-semibold border-l-4 border-[#E94BA2] pl-4 mx-auto max-w-2xl"
+          className="relative z-10 italic text-base xs:text-lg sm:text-xl text-[#BC1782] text-center mt-4 font-semibold border-l-4 border-[#E94BA2] pl-4 mx-auto max-w-2xl px-2"
         >
           “Even a single star can light the dark sky — your kindness helps them shine.”
         </motion.blockquote>
@@ -188,7 +188,7 @@ const DonateForACause = () => {
 
       {/* Donation Options Grid */}
       <motion.div
-        className="relative z-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto px-4"
+        className="relative z-10 grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-3 gap-4 xs:gap-6 md:gap-8 max-w-6xl mx-auto w-full"
         initial="initial"
         animate="animate"
         variants={{
@@ -207,7 +207,7 @@ const DonateForACause = () => {
               }}
               whileHover={{ scale: 1.04, boxShadow: '0 8px 32px rgba(233,30,99,0.12)' }}
               whileTap={{ scale: 0.97 }}
-              className={`bg-white p-8 rounded-3xl shadow-xl transition text-center relative border-2 ${item.highlight ? 'border-yellow-300' : 'border-pink-100'} overflow-hidden`}
+              className={`bg-white p-4 xs:p-6 md:p-8 rounded-3xl shadow-xl transition text-center relative border-2 ${item.highlight ? 'border-yellow-300' : 'border-pink-100'} overflow-hidden w-full max-w-xs mx-auto flex flex-col`}
             >
               {/* Highlight badge */}
               {item.highlight && (
@@ -216,10 +216,10 @@ const DonateForACause = () => {
                 </div>
               )}
               <div className="flex justify-center mb-4">
-                <Icon className="text-4xl" style={{ color: item.color }} />
+                <Icon className="text-3xl xs:text-4xl" style={{ color: item.color }} />
               </div>
-              <h3 className="text-xl font-bold text-[#BC1782] mb-2">{item.title}</h3>
-              <p className="text-sm text-gray-700 mb-6 min-h-[48px]">{item.description}</p>
+              <h3 className="text-base xs:text-lg sm:text-xl font-bold text-[#BC1782] mb-2 break-words">{item.title}</h3>
+              <p className="text-xs xs:text-sm sm:text-base text-gray-700 mb-4 min-h-[36px] sm:min-h-[48px] break-words">{item.description}</p>
               {item.custom ? (
                 <form
                   onSubmit={(e) => {
@@ -227,18 +227,18 @@ const DonateForACause = () => {
                     const amount = parseInt(e.target.amount.value);
                     handleDonate(amount);
                   }}
-                  className="flex flex-col items-center gap-3"
+                  className="flex flex-col items-center gap-2 xs:gap-3"
                 >
                   <input
                     name="amount"
                     type="number"
                     placeholder="Enter Amount (INR)"
-                    className="border border-gray-300 rounded px-3 py-2 w-full focus:ring-2 focus:ring-pink-200"
+                    className="border border-gray-300 rounded px-2 py-2 w-full focus:ring-2 focus:ring-pink-200 text-sm"
                     min="100"
                   />
                   <button
                     type="submit"
-                    className="bg-[#BC1782] hover:bg-[#E94BA2] text-white font-semibold px-5 py-2 rounded-md shadow-md transition relative overflow-hidden"
+                    className="bg-[#BC1782] hover:bg-[#E94BA2] text-white font-semibold px-4 py-2 rounded-md shadow-md transition relative overflow-hidden text-sm xs:text-base"
                   >
                     Donate Custom
                     {donateSuccess && (
@@ -249,7 +249,7 @@ const DonateForACause = () => {
               ) : (
                 <button
                   onClick={() => handleDonate(item.amount)}
-                  className="bg-[#BC1782] hover:bg-[#E94BA2] text-white font-semibold px-6 py-2 rounded-md shadow-md transition relative overflow-hidden"
+                  className="bg-[#BC1782] hover:bg-[#E94BA2] text-white font-semibold px-4 py-2 rounded-md shadow-md transition relative overflow-hidden text-sm xs:text-base"
                 >
                   Donate ₹{item.amount.toLocaleString()}
                   {donateSuccess && (
@@ -263,14 +263,14 @@ const DonateForACause = () => {
       </motion.div>
 
       {/* Impact Counter Section */}
-      <div className="relative z-10 max-w-4xl mx-auto mt-20 mb-12">
-        <div className="flex flex-col md:flex-row justify-center items-center gap-8 py-8">
+      <div className="relative z-10 max-w-4xl mx-auto mt-16 mb-12 px-2">
+        <div className="flex flex-col md:flex-row justify-center items-center gap-4 md:gap-8 py-8 w-full">
           {impactStats.map((stat, idx) => (
             <motion.div
               key={idx}
               initial={stat.animation.initial}
               animate={stat.animation.animate}
-              className={`group bg-gradient-to-br ${stat.bg} ${stat.border} border-2 rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-500 flex flex-col items-center w-full md:w-1/3 ${stat.offset} relative`}
+              className={`group bg-gradient-to-br ${stat.bg} ${stat.border} border-2 rounded-3xl p-4 xs:p-6 md:p-8 shadow-xl hover:shadow-2xl transition-all duration-500 flex flex-col items-center w-full max-w-xs mx-auto md:w-1/3 ${stat.offset} relative`}
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.97 }}
             >
@@ -283,24 +283,24 @@ const DonateForACause = () => {
               <span className={`mb-2 ${stat.iconAnim}`}>
                 {stat.icon}
               </span>
-              <span className="text-4xl font-black mt-2 mb-1 text-pink-600 group-hover:scale-110 transition-transform duration-300">
+              <span className="text-2xl xs:text-3xl sm:text-4xl font-black mt-2 mb-1 text-pink-600 group-hover:scale-110 transition-transform duration-300">
                 <AnimatedCounter value={stat.value} />
               </span>
-              <span className="text-gray-700 font-bold uppercase tracking-wider text-base text-center mb-1">{stat.label}</span>
-              <span className="text-gray-500 text-sm text-center italic">{stat.story}</span>
+              <span className="text-gray-700 font-bold uppercase tracking-wider text-xs xs:text-sm sm:text-base text-center mb-1">{stat.label}</span>
+              <span className="text-gray-500 text-xs xs:text-sm text-center italic">{stat.story}</span>
             </motion.div>
           ))}
         </div>
       </div>
 
       {/* Testimonials Carousel */}
-      <div className="relative z-10 max-w-2xl mx-auto mb-20">
-        <div className="bg-white/80 rounded-3xl shadow-xl p-8">
+      <div className="relative z-10 max-w-2xl mx-auto mb-20 px-2">
+        <div className="bg-white/80 rounded-3xl shadow-xl p-4 xs:p-6 md:p-8">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
-            className="text-2xl font-bold text-[#BC1782] mb-6 text-center"
+            className="text-lg xs:text-xl sm:text-2xl font-bold text-[#BC1782] mb-6 text-center"
           >
             What Our Supporters Say
           </motion.h2>
@@ -312,10 +312,10 @@ const DonateForACause = () => {
       </div>
 
       {/* Sticky Donate CTA for mobile */}
-      <div className="fixed bottom-4 left-0 w-full flex justify-center z-50 sm:hidden pointer-events-none">
+      <div className="fixed bottom-2 left-0 w-full flex justify-center z-50 sm:hidden pointer-events-none px-2">
         <button
           onClick={() => window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })}
-          className="pointer-events-auto bg-gradient-to-r from-[#BC1782] to-[#E94BA2] text-white font-bold px-8 py-4 rounded-full shadow-lg animate-pulse text-lg border-4 border-white"
+          className="pointer-events-auto bg-gradient-to-r from-[#BC1782] to-[#E94BA2] text-white font-bold px-4 py-2 rounded-full shadow-lg animate-pulse text-base border-2 border-white w-full max-w-xs"
         >
           Donate Now &rarr;
         </button>
