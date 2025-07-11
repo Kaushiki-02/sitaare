@@ -125,7 +125,7 @@ const OurAspiration = () => {
       variants={pageVariants}
       initial="initial"
       animate="animate"
-      className="min-h-screen bg-gradient-to-br from-slate-50 to-purple-50"
+      className="min-h-screen bg-gradient-to-br from-slate-50 to-pink-50 text-gray-700 px-4 py-12"
     >
       {/* Hero Banner Section */}
       <div className="relative overflow-hidden">
