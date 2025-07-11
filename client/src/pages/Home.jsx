@@ -55,7 +55,7 @@ const Home = () => {
       initial="hidden"
       animate="visible"
       exit="exit"
-      className="min-h-screen bg-gradient-to-br from-slate-50 via-pink-50 to-rose-50 text-gray-800 px-0 sm:px-2 md:px-0"
+      className="min-h-screen bg-gradient-to-br from-slate-50 via-pink-50 to-rose-50 text-gray-800 p-0 sm:p-0"
     >
       {/* Hero Section */}
       <motion.section
@@ -63,7 +63,7 @@ const Home = () => {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
-        className="relative text-center py-10 sm:py-14 px-0 sm:px-4 md:px-12 bg-primaryLight overflow-hidden"
+        className="relative text-center py-10 sm:py-14 w-full bg-primaryLight overflow-hidden"
       >
         {/* Background Lottie Animation with Blur & Scale */}
         <motion.div
@@ -95,7 +95,7 @@ const Home = () => {
         </div>
         
         {/* Content Container */}
-        <div className="relative z-20 max-w-7xl mx-auto">
+        <div className="relative z-20 w-full min-w-0 px-2 sm:px-4 md:px-8 overflow-x-hidden">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2 }} className="inline-flex items-center bg-white/80 backdrop-blur-md rounded-full px-8 py-3 mb-8 shadow-lg border border-primaryLight">
             <div className="w-2 h-2 bg-primary rounded-full mr-3 animate-pulse"></div>
             <span className="text-primaryDark font-semibold text-sm tracking-wide">EMPOWERING YOUNG DREAMS</span>
