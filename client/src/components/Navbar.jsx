@@ -30,12 +30,8 @@ const Navbar = () => {
       path: '/our-aspiration',
     },
     {
-      label: 'News and Events',
-      sub: [
-        { label: 'Media', path: '/news-and-events/media' },
-        { label: 'Events', path: '/news-and-events/events' },
-      ],
-     
+      label: 'News & Events',
+      path: '/news-and-events',
     },
     {
       label: 'Impact',

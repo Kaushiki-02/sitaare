@@ -11,7 +11,7 @@ import HohLogo from '../../assets/hoh_logo.png';
 
 // Placeholder image component
 const ImagePlaceholder = ({ alt = 'Image Placeholder', className = '' }) => (
-  <div className={`bg-gradient-to-br from-purple-100 to-pink-100 flex items-center justify-center text-gray-500 text-xs rounded-xl ${className}`} style={{ minHeight: 180 }}>
+  <div className="bg-gradient-to-br from-purple-100 to-pink-100 flex items-center justify-center text-gray-500 text-xs rounded-xl" style={{ minHeight: 180 }}>
     {alt}
   </div>
 );
@@ -70,33 +70,26 @@ const PurposeAndPassion = () => {
       initial="initial"
       animate="animate"
       exit="exit"
-      className="min-h-screen bg-gradient-to-br from-slate-50 to-pink-50 text-gray-700 px-4 py-12"
+      className="min-h-screen bg-gradient-to-br from-slate-50 to-pink-50 text-darkText"
     >
       {/* Hero Section */}
-      <div className="relative overflow-hidden">
+      <div className="relative overflow-hidden w-full">
         <div className="absolute inset-0 bg-gradient-to-r from-purple-600/20 to-pink-600/20"></div>
-        <div className="relative px-6 py-20">
+        <div className="relative z-20 w-full text-center py-14 lg:py-20">
           <motion.div
-            variants={fadeInUp}
-            className="max-w-4xl mx-auto text-center"
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 0.8, type: 'spring' }}
+            className="mb-8"
           >
-            <motion.div
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ duration: 0.8, type: "spring" }}
-              className="mb-8"
-            >
-              <FaHeart className="text-6xl text-pink-500 mx-auto mb-4" />
-            </motion.div>
-            
-            <h1 className="text-5xl sm:text-6xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-6">
-              Who We Are
-            </h1>
-            
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
-              A youth-led movement transforming lives through compassion, innovation, and unwavering commitment to human dignity.
-            </p>
+            <FaHeart className="text-6xl text-pink-500 mx-auto mb-4" />
           </motion.div>
+          <motion.h1 className="text-5xl sm:text-6xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-6">
+            Who We Are
+          </motion.h1>
+          <motion.p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+            A youth-led movement transforming lives through compassion, innovation, and unwavering commitment to human dignity.
+          </motion.p>
         </div>
       </div>
 
@@ -187,14 +180,21 @@ const PurposeAndPassion = () => {
             data-aos="fade-up"
           >
             <motion.div variants={fadeInUp} className="text-center mb-12">
-              <h2 className="text-3xl lg:text-4xl font-bold text-gray-800 mb-4">Our Core Values</h2>
+             
               <p className="text-lg text-gray-600 max-w-2xl mx-auto">
                 The principles that guide every action, decision, and initiative we undertake.
               </p>
             </motion.div>
             
             <div className="mb-12">
-              <ImagePlaceholder alt="Values Banner" className="w-full max-w-4xl h-64 mx-auto" />
+              <img
+                src="/values.jpg"
+                alt="Our Core Values"
+                width={1000}
+                height={500}
+               className="w-full max-w-4xl h-64 object-cover rounded-2xl shadow-lg mx-auto"
+                style={{ aspectRatio: '1000/500' }}
+              />
             </div>
             
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -245,14 +245,18 @@ const PurposeAndPassion = () => {
             data-aos="fade-up"
           >
             <motion.div variants={fadeInUp} className="text-center mb-12">
-              <h2 className="text-3xl lg:text-4xl font-bold text-gray-800 mb-4">Our Core Initiatives</h2>
+              
               <p className="text-lg text-gray-600 max-w-2xl mx-auto">
                 Transforming communities through targeted programs that address real needs with sustainable solutions.
               </p>
             </motion.div>
             
             <div className="mb-12">
-              <ImagePlaceholder alt="Initiatives Banner" className="w-full max-w-4xl h-64 mx-auto" />
+              <img
+                src="/initiatives.png"
+                alt="Initiatives Banner"
+                className="w-full max-w-4xl h-64 object-cover rounded-2xl shadow-lg mx-auto"
+              />
             </div>
             
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">

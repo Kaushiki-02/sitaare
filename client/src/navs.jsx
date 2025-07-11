@@ -6,8 +6,7 @@ import PurposeAndPassion from './pages/WhoWeAre/PurposeAndPassion';
 import FoundersDesk from './pages/WhoWeAre/FoundersDesk';
 import MeetOurSitaare from './pages/MeetOurSitaare';
 import OurAspiration from './pages/OurAspiration';
-import Media from './pages/News&Events/Media';
-import Events from './pages/News&Events/Events';
+import NewsAndEvents from './pages/NewsAndEvents';
 import Milestones from './pages/Impact/Milestones';
 import SuccessStories from './pages/Impact/SuccessStories';
 import PartnerWithUs from './pages/Collaborate/PartnerWithUs';
@@ -33,8 +32,7 @@ function AnimatedRoutes() {
         <Route path="/who-we-are/founders-desk" element={<motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit" style={{ minHeight: '100vh' }}><FoundersDesk /></motion.div>} />
         <Route path="/meet-our-sitaare" element={<motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit" style={{ minHeight: '100vh' }}><MeetOurSitaare /></motion.div>} />
         <Route path="/our-aspiration" element={<motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit" style={{ minHeight: '100vh' }}><OurAspiration /></motion.div>} />
-        <Route path="/news-and-events/media" element={<motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit" style={{ minHeight: '100vh' }}><Media /></motion.div>} />
-        <Route path="/news-and-events/events" element={<motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit" style={{ minHeight: '100vh' }}><Events /></motion.div>} />
+        <Route path="/news-and-events" element={<motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit" style={{ minHeight: '100vh' }}><NewsAndEvents /></motion.div>} />
         <Route path="/contact-us" element={<motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit" style={{ minHeight: '100vh' }}><Contact /></motion.div>} />
         <Route path="/impact/milestones" element={<motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit" style={{ minHeight: '100vh' }}><Milestones /></motion.div>} />
         <Route path="/impact/success-stories" element={<motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit" style={{ minHeight: '100vh' }}><SuccessStories /></motion.div>} />

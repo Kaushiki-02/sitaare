@@ -271,11 +271,12 @@ const Home = () => {
               </motion.div>
               <motion.div initial={{ opacity: 0, x: 40 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }} className="bg-gradient-to-br from-pink-50 to-rose-50 rounded-2xl p-4 sm:p-8 shadow-lg border border-pink-100">
                 <div className="text-center">
-                  <div className="w-28 h-28 xs:w-32 xs:h-32 sm:w-36 sm:h-36 bg-gradient-to-br from-pink-500 to-rose-500 rounded-full mx-auto mb-4 xs:mb-6 flex items-center justify-center shadow-lg">
+                  <div>
                     <img
                       src="/founder.jpg"
                       alt="Harsh Rao, Founder"
-                      className="w-28 h-28 xs:w-32 xs:h-32 sm:w-36 sm:h-36 rounded-full object-cover shadow-lg border-4 border-white"
+                      className="w-28 sm:w-32 max-w-xs mx-auto rounded-3xl object-cover shadow-lg border-4 border-white aspect-[579/720]"
+                      style={{ aspectRatio: '579/720' }}
                     />
                   </div>
                   <h3 className="text-xl font-bold text-gray-800 mb-2">Harsh Rao</h3>

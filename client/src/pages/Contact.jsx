@@ -13,7 +13,7 @@ const fadeIn = {
 const Contact = () => {
   useEffect(() => { AOS.init({ once: true, duration: 800 }); }, []);
   return (
-    <div className="bg-gradient-to-br from-[#FFF7FA] to-[#FBE6F3] py-20 px-6 text-[#4B4B4B] font-sans min-h-screen">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-pink-50 text-[#4B4B4B] font-sans py-20 px-6">
       {/* Hero Section */}
       <motion.div
         initial={{ opacity: 0, y: -40 }}

@@ -64,7 +64,7 @@ const FoundersDesk = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#FFF0F6] to-[#F8E8F1]">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-pink-50">
       {/* Hero Section */}
       <motion.section 
         className="relative pt-20 pb-8 px-4 sm:px-6 lg:px-8"
@@ -124,16 +124,15 @@ const FoundersDesk = () => {
                 variants={scaleIn}
               >
                 <div className="relative">
-                  <div className="w-full max-w-sm mx-auto">
-                    <div className="relative w-64 h-64 sm:w-72 sm:h-72 mx-auto">
-                      <div className="absolute inset-0 bg-gradient-to-br from-[#BC1782] to-[#D61A91] rounded-full opacity-10"></div>
-                      <div className="relative w-full h-full rounded-full overflow-hidden shadow-xl border-4 border-[#F8E8F1]">
-                        <img 
-                          src="/founder.jpg" 
-                          alt="Founder Portrait" 
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
+                  <div className="w-64 sm:w-72 max-w-xs mx-auto relative">
+                    <div className="absolute inset-0 bg-gradient-to-br from-[#BC1782] to-[#D61A91] rounded-3xl opacity-10"></div>
+                    <div className="relative w-full rounded-3xl overflow-hidden shadow-xl border-4 border-[#F8E8F1]">
+                      <img
+                        src="/founder.jpg"
+                        alt="Founder Portrait"
+                        className="w-full h-auto object-cover aspect-[579/720]"
+                        style={{ aspectRatio: '579/720' }}
+                      />
                     </div>
                   </div>
                 </div>
