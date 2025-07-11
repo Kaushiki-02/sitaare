@@ -1,5 +1,5 @@
 import { BrowserRouter as Router } from 'react-router-dom';
-import { Navbar, Footer, Scroller } from './components';
+import { Navbar, Footer, Scroller, ProgressBar } from './components';
 import AnimatedRoutes from "./navs"; // Use consistent casing (AnimatedRoutes not navs)
 import CursorTrail from './components/CursorTrail';
 import { useState, useEffect } from 'react';
@@ -25,6 +25,7 @@ function App() {
     <div className="min-h-screen flex flex-col font-sans text-gray-800 bg-pink-50">
       <CursorTrail enabled={starCursorEnabled} />
       <Router>
+        <ProgressBar />
         <Scroller />
         <Navbar />
         <AnimatedRoutes />

@@ -141,7 +141,7 @@ export default function Milestones() {
               viewport={{ once: true, amount: 0.6 }}
               transition={{ delay: idx * 0.1, duration: 0.7 }}
               className="mb-12 flex items-start gap-6 relative"
-            >
+          >
               <div className="w-12 h-12 rounded-full flex items-center justify-center shadow-lg absolute -left-8 top-0 bg-white border-4" style={{ borderColor: m.color }}>
                 <m.icon className="text-xl" style={{ color: m.color }} />
               </div>
