@@ -6,8 +6,7 @@ import PurposeAndPassion from "./pages/WhoWeAre/PurposeAndPassion";
 import FoundersDesk from "./pages/WhoWeAre/FoundersDesk";
 import MeetOurSitaare from "./pages/MeetOurSitaare";
 import OurAspiration from "./pages/OurAspiration";
-import Media from "./pages/News&Events/Media";
-import Events from "./pages/News&Events/Events";
+import NewsAndEvents from "./pages/NewsAndEvents";
 import Milestones from "./pages/Impact/Milestones";
 import Outcomes from "./pages/Impact/Outcomes";
 import Testimonials from "./pages/Impact/Testimonials";
@@ -99,8 +98,9 @@ function AnimatedRoutes() {
             </motion.div>
           }
         />
+
         <Route
-          path="/news-and-events/media"
+          path="/news-and-events"
           element={
             <motion.div
               variants={pageVariants}
@@ -109,21 +109,7 @@ function AnimatedRoutes() {
               exit="exit"
               style={{ minHeight: "100vh" }}
             >
-              <Media />
-            </motion.div>
-          }
-        />
-        <Route
-          path="/news-and-events/events"
-          element={
-            <motion.div
-              variants={pageVariants}
-              initial="initial"
-              animate="animate"
-              exit="exit"
-              style={{ minHeight: "100vh" }}
-            >
-              <Events />
+              <NewsAndEvents />
             </motion.div>
           }
         />
@@ -156,7 +142,7 @@ function AnimatedRoutes() {
           }
         />
         <Route
-          path="/impact/testimonials"
+          path="/impact/success-stories/testimonials"
           element={
             <motion.div
               variants={pageVariants}
@@ -170,7 +156,7 @@ function AnimatedRoutes() {
           }
         />
         <Route
-          path="/impact/outcomes"
+          path="/impact/success-stories/outcomes"
           element={
             <motion.div
               variants={pageVariants}

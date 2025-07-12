@@ -53,6 +53,7 @@ html, body, #root {
   min-width: 0 !important;
   margin: 0 !important;
   padding: 0 !important;
+  padding-top: 20px !important;
   overflow-x: hidden !important;
 }
 

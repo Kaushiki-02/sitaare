@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { FaStar } from "react-icons/fa";
 
@@ -170,6 +171,7 @@ const floatingAnimation = {
 };
 
 export default function Outcomes() {
+  const navigate = useNavigate();
   const [isVisible, setIsVisible] = useState(false);
   const [hoveredCard, setHoveredCard] = useState(null);
 
@@ -187,7 +189,7 @@ export default function Outcomes() {
             animate="animate"
             className="absolute -top-12 left-1/2 transform -translate-x-1/2 -translate-y-8 text-4xl"
           >
-            <FaStar className="text-pink-200 w-18 " />
+            <FaStar className="text-pink-100 w-18 " />
           </motion.div>
 
           <motion.h1
@@ -339,7 +341,7 @@ export default function Outcomes() {
                       ? "bg-gradient-to-r from-pink-100 to-rose-100 border-pink-200 transform scale-[1.02]"
                       : ""
                   }`}
-                 >
+                >
                   <div className="text-xs font-semibold text-pink-600 mb-1 group-hover:text-pink-700 transition-colors duration-300">
                     GUARANTEED IMPACT
                   </div>
@@ -417,6 +419,7 @@ export default function Outcomes() {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
+                onClick={() => navigate("/donate-for-a-cause")}
                 className="bg-white text-purple-600 px-8 py-4 rounded-full font-bold text-lg shadow-lg hover:shadow-xl transition-all duration-300"
               >
                 Support Their Dreams
@@ -424,6 +427,7 @@ export default function Outcomes() {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
+                onClick={() => navigate("/get-involved")}
                 className="border-2 border-white text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white hover:text-purple-600 transition-all duration-300"
               >
                 Learn More

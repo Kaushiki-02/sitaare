@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { HiMenu, HiX } from 'react-icons/hi';
-import logo from '../assets/logo.png';
-import hohLogo from '../assets/hoh_logo.png';
+import { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { HiMenu, HiX } from "react-icons/hi";
+import logo from "../assets/logo.png";
+import hohLogo from "../assets/hoh_logo.png";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -15,8 +15,16 @@ const Navbar = () => {
       setIsScrolled(scrollTop > 10);
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+   // Inject global padding-top to body to prevent navbar overlap
+  useEffect(() => {
+    document.body.style.paddingTop = "280px"; // Adjust based on navbar height
+    return () => {
+      document.body.style.paddingTop = "0"; // Cleanup on unmount
+    };
   }, []);
 
   const navItems = [
@@ -44,17 +52,23 @@ const Navbar = () => {
     },
     {
       label: "News and Events",
-      sub: [
-        { label: "Media", path: "/news-and-events/media" },
-        { label: "Events", path: "/news-and-events/events" },
-      ],
+      path: "/news-and-events",
     },
     {
       label: "Impact",
       sub: [
         { label: "Milestones", path: "/impact/milestones" },
-        { label: "Success stories", path: "/impact/success-stories" },
-        { label: "Outcomes", path: "/impact/outcomes" },
+        {
+          label: "Success stories",
+          
+          sub: [
+            {
+              label: "Testimonials",
+              path: "/impact/success-stories/testimonials",
+            },
+            { label: "Outcomes", path: "/impact/success-stories/outcomes" },
+          ],
+        },
       ],
     },
     {
@@ -83,11 +97,11 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 backdrop-blur-lg shadow-md transition-all duration-300 ${
-      isScrolled 
-        ? 'bg-transparent' 
-        : 'bg-softBg/90'
-    }`}>
+    <nav
+      className={`fixed top-0 left-0 right-0 z-50 backdrop-blur-lg shadow-md transition-all duration-300 ${
+        isScrolled ? "bg-transparent" : "bg-softBg/90"
+      }`}
+    >
       <div className="w-full">
         <div className="max-w-[1440px] mx-auto flex justify-between items-center px-6 py-3">
           {/* Logo */}
@@ -119,7 +133,14 @@ const Navbar = () => {
               const isActive =
                 location.pathname === item.path ||
                 (item.sub &&
-                  item.sub.some((sub) => location.pathname === sub.path));
+                  item.sub.some(
+                    (sub) =>
+                      location.pathname === sub.path ||
+                      (sub.sub &&
+                        sub.sub.some(
+                          (subSub) => location.pathname === subSub.path
+                        ))
+                  ));
               return (
                 <div key={item.label} className="relative group">
                   <Link
@@ -150,17 +171,54 @@ const Navbar = () => {
                   {item.sub && (
                     <div className="absolute left-0 mt-2 w-48 bg-white border border-primaryLight rounded-lg shadow-lg opacity-0 group-hover:opacity-100 group-hover:visible invisible transition-opacity duration-200 z-50">
                       {item.sub.map((sub) => (
-                        <Link
-                          key={sub.label}
-                          to={sub.path}
-                          className={`block px-4 py-2 text-primary hover:text-primaryDark hover:bg-primaryLight transition-all duration-200 ${
-                            location.pathname === sub.path
-                              ? "font-bold bg-primaryLight"
-                              : ""
-                          }`}
-                        >
-                          {sub.label}
-                        </Link>
+                        <div key={sub.label} className="relative group/sub">
+                          <Link
+                            to={sub.path}
+                            className={`block px-4 py-2 text-primary hover:text-primaryDark hover:bg-primaryLight transition-all duration-200 flex items-center justify-between ${
+                              location.pathname === sub.path ||
+                              (sub.sub &&
+                                sub.sub.some(
+                                  (subSub) => location.pathname === subSub.path
+                                ))
+                                ? "font-bold bg-primaryLight"
+                                : ""
+                            }`}
+                          >
+                            {sub.label}
+                            {sub.sub && (
+                              <svg
+                                className="ml-1 w-3 h-3 text-primary"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="2"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  d="M9 5l7 7-7 7"
+                                />
+                              </svg>
+                            )}
+                          </Link>
+                          {sub.sub && (
+                            <div className="absolute left-full top-0 ml-1 w-48 bg-white border border-primaryLight rounded-lg shadow-lg opacity-0 group-hover/sub:opacity-100 group-hover/sub:visible invisible transition-opacity duration-200 z-50">
+                              {sub.sub.map((subSub) => (
+                                <Link
+                                  key={subSub.label}
+                                  to={subSub.path}
+                                  className={`block px-4 py-2 text-primary hover:text-primaryDark hover:bg-primaryLight transition-all duration-200 ${
+                                    location.pathname === subSub.path
+                                      ? "font-bold bg-primaryLight"
+                                      : ""
+                                  }`}
+                                >
+                                  {subSub.label}
+                                </Link>
+                              ))}
+                            </div>
+                          )}
+                        </div>
                       ))}
                     </div>
                   )}
@@ -187,16 +245,23 @@ const Navbar = () => {
 
       {/* Mobile Nav Drawer */}
       {isOpen && (
-        <div className={`md:hidden backdrop-blur-md px-4 py-4 space-y-2 shadow-md transition-all duration-300 ${
-          isScrolled 
-            ? 'bg-white/80' 
-            : 'bg-softBg/95'
-        }`}>
+        <div
+          className={`md:hidden backdrop-blur-md px-4 py-4 space-y-2 shadow-md transition-all duration-300 ${
+            isScrolled ? "bg-white/80" : "bg-softBg/95"
+          }`}
+        >
           {navItems.map((item) => {
             const isActive =
               location.pathname === item.path ||
               (item.sub &&
-                item.sub.some((sub) => location.pathname === sub.path));
+                item.sub.some(
+                  (sub) =>
+                    location.pathname === sub.path ||
+                    (sub.sub &&
+                      sub.sub.some(
+                        (subSub) => location.pathname === subSub.path
+                      ))
+                ));
             return (
               <div key={item.label}>
                 <Link
@@ -228,18 +293,56 @@ const Navbar = () => {
                 {item.sub && (
                   <div className="pl-4">
                     {item.sub.map((sub) => (
-                      <Link
-                        key={sub.label}
-                        to={sub.path}
-                        className={`block text-sm py-1 border-b transition duration-200 ${
-                          location.pathname === sub.path
-                            ? "text-primary font-bold border-primary"
-                            : "text-primary hover:text-primaryDark"
-                        }`}
-                        onClick={() => setIsOpen(false)}
-                      >
-                        {sub.label}
-                      </Link>
+                      <div key={sub.label}>
+                        <Link
+                          to={sub.path}
+                          className={`block text-sm py-1 border-b transition duration-200 flex items-center gap-1 ${
+                            location.pathname === sub.path ||
+                            (sub.sub &&
+                              sub.sub.some(
+                                (subSub) => location.pathname === subSub.path
+                              ))
+                              ? "text-primary font-bold border-primary"
+                              : "text-primary hover:text-primaryDark"
+                          }`}
+                          onClick={() => setIsOpen(false)}
+                        >
+                          {sub.label}
+                          {sub.sub && (
+                            <svg
+                              className="ml-1 w-3 h-3 text-primary"
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth="2"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M19 9l-7 7-7-7"
+                              />
+                            </svg>
+                          )}
+                        </Link>
+                        {sub.sub && (
+                          <div className="pl-4">
+                            {sub.sub.map((subSub) => (
+                              <Link
+                                key={subSub.label}
+                                to={subSub.path}
+                                className={`block text-xs py-1 border-b transition duration-200 ${
+                                  location.pathname === subSub.path
+                                    ? "text-primary font-bold border-primary"
+                                    : "text-primary hover:text-primaryDark"
+                                }`}
+                                onClick={() => setIsOpen(false)}
+                              >
+                                {subSub.label}
+                              </Link>
+                            ))}
+                          </div>
+                        )}
+                      </div>
                     ))}
                   </div>
                 )}
