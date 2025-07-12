@@ -12,6 +12,7 @@
     "framer-motion": "^12.12.1",
     "lottie-react": "^2.4.1",
     "lucide-react": "^0.511.0",
+    "razorpay": "^2.9.6",
     "react": "^18.2.0",
     "react-countup": "^6.5.3",
     "react-dom": "^18.2.0",
