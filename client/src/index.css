@@ -47,3 +47,18 @@
   0% { transform: translateX(-100%) skewX(-12deg); }
   100% { transform: translateX(200%) skewX(-12deg); }
 }
+
+html, body, #root {
+  width: 100vw !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow-x: hidden !important;
+}
+
+.impact-pulse { animation: impact-pulse 1.2s infinite alternate; }
+@keyframes impact-pulse { 0% { transform: scale(1); } 100% { transform: scale(1.15); } }
+.impact-beat { animation: impact-beat 1.1s infinite alternate; }
+@keyframes impact-beat { 0% { transform: scale(1); } 60% { transform: scale(1.2); } 100% { transform: scale(1); } }
+.impact-wave { animation: impact-wave 1.5s infinite linear; }
+@keyframes impact-wave { 0% { transform: rotate(-10deg); } 50% { transform: rotate(10deg); } 100% { transform: rotate(-10deg); } }

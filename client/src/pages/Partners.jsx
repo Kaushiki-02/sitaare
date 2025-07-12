@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { FaBuilding, FaUniversity, FaHandsHelping, FaGavel, FaStar, FaArrowRight, FaQuoteLeft } from 'react-icons/fa';
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
@@ -103,6 +104,7 @@ function AnimatedCounter({ value, duration = 1.2, ...props }) {
 }
 
 export default function Partners() {
+  const navigate = useNavigate();
   const [testimonialIdx, setTestimonialIdx] = useState(0);
   useEffect(() => {
     const interval = setInterval(() => {
@@ -205,6 +207,7 @@ export default function Partners() {
         <motion.button
           whileHover={{ scale: 1.09, boxShadow: '0 8px 32px rgba(233,30,99,0.18)' }}
           whileTap={{ scale: 0.97 }}
+          onClick={() => navigate('/collaborate/partner-with-us')}
           className="bg-gradient-to-r from-pink-500 to-purple-500 text-white px-8 py-4 rounded-full font-bold text-lg shadow-lg flex items-center gap-2 mx-auto"
           data-aos="zoom-in"
         >

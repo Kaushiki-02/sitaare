@@ -55,7 +55,7 @@ const Home = () => {
       initial="hidden"
       animate="visible"
       exit="exit"
-      className="min-h-screen bg-gradient-to-br from-slate-50 via-pink-50 to-rose-50 text-gray-800 px-2 sm:px-0"
+      className="min-h-screen bg-gradient-to-br from-slate-50 via-pink-50 to-rose-50 text-gray-800 p-0 sm:p-0"
     >
       {/* Hero Section */}
       <motion.section
@@ -63,7 +63,7 @@ const Home = () => {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
-        className="relative text-center py-10 sm:py-14 px-2 sm:px-6 md:px-12 bg-primaryLight overflow-hidden"
+        className="relative text-center py-10 sm:py-14 w-full bg-primaryLight overflow-hidden"
       >
         {/* Background Lottie Animation with Blur & Scale */}
         <motion.div
@@ -95,7 +95,7 @@ const Home = () => {
         </div>
         
         {/* Content Container */}
-        <div className="relative z-20 max-w-7xl mx-auto">
+        <div className="relative z-20 w-full min-w-0 px-2 sm:px-4 md:px-8 overflow-x-hidden">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2 }} className="inline-flex items-center bg-white/80 backdrop-blur-md rounded-full px-8 py-3 mb-8 shadow-lg border border-primaryLight">
             <div className="w-2 h-2 bg-primary rounded-full mr-3 animate-pulse"></div>
             <span className="text-primaryDark font-semibold text-sm tracking-wide">EMPOWERING YOUNG DREAMS</span>
@@ -271,11 +271,12 @@ const Home = () => {
               </motion.div>
               <motion.div initial={{ opacity: 0, x: 40 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }} className="bg-gradient-to-br from-pink-50 to-rose-50 rounded-2xl p-4 sm:p-8 shadow-lg border border-pink-100">
                 <div className="text-center">
-                  <div className="w-28 h-28 xs:w-32 xs:h-32 sm:w-36 sm:h-36 bg-gradient-to-br from-pink-500 to-rose-500 rounded-full mx-auto mb-4 xs:mb-6 flex items-center justify-center shadow-lg">
+                  <div>
                     <img
                       src="/founder.jpg"
                       alt="Harsh Rao, Founder"
-                      className="w-28 h-28 xs:w-32 xs:h-32 sm:w-36 sm:h-36 rounded-full object-cover shadow-lg border-4 border-white"
+                      className="w-28 sm:w-32 max-w-xs mx-auto rounded-3xl object-cover shadow-lg border-4 border-white aspect-[579/720]"
+                      style={{ aspectRatio: '579/720' }}
                     />
                   </div>
                   <h3 className="text-xl font-bold text-gray-800 mb-2">Harsh Rao</h3>
