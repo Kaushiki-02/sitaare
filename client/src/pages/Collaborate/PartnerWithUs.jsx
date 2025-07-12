@@ -128,7 +128,7 @@ const PartnerWithUs = () => {
       initial="hidden"
       animate="visible"
       variants={staggerVariants}
-      className="min-h-screen bg-softBg relative overflow-hidden"
+      className="min-h-screen bg-gradient-to-br from-slate-50 to-pink-50 relative overflow-hidden"
     >
       {/* Hero Section */}
       <motion.section

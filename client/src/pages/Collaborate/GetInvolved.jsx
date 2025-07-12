@@ -16,7 +16,7 @@ const GetInvolved = () => {
   };
 
   return (
-    <div className=" bg-gradient-to-br from-[#FBE6F3] to-[#FFF7FA] py-20 px-6 text-[#4B4B4B]">
+    <div className="bg-gradient-to-br from-slate-50 to-pink-50 py-20 px-6 text-[#4B4B4B]">
       <motion.div
         initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}

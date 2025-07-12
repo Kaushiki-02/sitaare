@@ -145,7 +145,7 @@ const DonateForACause = () => {
       initial="initial"
       animate="animate"
       exit="exit"
-      className="relative min-h-screen bg-gradient-to-br from-[#FBE6F3] to-[#FFF7FA] text-[#4B4B4B] px-2 sm:px-4 md:px-8 pb-24 overflow-x-hidden"
+      className="relative min-h-screen bg-gradient-to-br from-slate-50 to-pink-50 text-[#4B4B4B] px-2 sm:px-4 md:px-8 pb-24 overflow-x-hidden"
     >
       {/* Hero Section */}
       <div className="relative w-full flex flex-col items-center justify-center py-10 sm:py-16 md:py-24 overflow-hidden">

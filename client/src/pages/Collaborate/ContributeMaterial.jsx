@@ -121,7 +121,7 @@ const ContributeMaterial = () => {
       variants={containerVariants}
       initial="hidden"
       animate="visible"
-      className="min-h-screen bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50 relative overflow-hidden"
+      className="min-h-screen bg-gradient-to-br from-slate-50 to-pink-50 relative overflow-hidden"
     >
       {/* Background Lottie Animation */}
       <motion.div

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { HiMenu, HiX } from 'react-icons/hi';
 import logo from '../assets/logo.png';
@@ -6,7 +6,18 @@ import hohLogo from '../assets/hoh_logo.png';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      setIsScrolled(scrollTop > 10);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const navItems = [
     {
@@ -62,7 +73,11 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="relative z-50 bg-softBg/90 backdrop-blur-lg shadow-md transition-all">
+    <nav className={`fixed top-0 left-0 right-0 z-50 backdrop-blur-lg shadow-md transition-all duration-300 ${
+      isScrolled 
+        ? 'bg-transparent' 
+        : 'bg-softBg/90'
+    }`}>
       <div className="w-full">
         <div className="max-w-[1440px] mx-auto flex justify-between items-center px-6 py-3">
           {/* Logo */}
@@ -123,7 +138,11 @@ const Navbar = () => {
 
       {/* Mobile Nav Drawer */}
       {isOpen && (
-        <div className="md:hidden bg-softBg/95 backdrop-blur-md px-4 py-4 space-y-2 shadow-md">
+        <div className={`md:hidden backdrop-blur-md px-4 py-4 space-y-2 shadow-md transition-all duration-300 ${
+          isScrolled 
+            ? 'bg-white/80' 
+            : 'bg-softBg/95'
+        }`}>
           {navItems.map((item) => {
             const isActive = location.pathname === item.path || (item.sub && item.sub.some(sub => location.pathname === sub.path));
             return (
