@@ -15,6 +15,7 @@ import ContributeMaterial from "./pages/Collaborate/ContributeMaterial";
 import DonateForACause from "./pages/Collaborate/DonateForACause";
 import GetInvolved from "./pages/Collaborate/GetInvolved";
 import Partners from "./pages/Partners";
+import TestDonation from "./pages/TestDonation";
 
 // Consistent page animation variant
 export const pageVariants = {
@@ -236,6 +237,20 @@ function AnimatedRoutes() {
               style={{ minHeight: "100vh" }}
             >
               <Partners />
+            </motion.div>
+          }
+        />
+        <Route
+          path="/test-donation"
+          element={
+            <motion.div
+              variants={pageVariants}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+              style={{ minHeight: "100vh" }}
+            >
+              <TestDonation />
             </motion.div>
           }
         />
