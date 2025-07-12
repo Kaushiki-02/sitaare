@@ -3,7 +3,7 @@ import { pageVariants } from '../../navs';
 import Foto from "../../components/foto";
 import Lottie from 'lottie-react';
 import starsAnimation from '../../assets/stars.json';
-import { FaBook, FaAppleAlt, FaBirthdayCake, FaSmile, FaHeart, FaHandHoldingHeart, FaStar, FaUtensils, FaUserFriends, FaBrain } from 'react-icons/fa';
+import { FaBook, FaAppleAlt, FaBirthdayCake, FaSmile, FaHeart, FaHandHoldingHeart, FaStar, FaUtensils, FaUserFriends, FaBrain, FaArrowUp } from 'react-icons/fa';
 import { useState } from 'react';
 
 const donateOptions = [
@@ -50,14 +50,7 @@ const donateOptions = [
     icon: FaBirthdayCake,
     color: '#FF8EB5',
   },
-  {
-    title: "Mental Health & Development",
-    amount: 0,
-    description: "Contribute a custom amount to help girls heal and grow holistically.",
-    icon: FaBrain,
-    color: '#CDB4DB',
-    custom: true,
-  }
+ 
 ];
 
 const impactStats = [
@@ -310,6 +303,62 @@ const DonateForACause = () => {
           </div>
         </div>
       </div>
+
+      {/* HOH Website Donation Link */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7, delay: 0.3 }}
+        className="relative z-10 max-w-4xl mx-auto mb-16 px-2"
+      >
+        <div className="bg-gradient-to-br from-[#BC1782] to-[#E94BA2] rounded-3xl shadow-2xl p-6 xs:p-8 md:p-10 text-white text-center relative overflow-hidden">
+          {/* Decorative elements */}
+          <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16"></div>
+          <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/10 rounded-full -ml-12 -mb-12"></div>
+          
+          <div className="relative z-10">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.4 }}
+              className="text-xl xs:text-2xl sm:text-3xl font-bold mb-4"
+            >
+              Ready to Make a Difference?
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.5 }}
+              className="text-base xs:text-lg mb-6 text-white/90 max-w-2xl mx-auto"
+            >
+              Visit our main website to explore more donation options and learn about our comprehensive programs at House of Humanity.
+            </motion.p>
+            <motion.a
+              href="https://houseofhumanity.in/"
+              target="_blank"
+              rel="noopener noreferrer"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.7, delay: 0.6 }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="inline-flex items-center gap-3 bg-white text-[#BC1782] font-bold px-6 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 text-base xs:text-lg"
+            >
+              <FaHeart className="text-[#BC1782]" />
+              Visit House of Humanity
+              <FaArrowUp className="text-[#BC1782] transform rotate-45" />
+            </motion.a>
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.7, delay: 0.8 }}
+              className="text-sm text-white/70 mt-4"
+            >
+              Your support helps us create more safe spaces for girls in need
+            </motion.p>
+          </div>
+        </div>
+      </motion.div>
 
       {/* Sticky Donate CTA for mobile */}
       <div className="fixed bottom-2 left-0 w-full flex justify-center z-50 sm:hidden pointer-events-none px-2">

@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import { 
   FaHandsHelping, 
   FaBalanceScale, 
@@ -15,6 +16,8 @@ import {
 } from 'react-icons/fa';
 
 const OurAspiration = () => {
+  const navigate = useNavigate();
+  
   // Animation variants
   const pageVariants = {
     initial: { opacity: 0 },
@@ -291,19 +294,14 @@ const OurAspiration = () => {
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
+                  onClick={() => navigate('/collaborate/donate-for-a-cause')}
                   className="bg-white text-primary px-8 py-4 rounded-full font-bold text-lg shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2"
                 >
                   <FaHandsHelping className="text-xl" />
                   Support Our Mission
                   <FaArrowRight className="text-sm" />
                 </motion.button>
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="border-2 border-white text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white hover:text-primary transition-all duration-300"
-                >
-                  Learn More
-                </motion.button>
+                
               </div>
             </div>
           </motion.div>
