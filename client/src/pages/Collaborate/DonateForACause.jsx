@@ -4,7 +4,8 @@ import Foto from "../../components/foto";
 import Lottie from 'lottie-react';
 import starsAnimation from '../../assets/stars.json';
 import { FaBook, FaAppleAlt, FaBirthdayCake, FaSmile, FaHeart, FaHandHoldingHeart, FaStar, FaUtensils, FaUserFriends, FaBrain, FaArrowUp } from 'react-icons/fa';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import config from '../../config/config';
 
 const donateOptions = [
   {
@@ -133,10 +134,129 @@ function AnimatedCounter({ value, duration = 2 }) {
 
 const DonateForACause = () => {
   const [donateSuccess, setDonateSuccess] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+
+  // Load Razorpay script
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = 'https://checkout.razorpay.com/v1/checkout.js';
+    script.async = true;
+    document.body.appendChild(script);
+
+    return () => {
+      if (document.body.contains(script)) {
+        document.body.removeChild(script);
+      }
+    };
+  }, []);
+
   const handleDonate = async (amount) => {
-    if (!amount || amount < 1) return alert("Please enter a valid donation amount");
-    setDonateSuccess(true);
-    setTimeout(() => setDonateSuccess(false), 2000);
+    if (!amount || amount < 1) {
+      setError("Please enter a valid donation amount");
+      return;
+    }
+
+    setLoading(true);
+    setError('');
+    setDonateSuccess(false);
+
+    try {
+      console.log('Creating order for amount:', amount);
+      console.log('API URL:', `${config.API_BASE_URL}${config.API_ENDPOINTS.CREATE_ORDER}`);
+      
+      // Step 1: Create order on backend
+      const orderResponse = await fetch(`${config.API_BASE_URL}${config.API_ENDPOINTS.CREATE_ORDER}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          amount: parseFloat(amount),
+          donorName: 'Anonymous Donor',
+          donorEmail: '',
+          donorPhone: '',
+          description: `Donation for Project Sitaare - ₹${amount}`,
+          anonymous: true
+        }),
+      });
+
+      console.log('Order response status:', orderResponse.status);
+      
+      if (!orderResponse.ok) {
+        throw new Error(`HTTP error! status: ${orderResponse.status}`);
+      }
+
+      const orderData = await orderResponse.json();
+      console.log('Order data:', orderData);
+
+      if (!orderData.success) {
+        throw new Error(orderData.error || 'Failed to create order');
+      }
+
+      // Step 2: Initialize Razorpay payment
+      const options = {
+        key: orderData.key_id,
+        amount: orderData.order.amount,
+        currency: orderData.order.currency,
+        name: config.RAZORPAY.NAME,
+        description: `Donation for Project Sitaare - ₹${amount}`,
+        order_id: orderData.order.id,
+        handler: async function (response) {
+          try {
+            console.log('Payment response:', response);
+            // Step 3: Verify payment on backend
+            const verifyResponse = await fetch(`${config.API_BASE_URL}${config.API_ENDPOINTS.VERIFY_PAYMENT}`, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                razorpay_order_id: response.razorpay_order_id,
+                razorpay_payment_id: response.razorpay_payment_id,
+                razorpay_signature: response.razorpay_signature,
+                donationId: orderData.donationId
+              }),
+            });
+
+            const verifyData = await verifyResponse.json();
+
+            if (verifyData.success) {
+              setDonateSuccess(true);
+              setTimeout(() => setDonateSuccess(false), 3000);
+            } else {
+              setError('Payment verification failed. Please contact support.');
+            }
+          } catch (verifyError) {
+            console.error('Payment verification error:', verifyError);
+            setError('Payment verification failed. Please contact support.');
+          }
+        },
+        prefill: {
+          name: '',
+          email: '',
+          contact: '',
+        },
+        theme: {
+          color: config.RAZORPAY.THEME_COLOR,
+        },
+        modal: {
+          ondismiss: function() {
+            setLoading(false);
+          }
+        }
+      };
+
+      console.log('Razorpay options:', options);
+      const rzp = new window.Razorpay(options);
+      rzp.open();
+
+    } catch (error) {
+      console.error('Donation error:', error);
+      setError(`Connection failed: ${error.message}. Please check if the backend server is running on ${config.API_BASE_URL}`);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -147,6 +267,26 @@ const DonateForACause = () => {
       exit="exit"
       className="relative min-h-screen bg-gradient-to-br from-slate-50 to-pink-50 text-[#4B4B4B] px-2 sm:px-4 md:px-8 pb-24 overflow-x-hidden"
     >
+      {/* Error Display */}
+      {error && (
+        <div className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded shadow-lg max-w-md">
+          {error}
+          <button 
+            onClick={() => setError('')} 
+            className="ml-2 text-red-700 hover:text-red-900 font-bold"
+          >
+            ×
+          </button>
+        </div>
+      )}
+
+      {/* Success Display */}
+      {donateSuccess && (
+        <div className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded shadow-lg max-w-md">
+          Thank you for your donation! Payment successful. 🎉
+        </div>
+      )}
+
       {/* Hero Section */}
       <div className="relative w-full flex flex-col items-center justify-center py-10 sm:py-16 md:py-24 overflow-hidden">
         <div className="absolute inset-0 z-0 pointer-events-none">
@@ -231,22 +371,48 @@ const DonateForACause = () => {
                   />
                   <button
                     type="submit"
-                    className="bg-[#BC1782] hover:bg-[#E94BA2] text-white font-semibold px-4 py-2 rounded-md shadow-md transition relative overflow-hidden text-sm xs:text-base"
+                    disabled={loading}
+                    className={`bg-[#BC1782] hover:bg-[#E94BA2] text-white font-semibold px-4 py-2 rounded-md shadow-md transition relative overflow-hidden text-sm xs:text-base ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
                   >
-                    Donate Custom
-                    {donateSuccess && (
-                      <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 animate-bounce text-xl">🎉</span>
+                    {loading ? (
+                      <span className="flex items-center justify-center">
+                        <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        Processing...
+                      </span>
+                    ) : (
+                      <>
+                        Donate Custom
+                        {donateSuccess && (
+                          <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 animate-bounce text-xl">🎉</span>
+                        )}
+                      </>
                     )}
                   </button>
                 </form>
               ) : (
                 <button
                   onClick={() => handleDonate(item.amount)}
-                  className="bg-[#BC1782] hover:bg-[#E94BA2] text-white font-semibold px-4 py-2 rounded-md shadow-md transition relative overflow-hidden text-sm xs:text-base"
+                  disabled={loading}
+                  className={`bg-[#BC1782] hover:bg-[#E94BA2] text-white font-semibold px-4 py-2 rounded-md shadow-md transition relative overflow-hidden text-sm xs:text-base ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
                 >
-                  Donate ₹{item.amount.toLocaleString()}
-                  {donateSuccess && (
-                    <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 animate-bounce text-xl">🎉</span>
+                  {loading ? (
+                    <span className="flex items-center justify-center">
+                      <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      </svg>
+                      Processing...
+                    </span>
+                  ) : (
+                    <>
+                      Donate ₹{item.amount.toLocaleString()}
+                      {donateSuccess && (
+                        <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 animate-bounce text-xl">🎉</span>
+                      )}
+                    </>
                   )}
                 </button>
               )}

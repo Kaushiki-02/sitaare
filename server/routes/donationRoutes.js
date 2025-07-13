@@ -4,6 +4,15 @@ const crypto = require('crypto');
 const Donation = require('../models/Donation');
 const router = express.Router();
 
+// Test route to check if the server is working
+router.get('/test', (req, res) => {
+  res.json({ 
+    success: true, 
+    message: 'Donation routes are working',
+    timestamp: new Date().toISOString()
+  });
+});
+
 const razorpay = new Razorpay({
   key_id: process.env.RAZORPAY_KEY_ID,
   key_secret: process.env.RAZORPAY_KEY_SECRET
@@ -11,10 +20,21 @@ const razorpay = new Razorpay({
 
 // Create order
 router.post('/create-order', async (req, res) => {
+  console.log('Create order request received:', req.body);
+  
   const { amount, currency = 'INR', donorName, donorEmail, donorPhone, description, anonymous = false } = req.body;
 
   if (!amount || amount <= 0) {
     return res.status(400).json({ success: false, error: "Invalid amount" });
+  }
+
+  // Check if Razorpay credentials are configured
+  if (!process.env.RAZORPAY_KEY_ID || !process.env.RAZORPAY_KEY_SECRET) {
+    console.error('Razorpay credentials not configured');
+    return res.status(500).json({ 
+      success: false, 
+      error: "Payment gateway not configured. Please check server configuration." 
+    });
   }
 
   const options = {
@@ -23,8 +43,11 @@ router.post('/create-order', async (req, res) => {
     receipt: `receipt_order_${Date.now()}_${Math.floor(Math.random() * 10000)}`,
   };
 
+  console.log('Creating Razorpay order with options:', options);
+
   try {
     const order = await razorpay.orders.create(options);
+    console.log('Razorpay order created:', order.id);
     
     // Create donation record in database
     const donation = new Donation({
@@ -40,6 +63,7 @@ router.post('/create-order', async (req, res) => {
     });
     
     await donation.save();
+    console.log('Donation record saved:', donation._id);
     
     res.json({ 
       success: true, 
@@ -49,7 +73,26 @@ router.post('/create-order', async (req, res) => {
     });
   } catch (err) {
     console.error('Razorpay order creation error:', err);
-    res.status(500).json({ success: false, error: "Order creation failed" });
+    console.error('Error details:', {
+      message: err.message,
+      code: err.code,
+      statusCode: err.statusCode,
+      error: err.error
+    });
+    
+    // Provide more specific error messages
+    let errorMessage = "Order creation failed";
+    if (err.error && err.error.description) {
+      errorMessage = err.error.description;
+    } else if (err.message) {
+      errorMessage = err.message;
+    }
+    
+    res.status(500).json({ 
+      success: false, 
+      error: errorMessage,
+      details: err.message 
+    });
   }
 });
 
