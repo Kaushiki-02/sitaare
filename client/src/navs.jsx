@@ -15,7 +15,8 @@ import ContributeMaterial from "./pages/Collaborate/ContributeMaterial";
 import DonateForACause from "./pages/Collaborate/DonateForACause";
 import GetInvolved from "./pages/Collaborate/GetInvolved";
 import Partners from "./pages/Partners";
-import TestDonation from "./pages/TestDonation";
+import DonationSuccess from "./components/DonationSuccess"; // Add import
+import DonationFailed from "./components/DonationFailed"; // Add import
 
 // Consistent page animation variant
 export const pageVariants = {
@@ -99,7 +100,6 @@ function AnimatedRoutes() {
             </motion.div>
           }
         />
-
         <Route
           path="/news-and-events"
           element={
@@ -241,7 +241,7 @@ function AnimatedRoutes() {
           }
         />
         <Route
-          path="/test-donation"
+          path="/donation-success"
           element={
             <motion.div
               variants={pageVariants}
@@ -250,7 +250,21 @@ function AnimatedRoutes() {
               exit="exit"
               style={{ minHeight: "100vh" }}
             >
-              <TestDonation />
+              <DonationSuccess />
+            </motion.div>
+          }
+        />
+        <Route
+          path="/donation-failed"
+          element={
+            <motion.div
+              variants={pageVariants}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+              style={{ minHeight: "100vh" }}
+            >
+              <DonationFailed />
             </motion.div>
           }
         />

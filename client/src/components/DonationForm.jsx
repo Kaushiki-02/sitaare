@@ -1,274 +1,323 @@
-// DonationForm.jsx
-import { useState, useEffect } from 'react';
-import config from '../config/config';
+import React, { useState } from 'react';
+import { Heart, CheckCircle } from 'lucide-react';
 
-const DonationForm = () => {
+const DonationForm = ({ onDonate, donateOptions }) => {
+  const [selectedAmount, setSelectedAmount] = useState(null);
+  const [customAmount, setCustomAmount] = useState('');
   const [formData, setFormData] = useState({
-    amount: '',
-    donorName: '',
-    donorEmail: '',
-    donorPhone: '',
-    description: '',
-    anonymous: false
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    address: '',
+    city: '',
+    state: '',
+    zipCode: '',
   });
-  const [loading, setLoading] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const [error, setError] = useState('');
-  const [success, setSuccess] = useState('');
+  const [loading, setLoading] = useState(false);
 
-  // Load Razorpay script
-  useEffect(() => {
-    const script = document.createElement('script');
-    script.src = 'https://checkout.razorpay.com/v1/checkout.js';
-    script.async = true;
-    document.body.appendChild(script);
+  const predefinedAmounts = donateOptions
+    .filter((option) => !option.custom)
+    .map((option) => option.amount);
 
-    return () => {
-      if (document.body.contains(script)) {
-        document.body.removeChild(script);
-      }
-    };
-  }, []);
+  const handleAmountSelect = (amount) => {
+    setSelectedAmount(amount);
+    setCustomAmount('');
+    setError('');
+  };
+
+  const handleCustomAmountChange = (e) => {
+    const value = e.target.value;
+    if (value === '' || /^\d*\.?\d*$/.test(value)) {
+      setCustomAmount(value);
+      setSelectedAmount(null);
+      setError('');
+    }
+  };
 
   const handleInputChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setFormData(prev => ({
+    const { name, value } = e.target;
+    setFormData((prev) => ({
       ...prev,
-      [name]: type === 'checkbox' ? checked : value
+      [name]: value,
     }));
   };
 
-  const handleDonate = async () => {
-    if (!formData.amount || formData.amount <= 0) {
-      setError('Please enter a valid amount');
-      return;
-    }
-
-    if (!formData.anonymous && !formData.donorName) {
-      setError('Please enter your name or check anonymous donation');
-      return;
-    }
-
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     setLoading(true);
     setError('');
-    setSuccess('');
+
+    const amount = customAmount ? parseFloat(customAmount) : selectedAmount;
+    if (!amount || amount < 100) {
+      setError('Please select or enter a valid donation amount (minimum ₹100).');
+      setLoading(false);
+      return;
+    }
+
+    if (!formData.firstName || !formData.email || !formData.phone || !formData.address || !formData.city || !formData.state || !formData.zipCode) {
+      setError('Please fill in all required fields.');
+      setLoading(false);
+      return;
+    }
 
     try {
-      // Step 1: Create order on backend
-      const orderResponse = await fetch(`${config.API_BASE_URL}${config.API_ENDPOINTS.CREATE_ORDER}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          amount: parseFloat(formData.amount),
-          donorName: formData.anonymous ? 'Anonymous' : formData.donorName,
-          donorEmail: formData.donorEmail,
-          donorPhone: formData.donorPhone,
-          description: formData.description,
-          anonymous: formData.anonymous
-        }),
+      const selectedOption = donateOptions.find(
+        (option) => option.amount === amount || (option.custom && customAmount)
+      );
+      const purpose = selectedOption?.title || 'Custom Donation';
+      const result = await onDonate({
+        amount,
+        donorName: `${formData.firstName} ${formData.lastName}`,
+        donorEmail: formData.email,
+        donorPhone: formData.phone,
+        address: `${formData.address}, ${formData.city}, ${formData.state}, ${formData.zipCode}`,
+        purpose,
       });
 
-      const orderData = await orderResponse.json();
-
-      if (!orderData.success) {
-        throw new Error(orderData.error || 'Failed to create order');
+      if (result.success) {
+        setIsSubmitted(true);
+        setError('');
+      } else {
+        setError(result.error || 'Payment failed. Please try again.');
       }
-
-      // Step 2: Initialize Razorpay payment
-      const options = {
-        key: orderData.key_id,
-        amount: orderData.order.amount,
-        currency: orderData.order.currency,
-        name: config.RAZORPAY.NAME,
-        description: formData.description || config.RAZORPAY.DESCRIPTION,
-        order_id: orderData.order.id,
-        handler: async function (response) {
-          try {
-            // Step 3: Verify payment on backend
-            const verifyResponse = await fetch(`${config.API_BASE_URL}${config.API_ENDPOINTS.VERIFY_PAYMENT}`, {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-              },
-              body: JSON.stringify({
-                razorpay_order_id: response.razorpay_order_id,
-                razorpay_payment_id: response.razorpay_payment_id,
-                razorpay_signature: response.razorpay_signature,
-                donationId: orderData.donationId
-              }),
-            });
-
-            const verifyData = await verifyResponse.json();
-
-            if (verifyData.success) {
-              setSuccess('Thank you for your donation! Payment successful.');
-              setFormData({
-                amount: '',
-                donorName: '',
-                donorEmail: '',
-                donorPhone: '',
-                description: '',
-                anonymous: false
-              });
-            } else {
-              setError('Payment verification failed. Please contact support.');
-            }
-          } catch (verifyError) {
-            console.error('Payment verification error:', verifyError);
-            setError('Payment verification failed. Please contact support.');
-          }
-        },
-        prefill: {
-          name: formData.anonymous ? '' : formData.donorName,
-          email: formData.donorEmail,
-          contact: formData.donorPhone,
-        },
-        theme: {
-          color: config.RAZORPAY.THEME_COLOR,
-        },
-        modal: {
-          ondismiss: function() {
-            setLoading(false);
-          }
-        }
-      };
-
-      const rzp = new window.Razorpay(options);
-      rzp.open();
-
     } catch (error) {
-      console.error('Donation error:', error);
-      setError(error.message || 'Something went wrong. Please try again.');
-    } finally {
-      setLoading(false);
+      console.error('Donation processing error:', error);
+      setError('Error processing donation.');
     }
+    setLoading(false);
   };
 
+  if (isSubmitted) {
+    return (
+      <div className="max-w-2xl mx-auto p-8 bg-white rounded-2xl shadow-2xl">
+        <div className="text-center">
+          <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+            <CheckCircle className="w-10 h-10 text-green-600" />
+          </div>
+          <h2 className="text-3xl font-bold text-gray-900 mb-4">Thank You!</h2>
+          <p className="text-gray-600 text-lg mb-6">
+            Your generous donation of ₹{customAmount || selectedAmount} has been processed successfully.
+          </p>
+          <p className="text-gray-500 mb-8">
+            You'll receive a confirmation email shortly with your donation receipt.
+          </p>
+          <button
+            onClick={() => {
+              setIsSubmitted(false);
+              setFormData({
+                firstName: '',
+                lastName: '',
+                email: '',
+                phone: '',
+                address: '',
+                city: '',
+                state: '',
+                zipCode: '',
+              });
+              setSelectedAmount(null);
+              setCustomAmount('');
+              setError('');
+            }}
+            className="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors"
+          >
+            Make Another Donation
+          </button>
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <div className="max-w-md mx-auto p-6 bg-white rounded-lg shadow-lg">
-      <h2 className="text-2xl font-bold mb-4 text-gray-800">Donate to Project Sitaare</h2>
-      
-      {error && (
-        <div className="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded">
-          {error}
+    <div className="max-w-4xl mx-auto p-6 bg-white rounded-2xl shadow-2xl">
+      <div className="text-center mb-8">
+        <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
+          <Heart className="w-8 h-8 text-white" />
         </div>
-      )}
-      
-      {success && (
-        <div className="mb-4 p-3 bg-green-100 border border-green-400 text-green-700 rounded">
-          {success}
-        </div>
-      )}
+        <h1 className="text-4xl font-bold text-gray-900 mb-2">Make a Donation</h1>
+        <p className="text-gray-600 text-lg">Your support makes a real difference for underprivileged children</p>
+      </div>
 
-      <div className="space-y-4">
-        <div>
-          <label htmlFor="amount" className="block text-sm font-medium text-gray-700 mb-2">
-            Donation Amount (INR) *
-          </label>
-          <input
-            id="amount"
-            name="amount"
-            type="number"
-            value={formData.amount}
-            onChange={handleInputChange}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            placeholder="Enter amount"
-            min={config.VALIDATION.MIN_AMOUNT}
-            max={config.VALIDATION.MAX_AMOUNT}
-            step="1"
-            required
-          />
-        </div>
+      {error && <div className="text-red-600 text-center mb-4">{error}</div>}
 
-        <div className="flex items-center">
-          <input
-            id="anonymous"
-            name="anonymous"
-            type="checkbox"
-            checked={formData.anonymous}
-            onChange={handleInputChange}
-            className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-          />
-          <label htmlFor="anonymous" className="ml-2 block text-sm text-gray-700">
-            Make this donation anonymous
-          </label>
-        </div>
-
-        {!formData.anonymous && (
-          <div>
-            <label htmlFor="donorName" className="block text-sm font-medium text-gray-700 mb-2">
-              Your Name *
-            </label>
+      <form onSubmit={handleSubmit} className="space-y-8">
+        <div className="bg-gray-50 p-6 rounded-xl">
+          <h3 className="text-xl font-semibold text-gray-900 mb-4">Select Amount</h3>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mb-4">
+            {predefinedAmounts.map((amount) => {
+              const option = donateOptions.find((opt) => opt.amount === amount);
+              return (
+                <button
+                  key={amount}
+                  type="button"
+                  onClick={() => handleAmountSelect(amount)}
+                  className={`py-4 px-6 rounded-lg border-2 transition-all font-semibold flex flex-col items-center text-center ${
+                    selectedAmount === amount
+                      ? 'border-blue-500 bg-blue-500 text-white'
+                      : 'border-gray-300 hover:border-blue-300 hover:bg-blue-50'
+                  }`}
+                  disabled={loading}
+                >
+                  <span className="mb-2">{option && <option.icon className="text-2xl" style={{ color: selectedAmount === amount ? '#fff' : option.color }} />}</span>
+                  <span className="text-lg font-bold">₹{amount.toLocaleString()}</span>
+                  <span className="text-sm font-semibold">{option?.title}</span>
+                  <span className="text-xs text-gray-600 mt-1">{option?.description}</span>
+                </button>
+              );
+            })}
+          </div>
+          <div className="relative">
+            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <span className="text-gray-500 text-lg">₹</span>
+            </div>
             <input
-              id="donorName"
-              name="donorName"
               type="text"
-              value={formData.donorName}
-              onChange={handleInputChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              placeholder="Enter your name"
+              placeholder="Enter custom amount"
+              value={customAmount}
+              onChange={handleCustomAmountChange}
+              className="w-full pl-8 pr-4 py-3 border-2 border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none text-lg"
+              disabled={loading}
             />
           </div>
-        )}
-
-        <div>
-          <label htmlFor="donorEmail" className="block text-sm font-medium text-gray-700 mb-2">
-            Email Address
-          </label>
-          <input
-            id="donorEmail"
-            name="donorEmail"
-            type="email"
-            value={formData.donorEmail}
-            onChange={handleInputChange}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            placeholder="Enter your email"
-          />
         </div>
 
-        <div>
-          <label htmlFor="donorPhone" className="block text-sm font-medium text-gray-700 mb-2">
-            Phone Number
-          </label>
-          <input
-            id="donorPhone"
-            name="donorPhone"
-            type="tel"
-            value={formData.donorPhone}
-            onChange={handleInputChange}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            placeholder="Enter your phone number"
-          />
+        <div className="grid md:grid-cols-2 gap-8">
+          <div className="space-y-6">
+            <h3 className="text-xl font-semibold text-gray-900">Personal Information</h3>
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">First Name</label>
+                <input
+                  type="text"
+                  name="firstName"
+                  value={formData.firstName}
+                  onChange={handleInputChange}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none"
+                  required
+                  disabled={loading}
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Last Name</label>
+                <input
+                  type="text"
+                  name="lastName"
+                  value={formData.lastName}
+                  onChange={handleInputChange}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none"
+                  required
+                  disabled={loading}
+                />
+              </div>
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleInputChange}
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none"
+                required
+                disabled={loading}
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
+              <input
+                type="tel"
+                name="phone"
+                value={formData.phone}
+                onChange={handleInputChange}
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none"
+                required
+                disabled={loading}
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Address</label>
+              <input
+                type="text"
+                name="address"
+                value={formData.address}
+                onChange={handleInputChange}
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none"
+                required
+                disabled={loading}
+              />
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">City</label>
+                <input
+                  type="text"
+                  name="city"
+                  value={formData.city}
+                  onChange={handleInputChange}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none"
+                  required
+                  disabled={loading}
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">State</label>
+                <input
+                  type="text"
+                  name="state"
+                  value={formData.state}
+                  onChange={handleInputChange}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none"
+                  required
+                  disabled={loading}
+                />
+              </div>
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">ZIP Code</label>
+              <input
+                type="text"
+                name="zipCode"
+                value={formData.zipCode}
+                onChange={handleInputChange}
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none"
+                required
+                disabled={loading}
+              />
+            </div>
+          </div>
+
+          <div className="bg-blue-50 p-6 rounded-xl border border-blue-200">
+            <h4 className="font-semibold text-blue-900 mb-3">Donation Summary</h4>
+            <div className="space-y-2 text-blue-800">
+              <div className="flex justify-between">
+                <span>Donation Amount:</span>
+                <span className="font-semibold">₹{customAmount || selectedAmount || '0'}</span>
+              </div>
+              <div className="border-t border-blue-200 pt-2 mt-3">
+                <div className="flex justify-between text-lg font-bold">
+                  <span>Total:</span>
+                  <span>₹{customAmount || selectedAmount || '0'}</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div>
-          <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-2">
-            Message (Optional)
-          </label>
-          <textarea
-            id="description"
-            name="description"
-            value={formData.description}
-            onChange={handleInputChange}
-            rows="3"
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            placeholder="Any message you'd like to share..."
-          />
+        <div className="text-center">
+          <button
+            type="submit"
+            disabled={loading || (!selectedAmount && !customAmount)}
+            className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-12 py-4 rounded-xl text-lg font-semibold hover:from-blue-700 hover:to-purple-700 transition-all transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+          >
+            {loading ? 'Processing...' : 'Complete Donation'}
+          </button>
+          <p className="text-gray-500 text-sm mt-4">
+            Your donation is secure and encrypted. You'll receive a confirmation email shortly.
+          </p>
         </div>
-      </div>
-
-      <button 
-        onClick={handleDonate} 
-        disabled={loading}
-        className="w-full mt-6 bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white font-semibold py-3 px-6 rounded-md shadow-md transition duration-200 ease-in-out"
-      >
-        {loading ? 'Processing...' : 'Donate Now'}
-      </button>
-
-      <div className="mt-4 text-xs text-gray-500 text-center">
-        Your payment is secured by Razorpay
-      </div>
+      </form>
     </div>
   );
 };

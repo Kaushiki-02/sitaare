@@ -1,30 +1,47 @@
 const mongoose = require('mongoose');
 
 const donationSchema = new mongoose.Schema({
-  donorName: { type: String },
-  donorEmail: { type: String },
-  donorPhone: { type: String },
-  amount: { type: Number, required: true },
-  currency: { type: String, default: 'INR' },
-  donationType: { type: String, enum: ['one-time', 'monthly', 'in-kind'], default: 'one-time' },
-  
-  // Razorpay payment details
-  razorpayOrderId: { type: String },
-  razorpayPaymentId: { type: String },
-  razorpaySignature: { type: String },
-  
-  // Payment status
-  status: { 
-    type: String, 
-    enum: ['pending', 'completed', 'failed', 'refunded'], 
-    default: 'pending' 
+  beneficiaryId: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
+    ref: 'Beneficiary',
   },
-  
-  // Additional details
-  description: { type: String },
-  anonymous: { type: Boolean, default: false },
-  
-  date: { type: Date, default: Date.now }
-}, { timestamps: true });
+  amount: {
+    type: Number,
+    required: true,
+    min: 0,
+  },
+  donorName: {
+    type: String,
+    default: 'Anonymous',
+  },
+  donorEmail: {
+    type: String,
+    default: '',
+  },
+  donorPhone: {
+    type: String,
+    default: '',
+  },
+  paymentId: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  orderId: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  paymentStatus: {
+    type: String,
+    enum: ['pending', 'completed', 'failed'],
+    default: 'pending',
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
+});
 
 module.exports = mongoose.model('Donation', donationSchema);

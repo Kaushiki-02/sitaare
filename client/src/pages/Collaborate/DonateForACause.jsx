@@ -12,25 +12,28 @@ import starSuccessAnimation from '../../assets/Star Success.json';
 
 const donateOptions = [
   {
-    title: "Sponsor Education",
+    title: "Sponsor",
     amount: 3500,
-    description: "₹3,500/month ensures a girl receives quality education, books & supplies.",
+    description:
+      "₹3,500/month ensures a girl receives quality education, books & supplies.",
     icon: FaBook,
-    color: '#BC1782',
+    color: "#BC1782",
   },
   {
     title: "Support Daily Nutrition",
     amount: 2000,
-    description: "₹2,000/month covers daily meals to keep her healthy and energized.",
-    icon: FaAppleAlt,
-    color: '#E94BA2',
+    description:
+      "₹2,000/month covers daily meals to keep her healthy and energized.",
+    icon: FaApple,
+    color: "#E94BA2",
   },
   {
     title: "Adopt a Sitaare for a Month",
     amount: 11551,
-    description: "₹11,551 provides full care including housing, education & health.",
+    description:
+      "₹11,551 provides full care including housing, education & health.",
     icon: FaHandHoldingHeart,
-    color: '#FFD700',
+    color: "#FFD700",
     highlight: true,
   },
   {
@@ -38,77 +41,95 @@ const donateOptions = [
     amount: 4000,
     description: "₹4,000 sponsors a wholesome meal for all our girls.",
     icon: FaUtensils,
-    color: '#A78BFA',
+    color: "#A78BFA",
   },
   {
     title: "Meal for 2 Girls (Full Day)",
     amount: 8000,
-    description: "₹8,000 feeds two girls for an entire day with nutritious meals.",
+    description:
+      "₹8,000 feeds two girls for an entire day with nutritious meals.",
     icon: FaUserFriends,
-    color: '#7C0C55',
+    color: "#7C0C55",
   },
   {
     title: "Sponsor a Celebration",
     amount: 15000,
     description: "₹15,000 funds a joyful birthday or festival celebration.",
     icon: FaBirthdayCake,
-    color: '#FF8EB5',
+    color: "#FF8EB5",
   },
- 
+  {
+    title: "Custom Donation",
+    amount: null, // Indicates custom amount
+    description: "Choose your own amount to support our mission.",
+    icon: FaStar,
+    color: "#D61A91",
+    custom: true,
+  },
 ];
 
 const impactStats = [
   {
-    icon: <FaSmile className="text-pink-500 text-4xl impact-icon" />, 
-    label: 'Girls Empowered', 
-    value: 120, 
-    bg: 'from-pink-100 to-pink-50', 
-    border: 'border-pink-300',
-    story: 'Each girl is now dreaming bigger.',
-    badge: 'Milestone!',
-    animation: { initial: { opacity: 0, x: -40 }, animate: { opacity: 1, x: 0, transition: { duration: 0.7 } } },
-    iconAnim: 'impact-pulse',
-    offset: 'md:mt-8',
+    icon: <FaSmile className="text-pink-500 text-4xl impact-icon" />,
+    label: "Girls Empowered",
+    value: 120,
+    bg: "from-pink-100 to-pink-50",
+    border: "border-pink-300",
+    story: "Each girl is now dreaming bigger.",
+    badge: "Milestone!",
+    animation: {
+      initial: { opacity: 0, x: -40 },
+      animate: { opacity: 1, x: 0, transition: { duration: 0.7 } },
+    },
+    iconAnim: "impact-pulse",
+    offset: "md:mt-8",
   },
   {
-    icon: <FaHeart className="text-blue-500 text-4xl impact-icon" />, 
-    label: 'Donations Received', 
-    value: 350, 
-    bg: 'from-blue-100 to-blue-50', 
-    border: 'border-blue-300',
-    story: 'Every rupee brings hope.',
-    animation: { initial: { opacity: 0, y: 40 }, animate: { opacity: 1, y: 0, transition: { duration: 0.7, delay: 0.1 } } },
-    iconAnim: 'impact-beat',
-    offset: 'md:mt-0',
+    icon: <FaHeart className="text-blue-500 text-4xl impact-icon" />,
+    label: "Donations Received",
+    value: 350,
+    bg: "from-blue-100 to-blue-50",
+    border: "border-blue-300",
+    story: "Every rupee brings hope.",
+    animation: {
+      initial: { opacity: 0, y: 40 },
+      animate: { opacity: 1, y: 0, transition: { duration: 0.7, delay: 0.1 } },
+    },
+    iconAnim: "impact-beat",
+    offset: "md:mt-0",
   },
   {
-    icon: <FaUserFriends className="text-green-500 text-4xl impact-icon" />, 
-    label: 'Volunteers Joined', 
-    value: 45, 
-    bg: 'from-green-100 to-green-50', 
-    border: 'border-green-300',
-    story: 'A growing family of changemakers.',
-    animation: { initial: { opacity: 0, x: 40 }, animate: { opacity: 1, x: 0, transition: { duration: 0.7, delay: 0.2 } } },
-    iconAnim: 'impact-wave',
-    offset: 'md:-mt-8',
+    icon: <FaUserFriends className="text-green-500 text-4xl impact-icon" />,
+    label: "Volunteers Joined",
+    value: 45,
+    bg: "from-green-100 to-green-50",
+    border: "border-green-300",
+    story: "A growing family of changemakers.",
+    animation: {
+      initial: { opacity: 0, x: 40 },
+      animate: { opacity: 1, x: 0, transition: { duration: 0.7, delay: 0.2 } },
+    },
+    // ... (other stats remain unchanged)
+    iconAnim: "impact-wave",
+    offset: "md:-mt-8",
   },
 ];
 
 const testimonials = [
   {
-    text: 'Sitaare gave me a new family and the courage to dream big. I am forever grateful!',
-    name: 'Priya',
-    role: 'Beneficiary',
+    text: "Sitaare gave me a new family and the courage to dream big. I am forever grateful!",
+    name: "Priya",
+    role: "Beneficiary",
   },
   {
-    text: 'Supporting Sitaare is the best decision I made. The impact is real and visible.',
-    name: 'Neha',
-    role: 'Donor',
+    text: "Supporting Sitaare is the best decision I made. The impact is real and visible.",
+    name: "Neha",
+    role: "Donor",
   },
   {
-    text: 'Volunteering here changed my life. The girls inspire me every day.',
-    name: 'Amit',
-    role: 'Volunteer',
+    text: "Volunteering here changed my life. The girls inspire me every day.",
+    name: "Amit",
+    role: "Volunteer",
   },
 ];
 
@@ -130,12 +151,12 @@ function AnimatedCounter({ value, duration = 2 }) {
       }
     };
     step();
-    // eslint-disable-next-line
   }, [value]);
   return <span>{count}</span>;
 }
 
 const DonateForACause = () => {
+  const navigate = useNavigate();
   const [donateSuccess, setDonateSuccess] = useState(false);
   const [loadingIdx, setLoadingIdx] = useState(null); // for preset buttons
   const [loadingCustom, setLoadingCustom] = useState(false); // for custom form
@@ -351,7 +372,12 @@ const DonateForACause = () => {
       {/* Hero Section */}
       <div className="relative w-full flex flex-col items-center justify-center py-10 sm:py-16 md:py-24 overflow-hidden">
         <div className="absolute inset-0 z-0 pointer-events-none">
-          <Lottie animationData={starsAnimation} loop autoplay className="w-full h-full opacity-60 blur-sm scale-110" />
+          <Lottie
+            animationData={starsAnimation}
+            loop
+            autoplay
+            className="w-full h-full opacity-60 blur-sm scale-110"
+          />
         </div>
         <motion.h1
           initial={{ opacity: 0, y: -30 }}
@@ -367,8 +393,50 @@ const DonateForACause = () => {
           transition={{ duration: 0.7, delay: 0.2 }}
           className="relative z-10 text-base xs:text-lg sm:text-xl text-center max-w-2xl mx-auto mb-6 text-[#7C0C55] font-medium px-2"
         >
-          Your donation transforms lives—providing safety, education, nutrition, and hope for every Sitaare girl. Choose your impact below and help a star shine bright.
+          Your donation transforms lives—providing safety, education, nutrition,
+          and hope for every Sitaare girl. Choose your impact below and help a
+          star shine bright.
         </motion.p>
+        {/* Donor Details Form */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.4 }}
+          className="relative z-10 bg-white p-6 rounded-3xl shadow-xl border border-pink-100 max-w-2xl w-full mx-auto mb-8"
+        >
+          <h3 className="text-lg sm:text-xl font-bold text-[#BC1782] mb-4 text-center">
+            Your Details
+          </h3>
+          {error && (
+            <div className="text-red-500 text-center mb-4 text-sm">{error}</div>
+          )}
+          <div className="grid grid-cols-1 gap-4">
+            <input
+              type="text"
+              name="name"
+              value={formData.name}
+              onChange={handleInputChange}
+              placeholder="Your full name"
+              className="border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-pink-200 text-sm"
+            />
+            <input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleInputChange}
+              placeholder="Your email address"
+              className="border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-pink-200 text-sm"
+            />
+            <input
+              type="tel"
+              name="phone"
+              value={formData.phone}
+              onChange={handleInputChange}
+              placeholder="Your phone number"
+              className="border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-pink-200 text-sm"
+            />
+          </div>
+        </motion.div>
         {/* Inspiring Quote */}
         <motion.blockquote
           initial={{ opacity: 0 }}
@@ -376,7 +444,8 @@ const DonateForACause = () => {
           transition={{ delay: 0.5, duration: 1 }}
           className="relative z-10 italic text-base xs:text-lg sm:text-xl text-[#BC1782] text-center mt-4 font-semibold border-l-4 border-[#E94BA2] pl-4 mx-auto max-w-2xl px-2"
         >
-          “Even a single star can light the dark sky — your kindness helps them shine.”
+          “Even a single star can light the dark sky — your kindness helps them
+          shine.”
         </motion.blockquote>
       </div>
 
@@ -397,13 +466,20 @@ const DonateForACause = () => {
               key={idx}
               variants={{
                 initial: { opacity: 0, y: 30, scale: 0.95 },
-                animate: { opacity: 1, y: 0, scale: 1, transition: { type: 'spring', stiffness: 100 } },
+                animate: {
+                  opacity: 1,
+                  y: 0,
+                  scale: 1,
+                  transition: { type: "spring", stiffness: 100 },
+                },
               }}
-              whileHover={{ scale: 1.04, boxShadow: '0 8px 32px rgba(233,30,99,0.12)' }}
+              whileHover={{
+                scale: 1.04,
+                boxShadow: "0 8px 32px rgba(233,30,99,0.12)",
+              }}
               whileTap={{ scale: 0.97 }}
               className={`bg-white p-4 xs:p-6 md:p-8 rounded-3xl shadow-xl transition text-center relative border-2 ${item.highlight ? 'border-yellow-300' : 'border-pink-100'} overflow-hidden w-full max-w-xs mx-auto flex flex-col h-full`} // <-- add h-full and flex-col
             >
-              {/* Highlight badge */}
               {item.highlight && (
                 <div className="absolute top-4 right-4 bg-yellow-300 text-yellow-900 font-bold px-3 py-1 rounded-full text-xs shadow-md animate-pulse z-20">
                   Most Impactful
@@ -500,20 +576,21 @@ const DonateForACause = () => {
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.97 }}
             >
-              {/* Badge for first card */}
               {stat.badge && (
                 <div className="absolute top-4 left-4 bg-yellow-300 text-yellow-900 font-bold px-3 py-1 rounded-full text-xs shadow-md animate-pulse z-20">
                   {stat.badge}
                 </div>
               )}
-              <span className={`mb-2 ${stat.iconAnim}`}>
-                {stat.icon}
-              </span>
+              <span className={`mb-2 ${stat.iconAnim}`}>{stat.icon}</span>
               <span className="text-2xl xs:text-3xl sm:text-4xl font-black mt-2 mb-1 text-pink-600 group-hover:scale-110 transition-transform duration-300">
                 <AnimatedCounter value={stat.value} />
               </span>
-              <span className="text-gray-700 font-bold uppercase tracking-wider text-xs xs:text-sm sm:text-base text-center mb-1">{stat.label}</span>
-              <span className="text-gray-500 text-xs xs:text-sm text-center italic">{stat.story}</span>
+              <span className="text-gray-700 font-bold uppercase tracking-wider text-xs xs:text-sm sm:text-base text-center mb-1">
+                {stat.label}
+              </span>
+              <span className="text-gray-500 text-xs xs:text-sm text-center italic">
+                {stat.story}
+              </span>
             </motion.div>
           ))}
         </div>
@@ -531,7 +608,6 @@ const DonateForACause = () => {
             What Our Supporters Say
           </motion.h2>
           <div className="relative">
-            {/* Simple carousel logic */}
             <TestimonialCarousel testimonials={testimonials} />
           </div>
         </div>
@@ -545,10 +621,8 @@ const DonateForACause = () => {
         className="relative z-10 max-w-4xl mx-auto mb-16 px-2"
       >
         <div className="bg-gradient-to-br from-[#BC1782] to-[#E94BA2] rounded-3xl shadow-2xl p-6 xs:p-8 md:p-10 text-white text-center relative overflow-hidden">
-          {/* Decorative elements */}
           <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16"></div>
           <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/10 rounded-full -ml-12 -mb-12"></div>
-          
           <div className="relative z-10">
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
@@ -564,10 +638,11 @@ const DonateForACause = () => {
               transition={{ duration: 0.7, delay: 0.5 }}
               className="text-base xs:text-lg mb-6 text-white/90 max-w-2xl mx-auto"
             >
-              Visit our main website to explore more donation options and learn about our comprehensive programs at House of Humanity.
+              Visit our main website to explore more donation options and learn
+              about our comprehensive programs at House of Humanity.
             </motion.p>
             <motion.a
-              href="https://houseofhumanity.in/"
+              href="https://hoh-demo-website.web.app/"
               target="_blank"
               rel="noopener noreferrer"
               initial={{ opacity: 0, scale: 0.9 }}
@@ -596,10 +671,15 @@ const DonateForACause = () => {
       {/* Sticky Donate CTA for mobile */}
       <div className="fixed bottom-2 left-0 w-full flex justify-center z-50 sm:hidden pointer-events-none px-2">
         <button
-          onClick={() => window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })}
+          onClick={() =>
+            window.scrollTo({
+              top: document.body.scrollHeight,
+              behavior: "smooth",
+            })
+          }
           className="pointer-events-auto bg-gradient-to-r from-[#BC1782] to-[#E94BA2] text-white font-bold px-4 py-2 rounded-full shadow-lg animate-pulse text-base border-2 border-white w-full max-w-xs"
         >
-          Donate Now &rarr;
+          Donate Now →
         </button>
       </div>
 
@@ -626,15 +706,21 @@ function TestimonialCarousel({ testimonials }) {
         “{testimonials[idx].text}”
       </motion.p>
       <div className="flex items-center gap-2 mb-2">
-        <span className="text-[#BC1782] font-bold">{testimonials[idx].name}</span>
-        <span className="text-xs text-gray-400">({testimonials[idx].role})</span>
+        <span className="text-[#BC1782] font-bold">
+          {testimonials[idx].name}
+        </span>
+        <span className="text-xs text-gray-400">
+          ({testimonials[idx].role})
+        </span>
       </div>
       <div className="flex gap-2 mt-2">
         {testimonials.map((_, i) => (
           <button
             key={i}
             onClick={() => setIdx(i)}
-            className={`w-3 h-3 rounded-full ${i === idx ? 'bg-[#BC1782]' : 'bg-gray-300'} transition`}
+            className={`w-3 h-3 rounded-full ${
+              i === idx ? "bg-[#BC1782]" : "bg-gray-300"
+            } transition`}
             aria-label={`Go to testimonial ${i + 1}`}
           />
         ))}
