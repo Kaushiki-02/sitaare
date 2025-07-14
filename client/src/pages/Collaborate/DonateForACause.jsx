@@ -238,12 +238,12 @@ const DonateForACause = () => {
 
       // Step 2: Initialize Razorpay payment
       const options = {
-        key: orderData.key_id,
-        amount: orderData.order.amount,
-        currency: orderData.order.currency,
+        key: orderData.data.keyId,
+        amount: orderData.data.amount,
+        currency: orderData.data.currency,
         name: config.RAZORPAY.NAME,
         description: `Donation for Project Sitaare - ₹${amount}`,
-        order_id: orderData.order.id,
+        order_id: orderData.data.orderId,
         handler: async function (response) {
           try {
             console.log('Payment response:', response);
@@ -299,7 +299,7 @@ const DonateForACause = () => {
 
     } catch (error) {
       console.error('Donation error:', error);
-      setError(`Connection failed: ${error.message}. Please check if the backend server is running on ${config.API_BASE_URL}`);
+      setError(`Connection failed: ${error.message}. Please check if the backend server is running!`);
     } finally {
       if (isCustom) {
         setLoadingCustom(false);
