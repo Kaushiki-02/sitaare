@@ -40,8 +40,8 @@ const cardVariants = {
 };
 
 const buttonVariants = {
-  hover: { scale: 1.08, boxShadow: '0px 8px 24px rgba(236, 72, 153, 0.2)' },
-  tap: { scale: 0.96 },
+  hover: { boxShadow: '0px 8px 24px rgba(236, 72, 153, 0.2)' },
+  tap: {},
 };
 
 const Home = () => {
@@ -63,12 +63,12 @@ const Home = () => {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
-        className="relative text-center py-10 sm:py-14 w-full bg-primaryLight overflow-hidden"
+        className="relative text-center min-h-screen flex flex-col justify-start md:justify-center items-center w-full bg-transparent overflow-y-auto p-0 m-0 pt-14 md:pt-0"
       >
         {/* Background Lottie Animation with Blur & Scale */}
-        <motion.div
+        {/* <motion.div
           initial={{ scale: 0.95, opacity: 0 }}
-          animate={{ scale: 1.05, opacity: 0.3 }}
+          animate={{ scale: 1.05, opacity: 1 }}
           transition={{ duration: 1.2, delay: 0.2 }}
           className="absolute inset-0 z-10 pointer-events-none"
         >
@@ -78,7 +78,7 @@ const Home = () => {
             autoplay
             className="w-full h-full scale-[1.05] opacity-30"
           />
-        </motion.div>
+        </motion.div> */}
 
         {/* Sophisticated Background Elements */}
         <div className="absolute inset-0 overflow-hidden z-5">
@@ -95,8 +95,8 @@ const Home = () => {
         </div>
         
         {/* Content Container */}
-        <div className="relative z-20 w-full min-w-0 px-2 sm:px-4 md:px-8 overflow-x-hidden">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2 }} className="inline-flex items-center bg-white/80 backdrop-blur-md rounded-full px-8 py-3 mb-8 shadow-lg border border-primaryLight">
+        <div className="relative z-20 w-full max-w-3xl min-w-0 px-1 sm:px-2 flex flex-col items-center overflow-x-hidden">
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2 }} className="inline-flex items-center bg-white/80 backdrop-blur-md rounded-full px-2 py-1 mb-2 sm:px-4 sm:py-2 sm:mb-4 shadow-lg border border-primaryLight">
             <div className="w-2 h-2 bg-primary rounded-full mr-3 animate-pulse"></div>
             <span className="text-primaryDark font-semibold text-sm tracking-wide">EMPOWERING YOUNG DREAMS</span>
           </motion.div>
@@ -105,16 +105,16 @@ const Home = () => {
             initial={{ opacity: 0, y: 40 }} 
             animate={{ opacity: 1, y: 0 }} 
             transition={{ duration: 0.8, delay: 0.3 }} 
-            className="text-3xl xs:text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary via-pink-400 to-primaryDark leading-tight tracking-tight flex flex-wrap items-center justify-center gap-2 sm:gap-4 py-2 pb-4">
+            className="text-lg xs:text-xl sm:text-3xl md:text-5xl lg:text-7xl font-black mb-1 sm:mb-4 bg-clip-text text-transparent bg-gradient-to-r from-primary via-pink-400 to-primaryDark leading-normal tracking-tight flex flex-wrap items-center justify-center gap-1 sm:gap-2 py-1 sm:py-3">
             <Star size={48} className="inline-block text-primary drop-shadow align-middle" />
             Project Sitaare
           </motion.h1>
           
-          <motion.p initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.4 }} className="text-lg xs:text-xl sm:text-2xl md:text-3xl font-light text-gray-600 mb-8 max-w-4xl mx-auto leading-relaxed px-2">
+          <motion.p initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.4 }} className="text-xs xs:text-sm sm:text-lg md:text-2xl font-semibold text-gray-800 mb-1 sm:mb-4 max-w-2xl mx-auto leading-relaxed px-1">
             Where Every Star Finds Its Sky
           </motion.p>
           
-          <motion.p initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.5 }} className="text-base xs:text-lg sm:text-xl text-gray-500 leading-relaxed max-w-3xl mx-auto mb-4 sm:mb-6 px-2 sm:px-0">
+          <motion.p initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.5 }} className="text-xs xs:text-xs sm:text-base text-gray-700 leading-relaxed max-w-xl mx-auto mb-1 sm:mb-2 px-1 sm:px-0">
             A transformative residential facility for girls aged 6–18, creating safe sanctuaries where dreams flourish and futures are built with purpose, care, and boundless possibilities.
           </motion.p>
 
@@ -122,13 +122,13 @@ const Home = () => {
           <ImpactCounter />
 
           {/* Professional CTA Buttons */}
-          <div className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6 mt-6 sm:mt-8 w-full">
+          <div className="flex flex-col sm:flex-row justify-center gap-2 sm:gap-4 mt-2 sm:mt-4 w-full">
             <Link to="/collaborate/get-involved" className="group">
               <motion.button
                 variants={buttonVariants}
                 whileHover="hover"
                 whileTap="tap"
-                className="group relative bg-primary hover:bg-primaryDark text-white font-semibold px-12 py-4 rounded-full shadow-xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl overflow-hidden"
+                className="group relative bg-primary hover:bg-primaryDark text-white font-semibold px-6 py-3 sm:px-12 sm:py-4 rounded-full shadow-xl transition-all duration-300 w-full sm:w-auto overflow-hidden"
               >
                 <span className="relative z-10">Sponsor a Child</span>
                 <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
@@ -139,10 +139,11 @@ const Home = () => {
                 variants={buttonVariants}
                 whileHover="hover"
                 whileTap="tap"
-                className="group relative bg-transparent border-2 border-primary text-primary hover:bg-primary hover:text-white font-semibold px-12 py-4 rounded-full transition-all duration-300 transform hover:scale-105 overflow-hidden"
+                className="group relative bg-transparent border-2 border-primary text-primary hover:bg-primary hover:text-white font-semibold px-6 py-3 sm:px-12 sm:py-4 rounded-full transition-all duration-300 w-full sm:w-auto overflow-hidden"
+                style={{ minWidth: 120 }}
               >
                 <span className="relative z-10">Donate Now</span>
-                <div className="absolute inset-0 bg-primary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+                <div className="absolute inset-0 bg-primary pointer-events-none scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
               </motion.button>
             </Link>
           </div>
@@ -155,7 +156,7 @@ const Home = () => {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
-        className="py-16 sm:py-24 px-2 sm:px-6 md:px-12 max-w-7xl mx-auto"
+        className="py-16 sm:py-24 px-2 sm:px-6 md:px-12 max-w-7xl mx-auto bg-transparent"
         data-aos="fade-up"
       >
         {/* Heading and Paragraph Full Width with Image Placeholder */}
@@ -246,7 +247,7 @@ const Home = () => {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
-        className="py-16 sm:py-24 px-2 sm:px-6 md:px-12 bg-primaryLight"
+        className="py-16 sm:py-24 px-2 sm:px-6 md:px-12 bg-transparent"
         data-aos="fade-up"
       >
         <div className="max-w-6xl mx-auto">
@@ -269,20 +270,19 @@ const Home = () => {
                   <span className="font-bold text-rose-600">From this personal journey emerged a passionate vision:</span> to build a nurturing, empowering space where young girls can dream freely, grow holistically, and rebuild their lives with dignity and purpose.
                 </p>
               </motion.div>
-              <motion.div initial={{ opacity: 0, x: 40 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }} className="bg-gradient-to-br from-pink-50 to-rose-50 rounded-2xl p-4 sm:p-8 shadow-lg border border-pink-100">
                 <div className="text-center">
                   <div>
                     <img
                       src="/founder.jpg"
                       alt="Harsh Rao, Founder"
-                      className="w-28 sm:w-32 max-w-xs mx-auto rounded-3xl object-cover shadow-lg border-4 border-white aspect-[579/720]"
+                      className="w-36 sm:w-44 max-w-xs mx-auto rounded-3xl object-cover shadow-lg border-4 border-white aspect-[579/720]"
                       style={{ aspectRatio: '579/720' }}
                     />
                   </div>
                   <h3 className="text-xl font-bold text-gray-800 mb-2">Harsh Rao</h3>
                   <p className="text-primary font-medium">Founder, House of Humanity</p>
                 </div>
-              </motion.div>
+            
             </div>
           </motion.div>
         </div>
@@ -294,7 +294,7 @@ const Home = () => {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
-        className="py-8 sm:py-12 px-2 sm:px-4 md:px-8 bg-primary text-white relative overflow-hidden"
+        className="py-8 sm:py-12 px-2 sm:px-4 md:px-8 bg-primary  text-white relative overflow-hidden"
         data-aos="fade-up"
       >
         <div className="absolute inset-0 bg-black/10"></div>
@@ -323,7 +323,7 @@ const Home = () => {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
-        className="py-16 sm:py-24 px-2 sm:px-6 md:px-12 bg-primaryLight"
+        className="py-16 sm:py-24 px-2 sm:px-6 md:px-12 bg-transparent"
         data-aos="fade-up"
       >
         <div className="max-w-6xl mx-auto">
@@ -386,7 +386,7 @@ const Home = () => {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.2 }}
-      className="py-16 sm:py-24 px-2 sm:px-6 md:px-12 bg-primaryLight"
+      className="py-16 sm:py-24 px-2 sm:px-6 md:px-12 bg-transparent"
       data-aos="fade-up"
     >
       <div className="max-w-6xl mx-auto">
@@ -429,7 +429,7 @@ const Home = () => {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.2 }}
-      className="py-16 sm:py-24 px-2 sm:px-6 md:px-12 bg-primaryLight"
+      className="py-16 sm:py-24 px-2 sm:px-6 md:px-12 bg-transparent"
       data-aos="fade-up"
     >
       <div className="max-w-6xl mx-auto">
@@ -457,9 +457,6 @@ const Home = () => {
         <TestimonialsCarousel />
       </div>
     </motion.section>
-
-    {/* Divider */}
-    <SectionDivider />
 
     {/* Floating Action Button and Back to Top */}
     <FloatingActionButton />

@@ -14,6 +14,7 @@
     "lucide-react": "^0.511.0",
     "razorpay": "^2.9.6",
     "react": "^18.2.0",
+    "react-confetti": "^6.4.0",
     "react-countup": "^6.5.3",
     "react-dom": "^18.2.0",
     "react-icons": "^5.5.0",

@@ -6,6 +6,9 @@ import starsAnimation from '../../assets/stars.json';
 import { FaBook, FaAppleAlt, FaBirthdayCake, FaSmile, FaHeart, FaHandHoldingHeart, FaStar, FaUtensils, FaUserFriends, FaBrain, FaArrowUp } from 'react-icons/fa';
 import { useState, useEffect } from 'react';
 import config from '../../config/config';
+import Confetti from 'react-confetti';
+import { useRef } from 'react';
+import starSuccessAnimation from '../../assets/Star Success.json';
 
 const donateOptions = [
   {
@@ -134,8 +137,11 @@ function AnimatedCounter({ value, duration = 2 }) {
 
 const DonateForACause = () => {
   const [donateSuccess, setDonateSuccess] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [loadingIdx, setLoadingIdx] = useState(null); // for preset buttons
+  const [loadingCustom, setLoadingCustom] = useState(false); // for custom form
   const [error, setError] = useState('');
+  const [showCelebration, setShowCelebration] = useState(false);
+  const confettiTimeout = useRef(null);
 
   // Load Razorpay script
   useEffect(() => {
@@ -151,20 +157,25 @@ const DonateForACause = () => {
     };
   }, []);
 
-  const handleDonate = async (amount) => {
+  // idx is only provided for preset buttons, isCustom is true for custom form
+  const handleDonate = async (amount, idx = null, isCustom = false) => {
+    triggerCelebration();
     if (!amount || amount < 1) {
       setError("Please enter a valid donation amount");
       return;
     }
 
-    setLoading(true);
+    if (isCustom) {
+      setLoadingCustom(true);
+    } else {
+      setLoadingIdx(idx);
+    }
     setError('');
     setDonateSuccess(false);
 
     try {
       console.log('Creating order for amount:', amount);
       console.log('API URL:', `${config.API_BASE_URL}${config.API_ENDPOINTS.CREATE_ORDER}`);
-      
       // Step 1: Create order on backend
       const orderResponse = await fetch(`${config.API_BASE_URL}${config.API_ENDPOINTS.CREATE_ORDER}`, {
         method: 'POST',
@@ -182,7 +193,6 @@ const DonateForACause = () => {
       });
 
       console.log('Order response status:', orderResponse.status);
-      
       if (!orderResponse.ok) {
         throw new Error(`HTTP error! status: ${orderResponse.status}`);
       }
@@ -242,7 +252,11 @@ const DonateForACause = () => {
         },
         modal: {
           ondismiss: function() {
-            setLoading(false);
+            if (isCustom) {
+              setLoadingCustom(false);
+            } else {
+              setLoadingIdx(null);
+            }
           }
         }
       };
@@ -255,8 +269,21 @@ const DonateForACause = () => {
       console.error('Donation error:', error);
       setError(`Connection failed: ${error.message}. Please check if the backend server is running on ${config.API_BASE_URL}`);
     } finally {
-      setLoading(false);
+      if (isCustom) {
+        setLoadingCustom(false);
+      } else {
+        setLoadingIdx(null);
+      }
     }
+  };
+
+  // Show celebration as soon as donate is clicked
+  const triggerCelebration = () => {
+    setShowCelebration(true);
+    if (confettiTimeout.current) clearTimeout(confettiTimeout.current);
+    confettiTimeout.current = setTimeout(() => {
+      setShowCelebration(false);
+    }, 3500);
   };
 
   return (
@@ -267,6 +294,40 @@ const DonateForACause = () => {
       exit="exit"
       className="relative min-h-screen bg-gradient-to-br from-slate-50 to-pink-50 text-[#4B4B4B] px-2 sm:px-4 md:px-8 pb-24 overflow-x-hidden"
     >
+      {/* Celebration Confetti and Modal */}
+      {showCelebration && (
+        <>
+          <Confetti
+            width={window.innerWidth}
+            height={window.innerHeight}
+            numberOfPieces={350}
+            recycle={false}
+            gravity={0.25}
+            className="fixed top-0 left-0 w-screen h-screen z-[1000] pointer-events-none"
+          />
+          <div className="fixed inset-0 z-[1100] flex items-center justify-center bg-black/40">
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              transition={{ duration: 0.4 }}
+              className="bg-white rounded-3xl shadow-2xl p-8 flex flex-col items-center max-w-md mx-auto border-4 border-pink-200"
+            >
+              <div className="w-32 h-32 mb-4">
+                <Lottie animationData={starSuccessAnimation} loop={false} autoplay={true} />
+              </div>
+              <h2 className="text-2xl font-bold text-[#BC1782] mb-2 text-center">Thank You for Your Generosity!</h2>
+              <p className="text-lg text-gray-700 text-center mb-4">Your donation is making a real difference. Together, we help every Sitaare shine brighter!</p>
+              <button
+                onClick={() => setShowCelebration(false)}
+                className="mt-2 px-6 py-2 bg-[#BC1782] text-white rounded-full font-semibold shadow hover:bg-[#E94BA2] transition"
+              >
+                Close
+              </button>
+            </motion.div>
+          </div>
+        </>
+      )}
       {/* Error Display */}
       {error && (
         <div className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded shadow-lg max-w-md">
@@ -340,7 +401,7 @@ const DonateForACause = () => {
               }}
               whileHover={{ scale: 1.04, boxShadow: '0 8px 32px rgba(233,30,99,0.12)' }}
               whileTap={{ scale: 0.97 }}
-              className={`bg-white p-4 xs:p-6 md:p-8 rounded-3xl shadow-xl transition text-center relative border-2 ${item.highlight ? 'border-yellow-300' : 'border-pink-100'} overflow-hidden w-full max-w-xs mx-auto flex flex-col`}
+              className={`bg-white p-4 xs:p-6 md:p-8 rounded-3xl shadow-xl transition text-center relative border-2 ${item.highlight ? 'border-yellow-300' : 'border-pink-100'} overflow-hidden w-full max-w-xs mx-auto flex flex-col h-full`} // <-- add h-full and flex-col
             >
               {/* Highlight badge */}
               {item.highlight && (
@@ -348,74 +409,80 @@ const DonateForACause = () => {
                   Most Impactful
                 </div>
               )}
-              <div className="flex justify-center mb-4">
-                <Icon className="text-3xl xs:text-4xl" style={{ color: item.color }} />
-              </div>
-              <h3 className="text-base xs:text-lg sm:text-xl font-bold text-[#BC1782] mb-2 break-words">{item.title}</h3>
-              <p className="text-xs xs:text-sm sm:text-base text-gray-700 mb-4 min-h-[36px] sm:min-h-[48px] break-words">{item.description}</p>
-              {item.custom ? (
-                <form
-                  onSubmit={(e) => {
-                    e.preventDefault();
-                    const amount = parseInt(e.target.amount.value);
-                    handleDonate(amount);
-                  }}
-                  className="flex flex-col items-center gap-2 xs:gap-3"
-                >
-                  <input
-                    name="amount"
-                    type="number"
-                    placeholder="Enter Amount (INR)"
-                    className="border border-gray-300 rounded px-2 py-2 w-full focus:ring-2 focus:ring-pink-200 text-sm"
-                    min="100"
-                  />
-                  <button
-                    type="submit"
-                    disabled={loading}
-                    className={`bg-[#BC1782] hover:bg-[#E94BA2] text-white font-semibold px-4 py-2 rounded-md shadow-md transition relative overflow-hidden text-sm xs:text-base ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
-                  >
-                    {loading ? (
-                      <span className="flex items-center justify-center">
-                        <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                        </svg>
-                        Processing...
-                      </span>
-                    ) : (
-                      <>
-                        Donate Custom
-                        {donateSuccess && (
-                          <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 animate-bounce text-xl">🎉</span>
+              <div className="flex flex-col flex-grow justify-between h-full">
+                <div className="flex flex-col flex-grow">
+                  <div className="flex justify-center mb-4">
+                    <Icon className="text-3xl xs:text-4xl" style={{ color: item.color }} />
+                  </div>
+                  <h3 className="text-base xs:text-lg sm:text-xl font-bold text-[#BC1782] mb-2 break-words">{item.title}</h3>
+                  <p className="text-xs xs:text-sm sm:text-base text-gray-700 mb-4 min-h-[36px] sm:min-h-[48px] break-words" style={{ minHeight: '48px' }}>{item.description}</p>
+                </div>
+                <div className="mt-auto">
+                  {item.custom ? (
+                    <form
+                      onSubmit={(e) => {
+                        e.preventDefault();
+                        const amount = parseInt(e.target.amount.value);
+                        handleDonate(amount, null, true);
+                      }}
+                      className="flex flex-col items-center gap-2 xs:gap-3"
+                    >
+                      <input
+                        name="amount"
+                        type="number"
+                        placeholder="Enter Amount (INR)"
+                        className="border border-gray-300 rounded px-2 py-2 w-full focus:ring-2 focus:ring-pink-200 text-sm"
+                        min="100"
+                      />
+                      <button
+                        type="submit"
+                        disabled={loadingCustom}
+                        className={`bg-[#BC1782] hover:bg-[#E94BA2] text-white font-semibold px-4 py-2 rounded-md shadow-md transition relative overflow-hidden text-sm xs:text-base ${loadingCustom ? 'opacity-50 cursor-not-allowed' : ''}`}
+                      >
+                        {loadingCustom ? (
+                          <span className="flex items-center justify-center">
+                            <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                            </svg>
+                            Processing...
+                          </span>
+                        ) : (
+                          <>
+                            Donate Custom
+                            {donateSuccess && (
+                              <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 animate-bounce text-xl">🎉</span>
+                            )}
+                          </>
                         )}
-                      </>
-                    )}
-                  </button>
-                </form>
-              ) : (
-                <button
-                  onClick={() => handleDonate(item.amount)}
-                  disabled={loading}
-                  className={`bg-[#BC1782] hover:bg-[#E94BA2] text-white font-semibold px-4 py-2 rounded-md shadow-md transition relative overflow-hidden text-sm xs:text-base ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
-                >
-                  {loading ? (
-                    <span className="flex items-center justify-center">
-                      <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                      </svg>
-                      Processing...
-                    </span>
+                      </button>
+                    </form>
                   ) : (
-                    <>
-                      Donate ₹{item.amount.toLocaleString()}
-                      {donateSuccess && (
-                        <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 animate-bounce text-xl">🎉</span>
+                    <button
+                      onClick={() => handleDonate(item.amount, idx, false)}
+                      disabled={loadingIdx === idx}
+                      className={`bg-[#BC1782] hover:bg-[#E94BA2] text-white font-semibold px-4 py-2 rounded-md shadow-md transition relative overflow-hidden text-sm xs:text-base ${loadingIdx === idx ? 'opacity-50 cursor-not-allowed' : ''}`}
+                    >
+                      {loadingIdx === idx ? (
+                        <span className="flex items-center justify-center">
+                          <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                          </svg>
+                          Processing...
+                        </span>
+                      ) : (
+                        <>
+                          Donate ₹{item.amount.toLocaleString()}
+                          {donateSuccess && (
+                            <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 animate-bounce text-xl">🎉</span>
+                          )}
+                        </>
                       )}
-                    </>
+                    </button>
                   )}
-                </button>
-              )}
+                </div>
+              </div>
             </motion.div>
           );
         })}
@@ -423,13 +490,13 @@ const DonateForACause = () => {
 
       {/* Impact Counter Section */}
       <div className="relative z-10 max-w-4xl mx-auto mt-16 mb-12 px-2">
-        <div className="flex flex-col md:flex-row justify-center items-center gap-4 md:gap-8 py-8 w-full">
+        <div className="flex flex-col md:flex-row justify-center items-stretch gap-4 md:gap-8 py-8 w-full">
           {impactStats.map((stat, idx) => (
             <motion.div
               key={idx}
               initial={stat.animation.initial}
               animate={stat.animation.animate}
-              className={`group bg-gradient-to-br ${stat.bg} ${stat.border} border-2 rounded-3xl p-4 xs:p-6 md:p-8 shadow-xl hover:shadow-2xl transition-all duration-500 flex flex-col items-center w-full max-w-xs mx-auto md:w-1/3 ${stat.offset} relative`}
+              className={`group bg-gradient-to-br ${stat.bg} ${stat.border} border-2 rounded-3xl p-6 shadow-xl hover:shadow-2xl transition-all duration-500 flex flex-col items-center justify-between w-full md:w-[340px] h-[280px] relative`}
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.97 }}
             >
