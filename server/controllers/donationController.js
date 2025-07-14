@@ -1,7 +1,5 @@
 const Razorpay = require('razorpay');
 const crypto = require('crypto');
-const Donation = require('../models/Donation');
-const Beneficiary = require('../models/Beneficiary');
 const nodemailer = require('nodemailer');
 require('dotenv').config();
 
@@ -20,25 +18,24 @@ const transporter = nodemailer.createTransport({
 
 exports.createOrder = async (req, res) => {
   try {
+    console.log('Received body:', req.body); // Debug log
     const { amount, beneficiaryId, donorName, donorEmail, donorPhone } = req.body;
-    if (!amount || !beneficiaryId) {
-      return res.status(400).json({ success: false, error: 'Amount and beneficiary ID are required' });
+    if (!amount) {
+      return res.status(400).json({ success: false, error: 'Amount is required' });
     }
     if (typeof amount !== 'number' || amount <= 0) {
       return res.status(400).json({ success: false, error: 'Invalid amount' });
     }
-    const beneficiary = await Beneficiary.findById(beneficiaryId);
-    if (!beneficiary) {
-      return res.status(404).json({ success: false, error: 'Beneficiary not found' });
-    }
-    const shortBeneficiaryId = beneficiaryId.slice(0, 8);
+    // Use dummy beneficiaryId if not provided
+    const safeBeneficiaryId = beneficiaryId || 'default-beneficiary';
+    const shortBeneficiaryId = safeBeneficiaryId.slice(0, 8);
     const receipt = `don_${Date.now()}_${shortBeneficiaryId}`;
     const order = await razorpay.orders.create({
       amount: amount * 100,
       currency: 'INR',
       receipt,
       notes: {
-        beneficiaryId,
+        beneficiaryId: safeBeneficiaryId,
         donorName: donorName || 'Anonymous',
         donorEmail: donorEmail || '',
         donorPhone: donorPhone || '',
@@ -72,21 +69,8 @@ exports.verifyPayment = async (req, res) => {
     if (generatedSignature !== signature) {
       return res.status(400).json({ success: false, error: 'Invalid payment signature' });
     }
-    const existingDonation = await Donation.findOne({ paymentId });
-    if (existingDonation) {
-      return res.json({ success: true, message: 'Payment already recorded' });
-    }
-    const donation = new Donation({
-      beneficiaryId,
-      amount: amount / 100,
-      donorName,
-      donorEmail,
-      donorPhone,
-      paymentId,
-      orderId,
-      paymentStatus: 'completed',
-    });
-    await donation.save();
+    // Skip DB duplicate check and saving
+    // Always send emails
     const mailOptions = {
       from: process.env.EMAIL_USER,
       to: donorEmail,
@@ -171,21 +155,7 @@ exports.webhook = async (req, res) => {
       const orderId = order.entity.id;
       const amount = order.entity.amount / 100;
       const { beneficiaryId, donorName, donorEmail, donorPhone } = order.entity.notes;
-      const existingDonation = await Donation.findOne({ paymentId });
-      if (existingDonation) {
-        return res.json({ status: 'success', message: 'Duplicate payment ignored' });
-      }
-      const donation = new Donation({
-        beneficiaryId,
-        amount,
-        donorName,
-        donorEmail,
-        donorPhone,
-        paymentId,
-        orderId,
-        paymentStatus: 'completed',
-      });
-      await donation.save();
+      // Skip DB duplicate check and saving
       const mailOptions = {
         from: process.env.EMAIL_USER,
         to: donorEmail,
@@ -227,23 +197,6 @@ exports.webhook = async (req, res) => {
         };
         await transporter.sendMail(ownerMailOptions);
       } catch (emailError) {}
-    } else if (event === 'payment.failed') {
-      const { payment, order } = req.body.payload;
-      const paymentId = payment.entity.id;
-      const orderId = order.entity.id;
-      const errorDescription = payment.entity.error_description || 'Payment failed';
-      const donation = new Donation({
-        beneficiaryId: order.entity.notes.beneficiaryId,
-        amount: order.entity.amount / 100,
-        donorName: order.entity.notes.donorName,
-        donorEmail: order.entity.notes.donorEmail,
-        donorPhone: order.entity.notes.donorPhone,
-        paymentId,
-        orderId,
-        paymentStatus: 'failed',
-        error: errorDescription,
-      });
-      await donation.save();
     }
     res.json({ status: 'success' });
   } catch (error) {
