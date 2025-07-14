@@ -4,6 +4,9 @@ module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx,html}"],
   theme: {
     extend: {
+      screens: {
+        'xl2': '1200px',
+      },
       colors: {
         primary: '#BD1682', // Main pink
         primaryLight: '#F8AAD5', // Lightest pink

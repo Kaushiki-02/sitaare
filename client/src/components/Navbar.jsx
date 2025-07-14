@@ -128,7 +128,7 @@ const Navbar = () => {
           </div>
 
           {/* Desktop Nav */}
-          <div className="hidden md:flex space-x-3 text-xs font-medium ml-10">
+          <div className="hidden xl2:flex space-x-3 text-xs font-medium ml-10">
             {navItems.map((item) => {
               const isActive =
                 location.pathname === item.path ||
@@ -227,8 +227,8 @@ const Navbar = () => {
             })}
           </div>
 
-          {/* Mobile Button */}
-          <div className="md:hidden">
+          {/* Mobile/Hamburger Button */}
+          <div className="xl2:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="bg-primary hover:bg-primaryDark text-white p-2 rounded-lg shadow-md transition"
@@ -246,7 +246,7 @@ const Navbar = () => {
       {/* Mobile Nav Drawer */}
       {isOpen && (
         <div
-          className={`md:hidden backdrop-blur-md px-4 py-4 space-y-2 shadow-md transition-all duration-300 ${
+          className={`xl2:hidden backdrop-blur-md px-4 py-4 space-y-2 shadow-md transition-all duration-300 ${
             isScrolled ? "bg-white/80" : "bg-softBg/95"
           }`}
         >
