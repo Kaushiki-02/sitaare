@@ -11,7 +11,6 @@ import {
   FaArrowRight,
   FaHome,
   FaLaptopCode,
-  FaHandHoldingHeart,
   FaStar
 } from 'react-icons/fa';
 
