@@ -30,15 +30,15 @@ const milestones = [
 
 const Timeline = () => (
   <div className="max-w-2xl mx-auto py-8">
-    <div className="relative pl-20 sm:pl-8">
+    <div className="relative pl-12 sm:pl-8">
       {/* Mobile vertical bar */}
-<div className="absolute top-0 left-8 w-1 h-full bg-[#E94BA2] rounded block sm:hidden" style={{ zIndex: 0 }}></div>
-{/* Desktop vertical bar */}
-<div className="absolute top-0 -left-6 w-1 h-full bg-[#E94BA2] rounded hidden sm:block" style={{ zIndex: 0 }}></div>
-{milestones.map((m, idx) => (
-  <div key={idx} className="mb-10 last:mb-0 flex items-start">
-    <div className="absolute left-2 sm:-left-8 bg-white rounded-full p-2 shadow-md">
-
+      <div className="absolute top-0 left-2 w-1 h-full bg-[#E94BA2] rounded block sm:hidden" style={{ zIndex: 0 }}></div>
+      {/* Desktop vertical bar */}
+      <div className="absolute top-0 sm:-left-10 w-1 h-full bg-[#E94BA2] rounded hidden sm:block" style={{ zIndex: 0 }}></div>
+      {milestones.map((m, idx) => (
+        <div key={idx} className="mb-10 last:mb-0 flex items-start">
+          <div
+            className="absolute left-2 sm:-left-10 bg-white rounded-full p-2 shadow-md"
             data-aos="zoom-in"
             data-aos-delay={idx * 200}
             data-aos-duration="700"
