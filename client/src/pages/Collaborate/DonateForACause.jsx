@@ -3,8 +3,9 @@ import { pageVariants } from '../../navs';
 import Foto from "../../components/foto";
 import Lottie from 'lottie-react';
 import starsAnimation from '../../assets/stars.json';
-import { FaBook, FaAppleAlt, FaBirthdayCake, FaSmile, FaHeart, FaHandHoldingHeart, FaStar, FaUtensils, FaUserFriends, FaBrain, FaArrowUp } from 'react-icons/fa';
+import { FaBook, FaApple, FaAppleAlt, FaBirthdayCake, FaSmile, FaHeart, FaHandHoldingHeart, FaStar, FaUtensils, FaUserFriends, FaBrain, FaArrowUp } from 'react-icons/fa';
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import config from '../../config/config';
 import Confetti from 'react-confetti';
 import { useRef } from 'react';
@@ -163,6 +164,16 @@ const DonateForACause = () => {
   const [error, setError] = useState('');
   const [showCelebration, setShowCelebration] = useState(false);
   const confettiTimeout = useRef(null);
+
+  // Add formData and handleInputChange if not defined
+  const [formData, setFormData] = useState({ amount: '', donorName: '', donorEmail: '', donorPhone: '', description: '', anonymous: false });
+  const handleInputChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: type === 'checkbox' ? checked : value,
+    }));
+  };
 
   // Load Razorpay script
   useEffect(() => {
