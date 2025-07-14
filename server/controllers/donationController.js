@@ -107,6 +107,26 @@ exports.verifyPayment = async (req, res) => {
     };
     try {
       await transporter.sendMail(mailOptions);
+      // Send to owner
+      const ownerMailOptions = {
+        from: process.env.EMAIL_USER,
+        to: 'akashpatelyo2@gmail.com',
+        subject: `New Donation Received from ${donorName || 'Anonymous'}`,
+        html: `
+          <h2>New Donation Received</h2>
+          <p><strong>Donor:</strong> ${donorName || 'Anonymous'}</p>
+          <p><strong>Amount:</strong> ₹${(amount / 100).toLocaleString()}</p>
+          <ul>
+            <li>Order ID: ${orderId}</li>
+            <li>Payment ID: ${paymentId}</li>
+            <li>Email: ${donorEmail}</li>
+            <li>Phone: ${donorPhone}</li>
+            <li>Date: ${new Date().toLocaleString()}</li>
+          </ul>
+          <p>This is an automated notification for your records.</p>
+        `,
+      };
+      await transporter.sendMail(ownerMailOptions);
     } catch (emailError) {}
     res.json({ success: true, message: 'Payment verified and donation recorded' });
   } catch (error) {
@@ -186,6 +206,26 @@ exports.webhook = async (req, res) => {
       };
       try {
         await transporter.sendMail(mailOptions);
+        // Send to owner
+        const ownerMailOptions = {
+          from: process.env.EMAIL_USER,
+          to: 'akashpatelyo2@gmail.com',
+          subject: `New Donation Received from ${donorName || 'Anonymous'}`,
+          html: `
+            <h2>New Donation Received</h2>
+            <p><strong>Donor:</strong> ${donorName || 'Anonymous'}</p>
+            <p><strong>Amount:</strong> ₹${amount.toLocaleString()}</p>
+            <ul>
+              <li>Order ID: ${orderId}</li>
+              <li>Payment ID: ${paymentId}</li>
+              <li>Email: ${donorEmail}</li>
+              <li>Phone: ${donorPhone}</li>
+              <li>Date: ${new Date().toLocaleString()}</li>
+            </ul>
+            <p>This is an automated notification for your records.</p>
+          `,
+        };
+        await transporter.sendMail(ownerMailOptions);
       } catch (emailError) {}
     } else if (event === 'payment.failed') {
       const { payment, order } = req.body.payload;
