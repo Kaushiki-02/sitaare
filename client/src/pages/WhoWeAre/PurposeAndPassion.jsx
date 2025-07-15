@@ -9,13 +9,6 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import HohLogo from '../../assets/hoh_logo.png';
 
-// Placeholder image component
-const ImagePlaceholder = ({ alt = 'Image Placeholder', className = '' }) => (
-  <div className="bg-gradient-to-br from-purple-100 to-pink-100 flex items-center justify-center text-gray-500 text-xs rounded-xl" style={{ minHeight: 180 }}>
-    {alt}
-  </div>
-);
-
 const values = [
   { icon: <FaHandsHelping className="text-pink-500 text-2xl" />, title: 'Empathy First', desc: 'Designing solutions rooted in real-life needs and experiences.' },
   { icon: <FaBalanceScale className="text-blue-500 text-2xl" />, title: 'Accountability', desc: 'We operate transparently with clear, measurable outcomes.' },

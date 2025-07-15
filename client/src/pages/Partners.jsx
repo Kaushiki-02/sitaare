@@ -75,10 +75,6 @@ const fadeIn = {
 const stagger = {
   animate: { transition: { staggerChildren: 0.15 } }
 };
-const cardHover = {
-  hover: { scale: 1.04, boxShadow: '0 8px 32px rgba(233,30,99,0.12)' },
-  tap: { scale: 0.97 }
-};
 
 function AnimatedCounter({ value, duration = 1.2, ...props }) {
   const [count, setCount] = useState(0);
