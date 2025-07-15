@@ -1,14 +1,23 @@
-import { motion } from 'framer-motion';
-import { pageVariants } from '../../navs';
-import Lottie from 'lottie-react';
-import starsAnimation from '../../assets/stars.json';
-import { FaBook, FaApple, FaBirthdayCake, FaSmile, FaHeart, FaHandHoldingHeart, FaStar, FaUtensils, FaUserFriends, FaBrain, FaArrowUp } from 'react-icons/fa';
-import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import config from '../../config/config';
-import Confetti from 'react-confetti';
-import { useRef } from 'react';
-import starSuccessAnimation from '../../assets/Star Success.json';
+import { motion } from "framer-motion";
+import { pageVariants } from "../../navs";
+import Lottie from "lottie-react";
+import starsAnimation from "../../assets/stars.json";
+import {
+  FaBook,
+  FaApple,
+  FaBirthdayCake,
+  FaSmile,
+  FaHeart,
+  FaHandHoldingHeart,
+  FaStar,
+  FaUtensils,
+  FaUserFriends,
+  FaArrowUp,
+} from "react-icons/fa";
+import { useState, useEffect } from "react";
+import Confetti from "react-confetti";
+import { useRef } from "react";
+import starSuccessAnimation from "../../assets/Star Success.json";
 
 const donateOptions = [
   {
@@ -58,17 +67,10 @@ const donateOptions = [
     icon: FaBirthdayCake,
     color: "#FF8EB5",
   },
-  {
-    title: "Custom Donation",
-    amount: null, // Indicates custom amount
-    description: "Choose your own amount to support our mission.",
-    icon: FaStar,
-    color: "#D61A91",
-    custom: true,
-  },
+  
 ];
 
-const impactStats = [
+const impactStats = [ 
   {
     icon: <FaSmile className="text-pink-500 text-4xl impact-icon" />,
     label: "Girls Empowered",
@@ -109,7 +111,6 @@ const impactStats = [
       initial: { opacity: 0, x: 40 },
       animate: { opacity: 1, x: 0, transition: { duration: 0.7, delay: 0.2 } },
     },
-    // ... (other stats remain unchanged)
     iconAnim: "impact-wave",
     offset: "md:-mt-8",
   },
@@ -135,7 +136,8 @@ const testimonials = [
 
 function AnimatedCounter({ value, duration = 2 }) {
   const [count, setCount] = useState(0);
-  useState(() => {
+  
+  useEffect(() => {
     let start = 0;
     const end = value;
     if (start === end) return;
@@ -151,170 +153,33 @@ function AnimatedCounter({ value, duration = 2 }) {
       }
     };
     step();
-  }, [value]);
+  }, [value, duration]);
+  
   return <span>{count}</span>;
 }
 
 const DonateForACause = () => {
-  const navigate = useNavigate();
-  const [donateSuccess, setDonateSuccess] = useState(false);
-  const [loadingIdx, setLoadingIdx] = useState(null); // for preset buttons
-  const [loadingCustom, setLoadingCustom] = useState(false); // for custom form
-  const [error, setError] = useState('');
   const [showCelebration, setShowCelebration] = useState(false);
+  const [selectedDonation, setSelectedDonation] = useState(null);
   const confettiTimeout = useRef(null);
 
-  // Add formData and handleInputChange if not defined
-  const [formData, setFormData] = useState({ amount: '', donorName: '', donorEmail: '', donorPhone: '', description: '', anonymous: false });
-  const handleInputChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: type === 'checkbox' ? checked : value,
-    }));
-  };
-
-  // Load Razorpay script
-  useEffect(() => {
-    const script = document.createElement('script');
-    script.src = 'https://checkout.razorpay.com/v1/checkout.js';
-    script.async = true;
-    document.body.appendChild(script);
-
-    return () => {
-      if (document.body.contains(script)) {
-        document.body.removeChild(script);
-      }
-    };
-  }, []);
-
-  // idx is only provided for preset buttons, isCustom is true for custom form
-  const handleDonate = async (amount, idx = null, isCustom = false) => {
+  const handleDonateClick = (donationOption) => {
+    setSelectedDonation(donationOption);
     triggerCelebration();
-    if (!amount || amount < 1) {
-      setError("Please enter a valid donation amount");
-      return;
-    }
-
-    if (isCustom) {
-      setLoadingCustom(true);
-    } else {
-      setLoadingIdx(idx);
-    }
-    setError('');
-    setDonateSuccess(false);
-
-    try {
-      console.log('Creating order for amount:', amount);
-      console.log('API URL:', `${config.API_BASE_URL}${config.API_ENDPOINTS.CREATE_ORDER}`);
-      // Step 1: Create order on backend
-      const orderResponse = await fetch(`${config.API_BASE_URL}${config.API_ENDPOINTS.CREATE_ORDER}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          amount: parseFloat(amount),
-          donorName: 'Anonymous Donor',
-          donorEmail: '',
-          donorPhone: '',
-          description: `Donation for Project Sitaare - ₹${amount}`,
-          anonymous: true
-        }),
-      });
-
-      console.log('Order response status:', orderResponse.status);
-      if (!orderResponse.ok) {
-        throw new Error(`HTTP error! status: ${orderResponse.status}`);
-      }
-
-      const orderData = await orderResponse.json();
-      console.log('Order data:', orderData);
-
-      if (!orderData.success) {
-        throw new Error(orderData.error || 'Failed to create order');
-      }
-
-      // Step 2: Initialize Razorpay payment
-      const options = {
-        key: orderData.data.keyId,
-        amount: orderData.data.amount,
-        currency: orderData.data.currency,
-        name: config.RAZORPAY.NAME,
-        description: `Donation for Project Sitaare - ₹${amount}`,
-        order_id: orderData.data.orderId,
-        handler: async function (response) {
-          try {
-            console.log('Payment response:', response);
-            // Step 3: Verify payment on backend
-            const verifyResponse = await fetch(`${config.API_BASE_URL}${config.API_ENDPOINTS.VERIFY_PAYMENT}`, {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-              },
-              body: JSON.stringify({
-                razorpay_order_id: response.razorpay_order_id,
-                razorpay_payment_id: response.razorpay_payment_id,
-                razorpay_signature: response.razorpay_signature,
-                donationId: orderData.donationId
-              }),
-            });
-
-            const verifyData = await verifyResponse.json();
-
-            if (verifyData.success) {
-              setDonateSuccess(true);
-              setTimeout(() => setDonateSuccess(false), 3000);
-            } else {
-              setError('Payment verification failed. Please contact support.');
-            }
-          } catch (verifyError) {
-            console.error('Payment verification error:', verifyError);
-            setError('Payment verification failed. Please contact support.');
-          }
-        },
-        prefill: {
-          name: '',
-          email: '',
-          contact: '',
-        },
-        theme: {
-          color: config.RAZORPAY.THEME_COLOR,
-        },
-        modal: {
-          ondismiss: function() {
-            if (isCustom) {
-              setLoadingCustom(false);
-            } else {
-              setLoadingIdx(null);
-            }
-          }
-        }
-      };
-
-      console.log('Razorpay options:', options);
-      const rzp = new window.Razorpay(options);
-      rzp.open();
-
-    } catch (error) {
-      console.error('Donation error:', error);
-      setError(`Connection failed: ${error.message}. Please check if the backend server is running!`);
-    } finally {
-      if (isCustom) {
-        setLoadingCustom(false);
-      } else {
-        setLoadingIdx(null);
-      }
-    }
   };
 
-  // Show celebration as soon as donate is clicked
+  const handleRedirectToDonate = () => {
+    // Redirect to HOH website donation page
+    window.open("https://hoh-demo-website.web.app/donate-for-a-cause", "_blank");
+    setShowCelebration(false);
+  };
+
   const triggerCelebration = () => {
     setShowCelebration(true);
     if (confettiTimeout.current) clearTimeout(confettiTimeout.current);
     confettiTimeout.current = setTimeout(() => {
       setShowCelebration(false);
-    }, 3500);
+    }, 5000);
   };
 
   return (
@@ -345,38 +210,37 @@ const DonateForACause = () => {
               className="bg-white rounded-3xl shadow-2xl p-8 flex flex-col items-center max-w-md mx-auto border-4 border-pink-200"
             >
               <div className="w-32 h-32 mb-4">
-                <Lottie animationData={starSuccessAnimation} loop={false} autoplay={true} />
+                <Lottie
+                  animationData={starSuccessAnimation}
+                  loop={false}
+                  autoplay={true}
+                />
               </div>
-              <h2 className="text-2xl font-bold text-[#BC1782] mb-2 text-center">Thank You for Your Generosity!</h2>
-              <p className="text-lg text-gray-700 text-center mb-4">Your donation is making a real difference. Together, we help every Sitaare shine brighter!</p>
-              <button
-                onClick={() => setShowCelebration(false)}
-                className="mt-2 px-6 py-2 bg-[#BC1782] text-white rounded-full font-semibold shadow hover:bg-[#E94BA2] transition"
-              >
-                Close
-              </button>
+              <h2 className="text-2xl font-bold text-[#BC1782] mb-2 text-center">
+                Thank You for Your Generosity!
+              </h2>
+              <p className="text-lg text-gray-700 text-center mb-4">
+                Your donation is making a real difference. Together, we help
+                every Sitaare shine brighter!
+              </p>
+              <div className="flex gap-4">
+                <button
+                  onClick={handleRedirectToDonate}
+                  className="px-6 py-3 bg-[#BC1782] text-white rounded-full font-semibold shadow hover:bg-[#E94BA2] transition flex items-center gap-2"
+                >
+                  <FaHeart />
+                  Donate Now
+                </button>
+                <button
+                  onClick={() => setShowCelebration(false)}
+                  className="px-6 py-3 bg-gray-200 text-gray-700 rounded-full font-semibold shadow hover:bg-gray-300 transition"
+                >
+                  Close
+                </button>
+              </div>
             </motion.div>
           </div>
         </>
-      )}
-      {/* Error Display */}
-      {error && (
-        <div className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded shadow-lg max-w-md">
-          {error}
-          <button 
-            onClick={() => setError('')} 
-            className="ml-2 text-red-700 hover:text-red-900 font-bold"
-          >
-            ×
-          </button>
-        </div>
-      )}
-
-      {/* Success Display */}
-      {donateSuccess && (
-        <div className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded shadow-lg max-w-md">
-          Thank you for your donation! Payment successful. 🎉
-        </div>
       )}
 
       {/* Hero Section */}
@@ -407,46 +271,7 @@ const DonateForACause = () => {
           and hope for every Sitaare girl. Choose your impact below and help a
           star shine bright.
         </motion.p>
-        {/* Donor Details Form */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.4 }}
-          className="relative z-10 bg-white p-6 rounded-3xl shadow-xl border border-pink-100 max-w-2xl w-full mx-auto mb-8"
-        >
-          <h3 className="text-lg sm:text-xl font-bold text-[#BC1782] mb-4 text-center">
-            Your Details
-          </h3>
-          {error && (
-            <div className="text-red-500 text-center mb-4 text-sm">{error}</div>
-          )}
-          <div className="grid grid-cols-1 gap-4">
-            <input
-              type="text"
-              name="name"
-              value={formData.name}
-              onChange={handleInputChange}
-              placeholder="Your full name"
-              className="border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-pink-200 text-sm"
-            />
-            <input
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleInputChange}
-              placeholder="Your email address"
-              className="border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-pink-200 text-sm"
-            />
-            <input
-              type="tel"
-              name="phone"
-              value={formData.phone}
-              onChange={handleInputChange}
-              placeholder="Your phone number"
-              className="border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-pink-200 text-sm"
-            />
-          </div>
-        </motion.div>
+        
         {/* Inspiring Quote */}
         <motion.blockquote
           initial={{ opacity: 0 }}
@@ -454,8 +279,8 @@ const DonateForACause = () => {
           transition={{ delay: 0.5, duration: 1 }}
           className="relative z-10 italic text-base xs:text-lg sm:text-xl text-[#BC1782] text-center mt-4 font-semibold border-l-4 border-[#E94BA2] pl-4 mx-auto max-w-2xl px-2"
         >
-          “Even a single star can light the dark sky — your kindness helps them
-          shine.”
+          "Even a single star can light the dark sky — your kindness helps them
+          shine."
         </motion.blockquote>
       </div>
 
@@ -488,7 +313,9 @@ const DonateForACause = () => {
                 boxShadow: "0 8px 32px rgba(233,30,99,0.12)",
               }}
               whileTap={{ scale: 0.97 }}
-              className={`bg-white p-4 xs:p-6 md:p-8 rounded-3xl shadow-xl transition text-center relative border-2 ${item.highlight ? 'border-yellow-300' : 'border-pink-100'} overflow-hidden w-full max-w-xs mx-auto flex flex-col h-full`} // <-- add h-full and flex-col
+              className={`bg-white p-4 xs:p-6 md:p-8 rounded-3xl shadow-xl transition text-center relative border-2 ${
+                item.highlight ? "border-yellow-300" : "border-pink-100"
+              } overflow-hidden w-full max-w-xs mx-auto flex flex-col h-full`}
             >
               {item.highlight && (
                 <div className="absolute top-4 right-4 bg-yellow-300 text-yellow-900 font-bold px-3 py-1 rounded-full text-xs shadow-md animate-pulse z-20">
@@ -498,75 +325,28 @@ const DonateForACause = () => {
               <div className="flex flex-col flex-grow justify-between h-full">
                 <div className="flex flex-col flex-grow">
                   <div className="flex justify-center mb-4">
-                    <Icon className="text-3xl xs:text-4xl" style={{ color: item.color }} />
+                    <Icon
+                      className="text-3xl xs:text-4xl"
+                      style={{ color: item.color }}
+                    />
                   </div>
-                  <h3 className="text-base xs:text-lg sm:text-xl font-bold text-[#BC1782] mb-2 break-words">{item.title}</h3>
-                  <p className="text-xs xs:text-sm sm:text-base text-gray-700 mb-4 min-h-[36px] sm:min-h-[48px] break-words" style={{ minHeight: '48px' }}>{item.description}</p>
+                  <h3 className="text-base xs:text-lg sm:text-xl font-bold text-[#BC1782] mb-2 break-words">
+                    {item.title}
+                  </h3>
+                  <p
+                    className="text-xs xs:text-sm sm:text-base text-gray-700 mb-4 min-h-[36px] sm:min-h-[48px] break-words"
+                    style={{ minHeight: "48px" }}
+                  >
+                    {item.description}
+                  </p>
                 </div>
                 <div className="mt-auto">
-                  {item.custom ? (
-                    <form
-                      onSubmit={(e) => {
-                        e.preventDefault();
-                        const amount = parseInt(e.target.amount.value);
-                        handleDonate(amount, null, true);
-                      }}
-                      className="flex flex-col items-center gap-2 xs:gap-3"
-                    >
-                      <input
-                        name="amount"
-                        type="number"
-                        placeholder="Enter Amount (INR)"
-                        className="border border-gray-300 rounded px-2 py-2 w-full focus:ring-2 focus:ring-pink-200 text-sm"
-                        min="100"
-                      />
-                      <button
-                        type="submit"
-                        disabled={loadingCustom}
-                        className={`bg-[#BC1782] hover:bg-[#E94BA2] text-white font-semibold px-4 py-2 rounded-md shadow-md transition relative overflow-hidden text-sm xs:text-base ${loadingCustom ? 'opacity-50 cursor-not-allowed' : ''}`}
-                      >
-                        {loadingCustom ? (
-                          <span className="flex items-center justify-center">
-                            <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                            </svg>
-                            Processing...
-                          </span>
-                        ) : (
-                          <>
-                            Donate Custom
-                            {donateSuccess && (
-                              <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 animate-bounce text-xl">🎉</span>
-                            )}
-                          </>
-                        )}
-                      </button>
-                    </form>
-                  ) : (
-                    <button
-                      onClick={() => handleDonate(item.amount, idx, false)}
-                      disabled={loadingIdx === idx}
-                      className={`bg-[#BC1782] hover:bg-[#E94BA2] text-white font-semibold px-4 py-2 rounded-md shadow-md transition relative overflow-hidden text-sm xs:text-base ${loadingIdx === idx ? 'opacity-50 cursor-not-allowed' : ''}`}
-                    >
-                      {loadingIdx === idx ? (
-                        <span className="flex items-center justify-center">
-                          <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                          </svg>
-                          Processing...
-                        </span>
-                      ) : (
-                        <>
-                          Donate ₹{item.amount.toLocaleString()}
-                          {donateSuccess && (
-                            <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 animate-bounce text-xl">🎉</span>
-                          )}
-                        </>
-                      )}
-                    </button>
-                  )}
+                  <button
+                    onClick={() => handleDonateClick(item)}
+                    className="bg-[#BC1782] hover:bg-[#E94BA2] text-white font-semibold px-4 py-2 rounded-md shadow-md transition text-sm xs:text-base w-full"
+                  >
+                    {item.custom ? "Donate Custom" : `Donate ₹${item.amount.toLocaleString()}`}
+                  </button>
                 </div>
               </div>
             </motion.div>
@@ -681,12 +461,7 @@ const DonateForACause = () => {
       {/* Sticky Donate CTA for mobile */}
       <div className="fixed bottom-2 left-0 w-full flex justify-center z-50 sm:hidden pointer-events-none px-2">
         <button
-          onClick={() =>
-            window.scrollTo({
-              top: document.body.scrollHeight,
-              behavior: "smooth",
-            })
-          }
+          onClick={() => window.open("https://hoh-demo-website.web.app/donate-for-a-cause", "_blank")}
           className="pointer-events-auto bg-gradient-to-r from-[#BC1782] to-[#E94BA2] text-white font-bold px-4 py-2 rounded-full shadow-lg animate-pulse text-base border-2 border-white w-full max-w-xs"
         >
           Donate Now →
@@ -713,7 +488,7 @@ function TestimonialCarousel({ testimonials }) {
         transition={{ duration: 0.5 }}
         className="text-lg text-gray-700 italic mb-4 text-center min-h-[60px]"
       >
-        “{testimonials[idx].text}”
+        "{testimonials[idx].text}"
       </motion.p>
       <div className="flex items-center gap-2 mb-2">
         <span className="text-[#BC1782] font-bold">
