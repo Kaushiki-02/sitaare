@@ -1,9 +1,8 @@
 import { motion } from 'framer-motion';
 import { pageVariants } from '../../navs';
-import Foto from "../../components/foto";
 import Lottie from 'lottie-react';
 import starsAnimation from '../../assets/stars.json';
-import { FaBook, FaAppleAlt, FaBirthdayCake, FaSmile, FaHeart, FaHandHoldingHeart, FaStar, FaUtensils, FaUserFriends, FaBrain, FaArrowUp } from 'react-icons/fa';
+import { FaBook, FaApple, FaBirthdayCake, FaSmile, FaHeart, FaHandHoldingHeart, FaStar, FaUtensils, FaUserFriends, FaBrain, FaArrowUp } from 'react-icons/fa';
 import { useState, useEffect } from 'react';
 import config from '../../config/config';
 import Confetti from 'react-confetti';
