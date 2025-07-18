@@ -94,24 +94,7 @@ const Contact = () => {
         </div>
       </div>
 
-      {/* CTA Section */}
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.7 }}
-        className="max-w-2xl mx-auto text-center mt-16"
-      >
-        <h2 className="text-2xl font-bold mb-4 text-primaryDark">Let’s Connect & Make a Difference</h2>
-        <motion.a
-          href="mailto:info@houseofhumanity.in"
-          whileHover={{ scale: 1.07, boxShadow: '0 8px 32px rgba(233,30,99,0.18)' }}
-          whileTap={{ scale: 0.97 }}
-          className="inline-block bg-gradient-to-r from-pink-500 to-purple-500 text-white px-8 py-4 rounded-full font-bold text-lg shadow-lg mt-4"
-        >
-          Email Us Now
-        </motion.a>
-      </motion.div>
+      
     </div>
   );
 };

@@ -72,7 +72,7 @@ export default function Milestones() {
         transition={{ duration: 0.8 }}
         className="text-center py-16 px-4 bg-gradient-to-r from-pink-600 to-purple-600 text-white relative overflow-hidden"
       >
-        <FaStar className="text-6xl mx-auto mb-4 animate-pulse" />
+        <FaStar className="text-5xl text-primaryLight mx-auto mb-5" />
         <h1 className="text-4xl sm:text-5xl font-bold mb-4">Our Aspirational Milestones</h1>
         <p className="text-lg max-w-2xl mx-auto mb-6">
           Every step forward is a star shining brighter. Here’s how we help our Sitaare reach for the sky.

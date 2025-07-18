@@ -184,13 +184,9 @@ export default function Outcomes() {
       {/* Hero Section */}
       <div className="relative z-20 py-20 lg:py-32 bg-gradient-to-r from-purple-900/90 to-pink-900/90">
         <div className="max-w-6xl mx-auto text-center relative">
-          <motion.div
-            variants={floatingAnimation}
-            animate="animate"
-            className="absolute -top-12 left-1/2 transform -translate-x-1/2 -translate-y-8 text-4xl"
-          >
-            <FaStar className="text-pink-100 w-18 " />
-          </motion.div>
+          <div className="absolute -top-12 left-1/2 transform -translate-x-1/2 -translate-y-8 text-4xl mb-5">
+            <FaStar className="text-5xl text-primaryLight mx-auto mb-5" />
+          </div>
 
           <motion.h1
             variants={fadeIn}
