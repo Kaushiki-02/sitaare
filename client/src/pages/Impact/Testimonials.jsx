@@ -162,19 +162,8 @@ export default function Testimonials() {
       <div className="relative overflow-hidden w-full">
         <div className="absolute inset-0 bg-gradient-to-r from-purple-900/90 to-pink-900/90 z-10 w-full h-full"></div>
         <div className="relative z-20 w-full text-center py-14 lg:py-20">
-          <motion.div
-            animate={{
-              y: [-10, 10],
-              transition: {
-                repeat: Infinity,
-                repeatType: "reverse",
-                duration: 2,
-                ease: "easeInOut",
-              },
-            }}
-            className="mb-5"
-          >
-            <FaStar className="text-5xl text-pink-100 mx-auto" />
+          <motion.div className="mb-5">
+            <FaStar className="text-5xl text-primaryLight mx-auto mb-5" />
           </motion.div>
           <motion.h1
             variants={fadeIn}

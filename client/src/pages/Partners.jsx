@@ -120,7 +120,7 @@ export default function Partners() {
         className="text-center py-16 px-4 bg-gradient-to-r from-pink-600 to-purple-600 text-white relative overflow-hidden"
         data-aos="fade-up"
       >
-        <FaHandsHelping className="text-6xl mx-auto mb-4 animate-pulse" />
+        <FaStar className="text-5xl text-primaryLight mx-auto mb-5" />
         <h1 className="text-4xl sm:text-5xl font-bold mb-4">Partner With Us</h1>
         <p className="text-lg max-w-2xl mx-auto mb-6">
           Let’s co-create a nurturing ecosystem for every Sitaare. Your partnership can change lives.
