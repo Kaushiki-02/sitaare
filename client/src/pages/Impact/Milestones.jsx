@@ -22,10 +22,20 @@ const supportItems = [
 ];
 
 const counters = [
-  { label: 'Girls Supported', value: 30, icon: FaSmile, color: '#E94BA2', style: { filter: 'drop-shadow(0 0 6px #E94BA2)' } },
-  { label: 'Milestones Achieved', value: 7, icon: FaStar, color: '#FFD700', style: { filter: 'drop-shadow(0 0 6px #FFD700)' } },
-  { label: 'Years of Impact', value: 3, icon: FaHeart, color: '#A78BFA', style: { filter: 'drop-shadow(0 0 6px #A78BFA)' } },
+  { label: 'Girls Supported', value: 25, icon: FaSmile, color: '#E94BA2', style: { filter: 'drop-shadow(0 0 6px #E94BA2)' } },
+  { label: 'Partnerships', value: 7, icon: FaStar, color: '#FFD700', style: { filter: 'drop-shadow(0 0 6px #FFD700)' } },
+  { label: 'Years of Impact', value: getYearsOfImpact(), icon: FaHeart, color: '#A78BFA', style: { filter: 'drop-shadow(0 0 6px #A78BFA)' } },
 ];
+
+function getYearsOfImpact() {
+  const start = new Date('2025-03-25');
+  const now = new Date();
+  if (now < start) return 0;
+  const msInYear = 1000 * 60 * 60 * 24 * 365.25;
+  const diff = now - start;
+  const years = diff / msInYear;
+  return Math.floor(years * 10) / 10; // rounded down to 1 decimal
+}
 
 const fadeIn = {
   initial: { opacity: 0, y: 30 },
@@ -141,14 +151,14 @@ export default function Milestones() {
               viewport={{ once: true, amount: 0.6 }}
               transition={{ delay: idx * 0.1, duration: 0.7 }}
               className="mb-12 flex items-start gap-6 relative"
-          >
+            >
               <div className="w-12 h-12 rounded-full flex items-center justify-center shadow-lg absolute -left-8 top-0 bg-white border-4" style={{ borderColor: m.color }}>
                 <m.icon className="text-xl" style={{ color: m.color }} />
               </div>
               <div className="ml-8 bg-white rounded-xl shadow p-6 w-full">
                 <h3 className="text-xl font-bold mb-2" style={{ color: m.color }}>{m.milestone}</h3>
                 <p className="text-gray-700 mb-1">{m.goal}</p>
-                <span className="text-sm text-gray-500">{m.timeline}</span>
+                {/* <span className="text-sm text-gray-500">{m.timeline}</span> */}
               </div>
             </motion.div>
           ))}

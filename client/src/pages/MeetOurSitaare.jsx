@@ -165,14 +165,6 @@ const MeetOurSitaare = () => {
                 variants={cardHover}
                 className="bg-white rounded-2xl shadow-lg p-6 text-center border-t-4 border-pink-400 hover:shadow-xl transition-all duration-300 h-full flex flex-col"
               >
-                <motion.img
-                  src={b.image}
-                  alt={b.name}
-                  className="w-24 h-24 mx-auto rounded-full object-cover mb-4 border-4 border-pink-200"
-                  initial={{ scale: 0.8, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  transition={{ delay: 0.2 + idx * 0.1, duration: 0.5, type: 'spring' }}
-                />
                 <h3 className="text-lg font-bold mb-1 text-gray-800">{b.name}, <span className="text-sm text-gray-500">{b.age} yrs</span></h3>
                 <p className="italic text-pink-600 mb-2">"{b.quote}"</p>
                 <p className="text-gray-600 text-sm flex-grow">{b.story}</p>
