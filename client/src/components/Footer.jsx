@@ -65,6 +65,8 @@ const Footer = () => {
               <div className="flex gap-3">
                 <a
                   href="https://www.facebook.com/houseofhumanityfoundation/"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="w-8 h-8 bg-[#BC1782]/10 hover:bg-[#BC1782] rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 group"
                 >
                   <FaFacebook className="text-[#BC1782] group-hover:text-white text-sm" />
@@ -72,12 +74,16 @@ const Footer = () => {
 
                 <a
                   href="https://www.instagram.com/sitaare_vadodara/"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="w-8 h-8 bg-[#BC1782]/10 hover:bg-[#BC1782] rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 group"
                 >
                   <FaInstagram className="text-[#BC1782] group-hover:text-white text-sm" />
                 </a>
                 <a
-                  href="#https://www.linkedin.com/company/house-of-humanity-charitable-trust/?originalSubdomain=in"
+                  href="https://www.linkedin.com/company/house-of-humanity-charitable-trust/?originalSubdomain=in"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="w-8 h-8 bg-[#BC1782]/10 hover:bg-[#BC1782] rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 group"
                 >
                   <FaLinkedin className="text-[#BC1782] group-hover:text-white text-sm" />

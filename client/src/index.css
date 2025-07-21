@@ -63,3 +63,8 @@ html, body, #root {
 @keyframes impact-beat { 0% { transform: scale(1); } 60% { transform: scale(1.2); } 100% { transform: scale(1); } }
 .impact-wave { animation: impact-wave 1.5s infinite linear; }
 @keyframes impact-wave { 0% { transform: rotate(-10deg); } 50% { transform: rotate(10deg); } 100% { transform: rotate(-10deg); } }
+
+/* Hide the Elfsight branding */
+.elfsight-app-77ef122f-6821-4c50-9073-0924a5711990 .eapps-widget-powered-by {
+  display: none !important;
+}

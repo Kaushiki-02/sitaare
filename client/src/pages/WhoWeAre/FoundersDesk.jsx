@@ -38,25 +38,25 @@ const FoundersDesk = () => {
 
   const milestones = [
     {
-      year: "2015",
+      
       title: "The Vision was Born",
       description: "A dream to empower every girl child with education and opportunities",
       icon: <FaStar className="text-2xl text-[#D61A91]" />
     },
     {
-      year: "2018",
+      
       title: "First 10 Girls Supported",
       description: "Our journey began with supporting 10 underprivileged girls",
       icon: <FaGraduationCap className="text-2xl text-[#D61A91]" />
     },
     {
-      year: "2020",
+     
       title: "Community Expansion",
       description: "Reached 100+ families across multiple communities",
       icon: <FaUsers className="text-2xl text-[#D61A91]" />
     },
     {
-      year: "2023",
+      
       title: "Global Impact",
       description: "Expanding our mission to create worldwide change",
       icon: <FaGlobe className="text-2xl text-[#D61A91]" />
