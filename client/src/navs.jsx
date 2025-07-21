@@ -100,7 +100,7 @@ function AnimatedRoutes() {
             </motion.div>
           }
         />
-        <Route
+        {/* <Route
           path="/news-and-events"
           element={
             <motion.div
@@ -113,7 +113,7 @@ function AnimatedRoutes() {
               <NewsAndEvents />
             </motion.div>
           }
-        />
+        /> */}
         <Route
           path="/contact-us"
           element={
@@ -142,7 +142,7 @@ function AnimatedRoutes() {
             </motion.div>
           }
         />
-        <Route
+        {/* <Route
           path="/impact/success-stories/testimonials"
           element={
             <motion.div
@@ -155,8 +155,8 @@ function AnimatedRoutes() {
               <Testimonials />
             </motion.div>
           }
-        />
-        <Route
+        /> */}
+        {/* <Route
           path="/impact/success-stories/outcomes"
           element={
             <motion.div
@@ -169,7 +169,7 @@ function AnimatedRoutes() {
               <Outcomes />
             </motion.div>
           }
-        />
+        /> */}
         <Route
           path="/collaborate/donate-for-a-cause"
           element={

@@ -50,10 +50,10 @@ const Navbar = () => {
       label: "Our Aspiration",
       path: "/our-aspiration",
     },
-    {
-      label: "News and Events",
-      path: "/news-and-events",
-    },
+    // {
+    //   label: "News and Events",
+    //   path: "/news-and-events",
+    // },
     {
       label: "Impact",
       sub: [
@@ -62,11 +62,11 @@ const Navbar = () => {
           label: "Success stories",
           
           sub: [
-            {
-              label: "Testimonials",
-              path: "/impact/success-stories/testimonials",
-            },
-            { label: "Outcomes", path: "/impact/success-stories/outcomes" },
+            // {
+            //   label: "Testimonials",
+            //   path: "/impact/success-stories/testimonials",
+            // },
+            // { label: "Outcomes", path: "/impact/success-stories/outcomes" },
           ],
         },
       ],
