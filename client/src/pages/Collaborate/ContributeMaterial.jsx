@@ -83,7 +83,7 @@ const materialCategories = [
 const impactStats = [
   { number: 500, label: "Items Donated", icon: <FaBox />, color: "#3B82F6" },
   { number: 150, label: "Families Helped", icon: <FaUsers />, color: "#EC4899" },
-  { number: 25, label: "Partners", icon: <FaHandsHelping />, color: "#10B981" },
+  { number: 7, label: "Partners", icon: <FaHandsHelping />, color: "#10B981" },
   { number: 1000, label: "Smiles Created", icon: <FaSmile />, color: "#F59E0B" }
 ];
 
