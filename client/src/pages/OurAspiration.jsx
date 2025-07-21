@@ -146,7 +146,7 @@ const OurAspiration = () => {
             <motion.div variants={fadeIn} className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <div className="flex items-center gap-2 text-primaryLight">
                 <FaUsers className="text-2xl" />
-                <span className="text-lg font-semibold">30+ Girls Supported</span>
+                <span className="text-lg font-semibold">25 Girls Supported</span>
               </div>
               <div className="hidden sm:block w-px h-8 bg-primaryLight"></div>
               <div className="flex items-center gap-2 text-primaryLight">

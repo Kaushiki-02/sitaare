@@ -3,7 +3,7 @@ import { FaStar, FaHeart, FaGraduationCap, FaHome, FaSmile, FaAppleAlt, FaLaptop
 import { useState, useEffect } from 'react';
 
 const milestones = [
-  { icon: FaHome, milestone: "Safe Residence", goal: "30+ girls", timeline: "Year 1", color: '#E94BA2' },
+  { icon: FaHome, milestone: "Safe Residence", goal: "25 girls", timeline: "Year 1", color: '#E94BA2' },
   { icon: FaGraduationCap, milestone: "100% School Enrollment", goal: "All children in school", timeline: "Year 1", color: '#BC1782' },
   { icon: FaLaptop, milestone: "Digital Literacy", goal: "Tablets + classes", timeline: "Year 1", color: '#7C0C55' },
   { icon: FaSmile, milestone: "Mental Wellness", goal: "Counseling for all girls", timeline: "Ongoing", color: '#FF8EB5' },

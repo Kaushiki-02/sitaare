@@ -443,7 +443,7 @@ const Home = () => {
               className="inline-flex items-center bg-primaryLight rounded-full px-6 py-3 mb-8"
             >
               <div className="w-2 h-2 bg-primary rounded-full mr-3"></div>
-              <span className="text-primaryDark font-semibold text-sm tracking-wide uppercase">Follow Our Journey</span>
+              <span className="text-primaryDark font-semibold text-sm tracking-wide uppercase">Follow Our Instagram</span>
             </motion.div>
             <motion.h2
               initial={{ opacity: 0, y: 40 }}
@@ -452,10 +452,10 @@ const Home = () => {
               transition={{ duration: 0.7, delay: 0.1 }}
               className="text-4xl lg:text-5xl font-bold text-primaryDark"
             >
-              Our <span className="text-primary">Instagram</span>
+              Check out our <span className="text-primary">Instagram</span>
             </motion.h2>
         </div>
-        <div className="rounded-2xl shadow-xl overflow-hidden border border-pink-100">
+        <div className="rounded-2xl shadow-xl overflow-hidden border border-pink-100 bg-white">
           <InstagramFeed />
         </div>
       </div>
