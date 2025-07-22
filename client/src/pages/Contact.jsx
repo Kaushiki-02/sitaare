@@ -74,7 +74,7 @@ const Contact = () => {
             <Globe className="mt-1 text-[#BC1782]" />
             <p>
               <span className="font-semibold">Website:</span><br />
-              <a href="https://www.sitaare.org" target="_blank" rel="noreferrer" className="hover:underline text-primaryDark transition-colors duration-200" data-aos="zoom-in" tabIndex={0}>
+              <a href="https://sitaare.in" target="_blank" rel="noreferrer" className="hover:underline text-primaryDark transition-colors duration-200" data-aos="zoom-in" tabIndex={0}>
                 www.sitaare.org
               </a>
             </p>

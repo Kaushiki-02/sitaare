@@ -124,7 +124,7 @@ const Navbar = () => {
           {/* Logo */}
           <div className="flex items-center space-x-3">
             <a
-              href="https://hoh-demo-website.web.app/"
+              href="https://houseofhumanity.in/"
               onClick={handleHohLogoClick}
               target="_blank"
               rel="noopener noreferrer"
