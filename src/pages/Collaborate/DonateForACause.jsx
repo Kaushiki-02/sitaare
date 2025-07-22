@@ -234,7 +234,7 @@ const DonateForACause = () => {
   };
 
   const handleRedirectToDonate = () => {
-    let url = `https://houseofhumanity.in/donate-for-a-cause`;
+    let url = `https://houseofhumanity.org/donate-for-a-cause`;
     if (selectedDonation) {
       const queryParams = new URLSearchParams({
         amount: selectedDonation.amount
@@ -499,7 +499,7 @@ const DonateForACause = () => {
               about our comprehensive programs at House of Humanity.
             </motion.p>
             <motion.a
-              href={"https://houseofhumanity.in/"}
+              href={"https://houseofhumanity.org/"}
               target="_blank"
               rel="noopener noreferrer"
               initial={{ opacity: 0, scale: 0.9 }}

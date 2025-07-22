@@ -31,7 +31,7 @@ const Navbar = () => {
     // If scrollY is 0, the default <a> tag behavior will proceed, opening the link.
   };
 
-   // Inject global padding-top to body to prevent navbar overlap
+  // Inject global padding-top to body to prevent navbar overlap
   useEffect(() => {
     document.body.style.paddingTop = "280px"; // Adjust based on navbar height
     return () => {
@@ -70,24 +70,24 @@ const Navbar = () => {
       label: "Impact",
       sub: [
         { label: "Milestones", path: "/impact/milestones" },
-       // {
-         // label: "Success stories",
-          
-         // sub: [
-            // {
-            //   label: "Testimonials",
-            //   path: "/impact/success-stories/testimonials",
-            // },
-            // { label: "Outcomes", path: "/impact/success-stories/outcomes" },
-          ],
-        //},
-     // ],
+        // {
+        // label: "Success stories",
+
+        // sub: [
+        // {
+        //   label: "Testimonials",
+        //   path: "/impact/success-stories/testimonials",
+        // },
+        // { label: "Outcomes", path: "/impact/success-stories/outcomes" },
+      ],
+      //},
+      // ],
     },
     {
       label: "Partners",
       path: "/partners",
     },
-    
+
     {
       label: "Collaborate",
       sub: [
@@ -102,7 +102,7 @@ const Navbar = () => {
           path: "/collaborate/contribute-material",
         },
 
-        
+
       ],
 
     },
@@ -115,16 +115,15 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 backdrop-blur-lg shadow-md transition-all duration-300 ${
-        isScrolled ? "bg-transparent" : "bg-softBg/90"
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 backdrop-blur-lg shadow-md transition-all duration-300 ${isScrolled ? "bg-transparent" : "bg-softBg/90"
+        }`}
     >
       <div className="w-full">
         <div className="max-w-[1440px] mx-auto flex justify-between items-center px-6 py-3">
           {/* Logo */}
           <div className="flex items-center space-x-3">
             <a
-              href="https://houseofhumanity.in/"
+              href="https://houseofhumanity.org/"
               onClick={handleHohLogoClick}
               target="_blank"
               rel="noopener noreferrer"
@@ -163,11 +162,10 @@ const Navbar = () => {
                 <div key={item.label} className="relative group">
                   <Link
                     to={item.path}
-                    className={`relative px-3 py-1 rounded-lg flex items-center gap-1 transition-all duration-300 ${
-                      isActive
+                    className={`relative px-3 py-1 rounded-lg flex items-center gap-1 transition-all duration-300 ${isActive
                         ? "text-primary font-bold bg-primaryLight border-b-2 border-primary"
                         : "text-primary hover:text-primaryDark hover:bg-primaryLight"
-                    }`}
+                      }`}
                   >
                     {item.label}
                     {item.sub && (
@@ -192,15 +190,14 @@ const Navbar = () => {
                         <div key={sub.label} className="relative group/sub">
                           <Link
                             to={sub.path}
-                            className={`block px-4 py-2 text-primary hover:text-primaryDark hover:bg-primaryLight transition-all duration-200 flex items-center justify-between ${
-                              location.pathname === sub.path ||
-                              (sub.sub &&
-                                sub.sub.some(
-                                  (subSub) => location.pathname === subSub.path
-                                ))
+                            className={`block px-4 py-2 text-primary hover:text-primaryDark hover:bg-primaryLight transition-all duration-200 flex items-center justify-between ${location.pathname === sub.path ||
+                                (sub.sub &&
+                                  sub.sub.some(
+                                    (subSub) => location.pathname === subSub.path
+                                  ))
                                 ? "font-bold bg-primaryLight"
                                 : ""
-                            }`}
+                              }`}
                           >
                             {sub.label}
                             {sub.sub && (
@@ -225,11 +222,10 @@ const Navbar = () => {
                                 <Link
                                   key={subSub.label}
                                   to={subSub.path}
-                                  className={`block px-4 py-2 text-primary hover:text-primaryDark hover:bg-primaryLight transition-all duration-200 ${
-                                    location.pathname === subSub.path
+                                  className={`block px-4 py-2 text-primary hover:text-primaryDark hover:bg-primaryLight transition-all duration-200 ${location.pathname === subSub.path
                                       ? "font-bold bg-primaryLight"
                                       : ""
-                                  }`}
+                                    }`}
                                 >
                                   {subSub.label}
                                 </Link>
@@ -264,9 +260,8 @@ const Navbar = () => {
       {/* Mobile Nav Drawer */}
       {isOpen && (
         <div
-          className={`xl2:hidden backdrop-blur-md px-4 py-4 space-y-2 shadow-md transition-all duration-300 ${
-            isScrolled ? "bg-white/80" : "bg-softBg/95"
-          }`}
+          className={`xl2:hidden backdrop-blur-md px-4 py-4 space-y-2 shadow-md transition-all duration-300 ${isScrolled ? "bg-white/80" : "bg-softBg/95"
+            }`}
         >
           {navItems.map((item) => {
             const isActive =
@@ -284,11 +279,10 @@ const Navbar = () => {
               <div key={item.label}>
                 <Link
                   to={item.path}
-                  className={`block text-base font-medium py-2 border-b flex items-center gap-1 transition duration-200 ${
-                    isActive
+                  className={`block text-base font-medium py-2 border-b flex items-center gap-1 transition duration-200 ${isActive
                       ? "text-primary font-bold border-primary"
                       : "text-primary hover:text-primaryDark"
-                  }`}
+                    }`}
                   onClick={() => setIsOpen(false)}
                 >
                   {item.label}
@@ -314,15 +308,14 @@ const Navbar = () => {
                       <div key={sub.label}>
                         <Link
                           to={sub.path}
-                          className={`block text-sm py-1 border-b transition duration-200 flex items-center gap-1 ${
-                            location.pathname === sub.path ||
-                            (sub.sub &&
-                              sub.sub.some(
-                                (subSub) => location.pathname === subSub.path
-                              ))
+                          className={`block text-sm py-1 border-b transition duration-200 flex items-center gap-1 ${location.pathname === sub.path ||
+                              (sub.sub &&
+                                sub.sub.some(
+                                  (subSub) => location.pathname === subSub.path
+                                ))
                               ? "text-primary font-bold border-primary"
                               : "text-primary hover:text-primaryDark"
-                          }`}
+                            }`}
                           onClick={() => setIsOpen(false)}
                         >
                           {sub.label}
@@ -348,11 +341,10 @@ const Navbar = () => {
                               <Link
                                 key={subSub.label}
                                 to={subSub.path}
-                                className={`block text-xs py-1 border-b transition duration-200 ${
-                                  location.pathname === subSub.path
+                                className={`block text-xs py-1 border-b transition duration-200 ${location.pathname === subSub.path
                                     ? "text-primary font-bold border-primary"
                                     : "text-primary hover:text-primaryDark"
-                                }`}
+                                  }`}
                                 onClick={() => setIsOpen(false)}
                               >
                                 {subSub.label}

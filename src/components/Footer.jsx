@@ -37,7 +37,7 @@ const Footer = () => {
             <div className="lg:col-span-1">
               <div className="flex items-center space-x-3 mb-4">
                 <a
-                  href="https://houseofhumanity.in/"
+                  href="https://houseofhumanity.org/"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -123,29 +123,29 @@ const Footer = () => {
                   Contact
                 </Link>
                 <Link
-  to="#"
-  onClick={() =>
-    window.open(
-      "https://drive.google.com/file/d/1rW_QyMvKZ69JZcAZGFPjJjrPJk_YlseU/view",
-      "_blank"
-    )
-  }
-  className="block text-[#BC1782]/80 hover:text-[#D61A91] transition-all duration-200 hover:translate-x-1 font-medium"
->
-  Sitaare Brochure
-</Link>
-<Link
-  to="#"
-  onClick={() =>
-    window.open(
-      "https://drive.google.com/file/d/1fPKMWz_djR9-BdWST2FGE8P920WjFOJQ/view",
-      "_blank"
-    )
-  }
-  className="block text-[#BC1782]/80 hover:text-[#D61A91] transition-all duration-200 hover:translate-x-1 font-medium"
->
-  Sitaare Proposal
-</Link>
+                  to="#"
+                  onClick={() =>
+                    window.open(
+                      "https://drive.google.com/file/d/1rW_QyMvKZ69JZcAZGFPjJjrPJk_YlseU/view",
+                      "_blank"
+                    )
+                  }
+                  className="block text-[#BC1782]/80 hover:text-[#D61A91] transition-all duration-200 hover:translate-x-1 font-medium"
+                >
+                  Sitaare Brochure
+                </Link>
+                <Link
+                  to="#"
+                  onClick={() =>
+                    window.open(
+                      "https://drive.google.com/file/d/1fPKMWz_djR9-BdWST2FGE8P920WjFOJQ/view",
+                      "_blank"
+                    )
+                  }
+                  className="block text-[#BC1782]/80 hover:text-[#D61A91] transition-all duration-200 hover:translate-x-1 font-medium"
+                >
+                  Sitaare Proposal
+                </Link>
 
               </div>
             </div>
