@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 import { pageVariants } from "../../navs";
 import Lottie from "lottie-react";
 import starsAnimation from "../../assets/stars.json";
@@ -24,7 +25,8 @@ const donateOptions = [
     id: "1",
     name: "Sponsor",
     purpose: "Sitaare Sponsor",
-    description: "₹3,500/month ensures a girl receives quality education, books & supplies.",
+    description:
+      "₹3,500/month ensures a girl receives quality education, books & supplies.",
     amount: 3500,
     icon: FaBook,
     color: "#BC1782",
@@ -33,7 +35,8 @@ const donateOptions = [
     id: "2",
     name: "Support Daily Nutrition",
     purpose: "Sitaare Nutrition",
-    description: "₹2,000/month covers daily meals to keep her healthy and energized.",
+    description:
+      "₹2,000/month covers daily meals to keep her healthy and energized.",
     amount: 2000,
     icon: FaApple,
     color: "#E94BA2",
@@ -42,7 +45,8 @@ const donateOptions = [
     id: "3",
     name: "Adopt a Sitaare for a Month",
     purpose: "Sitaare Full Care",
-    description: "₹11,551 provides full care including housing, education & health.",
+    description:
+      "₹11,551 provides full care including housing, education & health.",
     amount: 11551,
     icon: FaHandHoldingHeart,
     color: "#FFD700",
@@ -61,7 +65,8 @@ const donateOptions = [
     id: "5",
     name: "Meal for 2 Girls (Full Day)",
     purpose: "Sitaare Meal for Two",
-    description: "₹8,000 feeds two girls for an entire day with nutritious meals.",
+    description:
+      "₹8,000 feeds two girls for an entire day with nutritious meals.",
     amount: 8000,
     icon: FaUserFriends,
     color: "#7C0C55",
@@ -190,15 +195,21 @@ function TestimonialCarousel({ testimonials }) {
         "{testimonials[idx].text}"
       </motion.p>
       <div className="flex items-center gap-2 mb-2">
-        <span className="text-[#BC1782] font-bold">{testimonials[idx].name}</span>
-        <span className="text-xs text-gray-400">({testimonials[idx].role})</span>
+        <span className="text-[#BC1782] font-bold">
+          {testimonials[idx].name}
+        </span>
+        <span className="text-xs text-gray-400">
+          ({testimonials[idx].role})
+        </span>
       </div>
       <div className="flex gap-2 mt-2">
         {testimonials.map((_, i) => (
           <button
             key={i}
             onClick={() => setIdx(i)}
-            className={`w-3 h-3 rounded-full ${i === idx ? "bg-[#BC1782]" : "bg-gray-300"} transition`}
+            className={`w-3 h-3 rounded-full ${
+              i === idx ? "bg-[#BC1782]" : "bg-gray-300"
+            } transition`}
             aria-label={`Go to testimonial ${i + 1}`}
           />
         ))}
@@ -225,21 +236,23 @@ const DonateForACause = () => {
     triggerCelebration();
   };
 
-  const handleRedirectToDonate = () => {
-    // let url = `${config.HOH_BASE_URL}/donate-for-a-cause`;
-    let url = `/contact-us`;
-    if (selectedDonation) {
-      const queryParams = new URLSearchParams({
-        amount: selectedDonation.amount ? selectedDonation.amount.toString() : "",
-        purpose: encodeURIComponent(selectedDonation.purpose),
-      });
-      url = `${url}?${queryParams.toString()}`;
-    }
-    console.log("Redirecting to donation URL:", url);
-    window.open(url, "_blank");
-    setShowCelebration(false);
-  };
+  // const handleRedirectToDonate = () => {
+  //   let url = `${config.HOH_BASE_URL}/donate-for-a-cause`;
+  //   if (selectedDonation) {
+  //     const queryParams = new URLSearchParams({
+  //       amount: selectedDonation.amount
+  //         ? selectedDonation.amount.toString()
+  //         : "",
+  //       purpose: encodeURIComponent(selectedDonation.purpose),
+  //     });
+  //     url = `${url}?${queryParams.toString()}`;
+  //   }
+  //   console.log("Redirecting to donation URL:", url);
+  //   window.open(url, "_blank");
+  //   setShowCelebration(false);
+  // };
 
+  const navigate = useNavigate();
   return (
     <motion.div
       variants={pageVariants}
@@ -268,17 +281,23 @@ const DonateForACause = () => {
               className="bg-white rounded-3xl shadow-2xl p-8 flex flex-col items-center max-w-md mx-auto border-4 border-pink-200"
             >
               <div className="w-32 h-32 mb-4">
-                <Lottie animationData={starSuccessAnimation} loop={false} autoplay={true} />
+                <Lottie
+                  animationData={starSuccessAnimation}
+                  loop={false}
+                  autoplay={true}
+                />
               </div>
               <h2 className="text-2xl font-bold text-[#BC1782] mb-2 text-center">
                 Thank You for Your Generosity!
               </h2>
               <p className="text-lg text-gray-700 text-center mb-4">
-                Your donation is making a real difference. Together, we help every Sitaare shine brighter!
+                Your donation is making a real difference. Together, we help
+                every Sitaare shine brighter!
               </p>
               <div className="flex gap-4">
                 <button
-                  onClick={handleRedirectToDonate}
+                  onClick={() => navigate("/contact-us")}
+                  // onClick={handleRedirectToDonate}
                   className="px-6 py-3 bg-[#BC1782] text-white rounded-full font-semibold shadow hover:bg-[#E94BA2] transition flex items-center gap-2"
                 >
                   <FaHeart />
@@ -320,7 +339,9 @@ const DonateForACause = () => {
           transition={{ duration: 0.7, delay: 0.2 }}
           className="relative z-10 text-base xs:text-lg sm:text-xl text-center max-w-2xl mx-auto mb-6 text-[#7C0C55] font-medium px-2"
         >
-          Your donation transforms lives—providing safety, education, nutrition, and hope for every Sitaare girl. Choose your impact below and help a star shine bright.
+          Your donation transforms lives—providing safety, education, nutrition,
+          and hope for every Sitaare girl. Choose your impact below and help a
+          star shine bright.
         </motion.p>
 
         {/* Inspiring Quote */}
@@ -330,7 +351,8 @@ const DonateForACause = () => {
           transition={{ delay: 0.5, duration: 1 }}
           className="relative z-10 italic text-base xs:text-lg sm:text-xl text-[#BC1782] text-center mt-4 font-semibold border-l-4 border-[#E94BA2] pl-4 mx-auto max-w-2xl px-2"
         >
-          "Even a single star can light the dark sky — your kindness helps them shine."
+          "Even a single star can light the dark sky — your kindness helps them
+          shine."
         </motion.blockquote>
       </div>
 
@@ -374,7 +396,10 @@ const DonateForACause = () => {
             <div className="flex flex-col flex-grow justify-between h-full">
               <div className="flex flex-col flex-grow">
                 <div className="flex justify-center mb-4">
-                  <item.icon className="text-3xl xs:text-4xl" style={{ color: item.color }} />
+                  <item.icon
+                    className="text-3xl xs:text-4xl"
+                    style={{ color: item.color }}
+                  />
                 </div>
                 <h3 className="text-base xs:text-lg sm:text-xl font-bold text-[#BC1782] mb-2 break-words">
                   {item.name}
@@ -391,7 +416,11 @@ const DonateForACause = () => {
                   onClick={() => handleDonateClick(item)}
                   className="bg-[#BC1782] hover:bg-[#E94BA2] text-white font-semibold px-4 py-2 rounded-md shadow-md transition text-sm xs:text-base w-full"
                 >
-                  {item.custom ? "Donate Custom" : `Donate ₹${item.amount ? item.amount.toLocaleString() : "Custom"}`}
+                  {item.custom
+                    ? "Donate Custom"
+                    : `Donate ₹${
+                        item.amount ? item.amount.toLocaleString() : "Custom"
+                      }`}
                 </button>
               </div>
             </div>
@@ -473,7 +502,8 @@ const DonateForACause = () => {
               transition={{ duration: 0.7, delay: 0.5 }}
               className="text-base xs:text-lg mb-6 text-white/90 max-w-2xl mx-auto"
             >
-              Visit our main website to explore more donation options and learn about our comprehensive programs at House of Humanity.
+              Visit our main website to explore more donation options and learn
+              about our comprehensive programs at House of Humanity.
             </motion.p>
             <motion.a
               href={`${config.HOH_BASE_URL}`}
@@ -505,7 +535,8 @@ const DonateForACause = () => {
       {/* Sticky Donate CTA for mobile */}
       <div className="fixed bottom-2 left-0 w-full flex justify-center z-50 sm:hidden pointer-events-none px-2">
         <button
-          onClick={handleRedirectToDonate}
+          onClick={() => navigate("/contact-us")}
+          // onClick={handleRedirectToDonate}
           className="pointer-events-auto bg-gradient-to-r from-[#BC1782] to-[#E94BA2] text-white font-bold px-4 py-2 rounded-full shadow-lg animate-pulse text-base border-2 border-white w-full max-w-xs"
         >
           Donate Now →
