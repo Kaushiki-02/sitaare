@@ -1,6 +1,5 @@
 export { default as Footer } from "./Footer.jsx"
 export { default as ProfileCard } from "./ProfileCard.jsx"
-export { default as DonationForm } from "./DonationForm.jsx"
 export { default as Navbar } from "./Navbar.jsx"
 export { default as Scroller } from "./scroller.jsx"
 export { default as ProgressBar } from "./ProgressBar.jsx"

@@ -17,7 +17,6 @@ import { useState, useEffect } from "react";
 import Confetti from "react-confetti";
 import { useRef } from "react";
 import starSuccessAnimation from "../../assets/Star Success.json";
-import config from "../../config/config";
 
 const donateOptions = [
   {
