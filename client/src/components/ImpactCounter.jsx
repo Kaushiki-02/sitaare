@@ -6,7 +6,7 @@ const stats = [
   {
     icon: <FaChild className="text-pink-500 text-4xl sm:text-3xl" />,
     label: 'Girls Empowered',
-    value: 120,
+    value: 25,
   },
   {
     icon: <FaHandHoldingHeart className="text-blue-500 text-4xl sm:text-3xl" />,

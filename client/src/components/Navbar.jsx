@@ -19,6 +19,18 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const handleSitaareLogoClick = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const handleHohLogoClick = (event) => {
+    if (window.scrollY > 0) {
+      event.preventDefault();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+    // If scrollY is 0, the default <a> tag behavior will proceed, opening the link.
+  };
+
    // Inject global padding-top to body to prevent navbar overlap
   useEffect(() => {
     document.body.style.paddingTop = "280px"; // Adjust based on navbar height
@@ -50,35 +62,32 @@ const Navbar = () => {
       label: "Our Aspiration",
       path: "/our-aspiration",
     },
-    {
-      label: "News and Events",
-      path: "/news-and-events",
-    },
+    // {
+    //   label: "News and Events",
+    //   path: "/news-and-events",
+    // },
     {
       label: "Impact",
       sub: [
         { label: "Milestones", path: "/impact/milestones" },
-        {
-          label: "Success stories",
+       // {
+         // label: "Success stories",
           
-          sub: [
-            {
-              label: "Testimonials",
-              path: "/impact/success-stories/testimonials",
-            },
-            { label: "Outcomes", path: "/impact/success-stories/outcomes" },
+         // sub: [
+            // {
+            //   label: "Testimonials",
+            //   path: "/impact/success-stories/testimonials",
+            // },
+            // { label: "Outcomes", path: "/impact/success-stories/outcomes" },
           ],
-        },
-      ],
+        //},
+     // ],
     },
     {
       label: "Partners",
       path: "/partners",
     },
-    {
-      label: "Contact Us",
-      path: "/contact-us",
-    },
+    
     {
       label: "Collaborate",
       sub: [
@@ -92,8 +101,16 @@ const Navbar = () => {
           label: "Contribute Material",
           path: "/collaborate/contribute-material",
         },
+
+        
       ],
+
     },
+    {
+      label: "Contact Us",
+      path: "/contact-us",
+    },
+
   ];
 
   return (
@@ -107,7 +124,8 @@ const Navbar = () => {
           {/* Logo */}
           <div className="flex items-center space-x-3">
             <a
-              href="https://houseofhumanity.in/"
+              href="https://hoh-demo-website.web.app/"
+              onClick={handleHohLogoClick}
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -118,7 +136,7 @@ const Navbar = () => {
               />
             </a>
             <div className="h-8 border-l-2 border-gray-300 mx-2"></div>
-            <Link to="/">
+            <Link to="/" onClick={handleSitaareLogoClick}>
               <img
                 src={logo}
                 alt="Project Sitaare"

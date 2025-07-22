@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { FaBuilding, FaUniversity, FaHandsHelping, FaGavel, FaStar, FaArrowRight, FaQuoteLeft } from 'react-icons/fa';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -45,26 +45,23 @@ const partnerData = [
 ];
 
 const counters = [
-  { label: 'Partners Engaged', value: 24, icon: FaStar, color: '#E94BA2' },
+  { label: 'Partners Engaged', value: 5, icon: FaStar, color: '#E94BA2' },
   { label: 'Projects Co-created', value: 12, icon: FaHandsHelping, color: '#BC1782' },
-  { label: 'Girls Impacted', value: 300, icon: FaStar, color: '#A78BFA' },
+  { label: 'Girls Impacted', value: 25, icon: FaStar, color: '#A78BFA' },
 ];
 
 const testimonials = [
   {
     name: "Acme Corp",
     text: "Partnering with Sitaare has been a transformative experience for our team and our CSR goals.",
-    logo: "https://via.placeholder.com/60x60?text=AC"
   },
   {
     name: "Bright Foundation",
     text: "Together, we've created real, lasting change for girls who need it most.",
-    logo: "https://via.placeholder.com/60x60?text=BF"
   },
   {
     name: "Global University",
     text: "Our students gained invaluable experience and made a difference through Sitaare internships.",
-    logo: "https://via.placeholder.com/60x60?text=GU"
   }
 ];
 
@@ -169,24 +166,53 @@ export default function Partners() {
       </motion.div>
       </section>
 
-      {/* Testimonials Carousel */}
-      <section className="max-w-3xl mx-auto py-12 px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
-          className="bg-white rounded-2xl shadow-lg p-8 text-center relative"
-          data-aos="fade-up"
-        >
-          <FaQuoteLeft className="text-3xl text-pink-300 absolute left-6 top-6" />
-          <img
-            src={testimonials[testimonialIdx].logo}
-            alt={testimonials[testimonialIdx].name}
-            className="w-16 h-16 rounded-full mx-auto mb-4 border-4 border-pink-100 object-cover"
-          />
-          <p className="text-lg italic text-gray-700 mb-4">"{testimonials[testimonialIdx].text}"</p>
-          <span className="block text-pink-600 font-bold">{testimonials[testimonialIdx].name}</span>
-    </motion.div>
+      {/* Redesigned Testimonials Section */}
+      <section className="bg-white py-20 px-4">
+        <div className="max-w-4xl mx-auto text-center">
+          <motion.h2 
+            className="text-3xl font-bold text-primaryDark mb-4"
+            data-aos="fade-up"
+          >
+            What Our Partners Say
+          </motion.h2>
+          <motion.p 
+            className="text-gray-600 mb-12"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
+            Hear from organizations that have joined us on our mission.
+          </motion.p>
+          <div className="relative h-48 sm:h-32" data-aos="fade-up" data-aos-delay="200">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={testimonialIdx}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.4 }}
+                className="w-full absolute inset-0"
+              >
+                <FaQuoteLeft className="text-6xl text-pink-100/80 absolute -top-6 left-1/2 -translate-x-1/2 -z-1" />
+                <p className="text-xl italic text-gray-700 mb-6 relative z-10">
+                  {testimonials[testimonialIdx].text}
+                </p>
+                <span className="block text-lg font-bold text-primary">
+                  - {testimonials[testimonialIdx].name} -
+                </span>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+          <div className="flex justify-center gap-3 mt-8">
+            {testimonials.map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => setTestimonialIdx(idx)}
+                className={`w-3 h-3 rounded-full transition-colors duration-300 ${testimonialIdx === idx ? 'bg-primary' : 'bg-gray-300 hover:bg-gray-400'}`}
+                aria-label={`Go to testimonial ${idx + 1}`}
+              />
+            ))}
+          </div>
+        </div>
       </section>
 
       {/* CTA Section */}

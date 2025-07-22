@@ -96,7 +96,7 @@ const impactStats = [
   {
     icon: <FaSmile className="text-pink-500 text-4xl impact-icon" />,
     label: "Girls Empowered",
-    value: 120,
+    value: 25,
     bg: "from-pink-100 to-pink-50",
     border: "border-pink-300",
     story: "Each girl is now dreaming bigger.",

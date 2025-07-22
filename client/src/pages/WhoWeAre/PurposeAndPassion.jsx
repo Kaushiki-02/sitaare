@@ -68,7 +68,7 @@ const PurposeAndPassion = () => {
       {/* Hero Section */}
       <div className="relative overflow-hidden w-full">
         <div className="absolute inset-0 bg-gradient-to-r from-purple-600/20 to-pink-600/20"></div>
-        <div className="relative z-20 w-full text-center py-14 lg:py-20">
+        <div className="relative z-20 w-full text-center py-12 sm:py-14 lg:py-20">
           <motion.div
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
@@ -77,16 +77,16 @@ const PurposeAndPassion = () => {
           >
             <FaHeart className="text-6xl text-pink-500 mx-auto mb-4" />
           </motion.div>
-          <motion.h1 className="text-5xl sm:text-6xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-6">
+          <motion.h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-6">
             Who We Are
           </motion.h1>
-          <motion.p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+          <motion.p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed px-4">
             A youth-led movement transforming lives through compassion, innovation, and unwavering commitment to human dignity.
           </motion.p>
         </div>
       </div>
 
-      <div className="px-6 py-16">
+      <div className="px-4 sm:px-6 py-12 sm:py-16">
         <div className="max-w-6xl mx-auto">
           
           {/* About Section */}
@@ -94,10 +94,10 @@ const PurposeAndPassion = () => {
             variants={staggerContainer}
             initial="initial"
             animate="animate"
-            className="mb-20"
+            className="mb-16 sm:mb-20"
             data-aos="fade-up"
           >
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
               <motion.div 
                 variants={fadeInUp}
                 className="relative"
@@ -117,18 +117,18 @@ const PurposeAndPassion = () => {
                 className="space-y-6"
               >
                 <div className="inline-block">
-                  <h2 className="text-3xl lg:text-4xl font-bold text-gray-800 mb-2">
+                  <h2 className="text-3xl sm:text-4xl font-bold text-gray-800 mb-2">
                     About House of Humanity
                   </h2>
                   <div className="h-1 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full w-24"></div>
                 </div>
                 
-                <p className="text-lg leading-relaxed text-gray-600">
+                <p className="text-base sm:text-lg leading-relaxed text-gray-600">
                   House of Humanity Charitable Trust is a youth-led, grassroots non-profit organization founded with an unwavering belief in equity, dignity, and collective upliftment.
                   We drive holistic, inclusive, and sustainable development across India by addressing critical social challenges through deeply human-centered solutions.
                 </p>
                 
-                <p className="text-lg leading-relaxed text-gray-600">
+                <p className="text-base sm:text-lg leading-relaxed text-gray-600">
                   From humble beginnings as a volunteer group, we've grown into a multi-project movement impacting thousands of lives.
                   Our work spans health, education, nutrition, hygiene, and child protection—fueled by empathy and sustained by a community of changemakers.
                 </p>
@@ -151,7 +151,7 @@ const PurposeAndPassion = () => {
           {/* Elegant Divider */}
           <motion.div 
             variants={fadeInUp}
-            className="flex justify-center my-16"
+            className="flex justify-center my-12 sm:my-16"
           >
             <div className="flex items-center gap-4">
               <div className="w-16 h-px bg-gradient-to-r from-transparent to-pink-300"></div>
@@ -169,10 +169,10 @@ const PurposeAndPassion = () => {
             variants={staggerContainer}
             initial="initial"
             animate="animate"
-            className="mb-20" 
+            className="mb-16 sm:mb-20" 
             data-aos="fade-up"
           >
-            <motion.div variants={fadeInUp} className="text-center mb-12">
+            <motion.div variants={fadeInUp} className="text-center mb-8 sm:mb-12">
              
               <p className="text-lg text-gray-600 max-w-2xl mx-auto">
                 The principles that guide every action, decision, and initiative we undertake.
@@ -185,7 +185,7 @@ const PurposeAndPassion = () => {
                 alt="Our Core Values"
                 width={1000}
                 height={500}
-               className="w-full max-w-4xl h-64 object-cover rounded-2xl shadow-lg mx-auto"
+               className="w-full max-w-4xl h-48 sm:h-56 md:h-64 object-cover rounded-2xl shadow-lg mx-auto"
                 style={{ aspectRatio: '1000/500' }}
               />
             </div>
@@ -196,7 +196,7 @@ const PurposeAndPassion = () => {
                   key={value.title}
                   variants={fadeInUp}
                   whileHover="hover"
-                  className="bg-white rounded-2xl shadow-lg p-8 text-center hover:shadow-xl transition-all duration-300 border-t-4"
+                  className="bg-white rounded-2xl shadow-lg p-6 sm:p-8 text-center hover:shadow-xl transition-all duration-300 border-t-4"
                   style={{ borderColor: ['#F472B6', '#60A5FA', '#34D399', '#FBBF24', '#A78BFA'][idx] }}
                   data-aos="fade-in"
                   data-aos-delay={idx * 120}
@@ -216,7 +216,7 @@ const PurposeAndPassion = () => {
           {/* Elegant Divider */}
           <motion.div 
             variants={fadeInUp}
-            className="flex justify-center my-16"
+            className="flex justify-center my-12 sm:my-16"
           >
             <div className="flex items-center gap-4">
               <div className="w-16 h-px bg-gradient-to-r from-transparent to-purple-300"></div>
@@ -234,10 +234,10 @@ const PurposeAndPassion = () => {
             variants={staggerContainer}
             initial="initial"
             animate="animate"
-            className="mb-20" 
+            className="mb-16 sm:mb-20" 
             data-aos="fade-up"
           >
-            <motion.div variants={fadeInUp} className="text-center mb-12">
+            <motion.div variants={fadeInUp} className="text-center mb-8 sm:mb-12">
               
               <p className="text-lg text-gray-600 max-w-2xl mx-auto">
                 Transforming communities through targeted programs that address real needs with sustainable solutions.
@@ -248,7 +248,7 @@ const PurposeAndPassion = () => {
               <img
                 src="/initiatives.png"
                 alt="Initiatives Banner"
-                className="w-full max-w-4xl h-64 object-cover rounded-2xl shadow-lg mx-auto"
+                className="w-full max-w-4xl object-contain rounded-[40px] shadow-lg mx-auto"
               />
             </div>
             
@@ -258,7 +258,7 @@ const PurposeAndPassion = () => {
                   key={initiative.title}
                   variants={fadeInUp}
                   whileHover="hover"
-                  className="bg-white rounded-2xl shadow-lg p-8 text-center hover:shadow-xl transition-all duration-300 border-t-4"
+                  className="bg-white rounded-2xl shadow-lg p-6 sm:p-8 text-center hover:shadow-xl transition-all duration-300 border-t-4"
                   style={{ borderColor: ['#F87171', '#F472B6', '#34D399', '#FBBF24', '#60A5FA', '#F9A8D4', '#F87171'][idx] }}
                   data-aos="fade-in"
                   data-aos-delay={idx * 120}
@@ -278,7 +278,7 @@ const PurposeAndPassion = () => {
           {/* Elegant Divider */}
           <motion.div 
             variants={fadeInUp}
-            className="flex justify-center my-16"
+            className="flex justify-center my-12 sm:my-16"
           >
             <div className="flex items-center gap-4">
               <div className="w-16 h-px bg-gradient-to-r from-transparent to-pink-300"></div>
@@ -294,23 +294,23 @@ const PurposeAndPassion = () => {
           {/* Project Sitaare Spotlight */}
           <motion.section 
             variants={fadeInUp}
-            className="mb-20" 
+            className="mb-16 sm:mb-20" 
             data-aos="fade-up"
           >
-            <div className="bg-gradient-to-r from-purple-600 to-pink-600 rounded-3xl p-8 lg:p-12 text-white relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16"></div>
-              <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/10 rounded-full -ml-12 -mb-12"></div>
+            <div className="bg-gradient-to-r from-purple-600 to-pink-600 rounded-3xl p-6 sm:p-8 lg:p-12 text-white relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16 hidden sm:block"></div>
+              <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/10 rounded-full -ml-12 -mb-12 hidden sm:block"></div>
               
               <div className="relative z-10">
                 <div className="text-center mb-8">
                   <FaStar className="text-4xl text-yellow-300 mx-auto mb-4" />
-                  <h2 className="text-3xl lg:text-4xl font-bold mb-4">
+                  <h2 className="text-3xl sm:text-4xl font-bold mb-4">
                     Project <span className="text-yellow-300">Sitaare</span>
                   </h2>
-                  <p className="text-xl text-purple-100 mb-6">Our Flagship Shelter Home Initiative</p>
+                  <p className="text-lg sm:text-xl text-purple-100 mb-6">Our Flagship Shelter Home Initiative</p>
                 </div>
                 
-                <div className="max-w-4xl mx-auto space-y-6 text-lg leading-relaxed">
+                <div className="max-w-4xl mx-auto space-y-6 text-base sm:text-lg leading-relaxed">
                   <p>
                     Among all our programs, <strong>Project Sitaare</strong> stands as a beacon of our core belief: <span className="text-yellow-300 font-semibold">empowerment through care</span>.
                     It is more than shelter—it's a safe haven where vulnerable girls (ages 6–18) rebuild, learn, and thrive.
@@ -335,10 +335,10 @@ const PurposeAndPassion = () => {
             className="text-center" 
             data-aos="fade-up"
           >
-            <div className="bg-gradient-to-r from-purple-100 to-pink-100 rounded-3xl p-8 lg:p-12 relative">
-              <FaQuoteLeft className="text-4xl text-purple-300 absolute top-6 left-6" />
+            <div className="bg-gradient-to-r from-purple-100 to-pink-100 rounded-3xl p-8 sm:p-12 lg:p-16 relative">
+              <FaQuoteLeft className="text-3xl sm:text-4xl text-purple-300 absolute top-6 left-6 sm:top-8 sm:left-8" />
               
-              <blockquote className="text-2xl lg:text-3xl font-bold text-gray-800 mb-4 italic max-w-3xl mx-auto">
+              <blockquote className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-800 mb-4 italic max-w-3xl mx-auto px-6 sm:px-0">
                 Sitaare is not just about shelter—it's about possibility, potential, and purpose.
               </blockquote>
               
